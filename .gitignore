@@ -281,3 +281,18 @@ __pycache__/
 # tools/**
 # !tools/packages.config
 *.dll
+
+# TeumesseCastle: reference binaries of PingCastle 3.0.0.0 (non-regression baseline, not redistributed)
+reference/pingcastle-3.0.0.0-binaries/*
+!reference/pingcastle-3.0.0.0-binaries/changelog.txt
+!reference/pingcastle-3.0.0.0-binaries/license.rtf
+
+# TeumesseCastle: generated reports and local artefacts at the repository root
+/*.html
+/*.xml
+/*.json
+/*.txt.log
+/*.log
+*.lic
+/TestResults/
+/artifacts/
