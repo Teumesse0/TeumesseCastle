@@ -77,3 +77,14 @@ Format : contexte → décision → conséquences. Une entrée par décision non
   - Le bouton « Compare with statistics » (POST vers `stat.pingcastle.com` avec la clé de licence) est supprimé dès la Phase 3 car il dépend de la classe de licence.
   - Les options `--api-endpoint`/`--api-key` (console Enterprise) sont laissées en place pour la Phase 4 (réseau) ; seule la partie « licence renvoyée par l'API » est retirée.
 - **Conséquences** : `TeumesseCastle.exe` démarre sans vérification ni date d'expiration ; `--rules` produit le rapport des règles sans AD ; BREAKING CHANGE documenté dans `CHANGELOG.md`.
+
+## ADR-0010 — Phase 4 : réseau sortant et vérification de mise à jour
+
+- **Date** : 2026-10-31 (Phase 4, feu vert global)
+- **Contexte** : trois mécanismes pointaient vers l'éditeur (audit §6) : auto-updater, benchmark, console Enterprise.
+- **Décisions** :
+  - Projet `PingCastleAutoUpdater` supprimé (dossier, entrée `.sln`). Remplacé par `misc/UpdateChecker.cs` : `--check-update` (CLI) et `checkupdate` (menu avancé) ; un seul GET sur `api.github.com/repos/Teumesse0/TeumesseCastle/releases/latest`, `User-Agent: TeumesseCastle/<version>`, timeout 5 s, TLS 1.2 forcé (.NET 4.5.2 ne l'active pas par défaut), comparaison SemVer (`v` optionnel, pré-release < version finale), aucun téléchargement. Erreur réseau : silencieuse (trace) en CLI, message en mode interactif.
+  - Console Enterprise : `--api-endpoint`, `--api-key`, `--upload-all-reports`, `SendViaAPI*`, `RetrieveSettingsViaAPI`, `ProcessSettings`, `AgentSettings` supprimés (≈ 340 lignes de `Tasks.cs`), champs `apiEndpoint`/`apiKey` retirés de `RuntimeSettings`. Le serveur n'existe pas dans la source : fonctionnalité « non portée » (`docs/ROADMAP.md`). Les envois SMTP et WebDAV, qui ciblent des serveurs choisis par l'utilisateur, sont conservés.
+  - `Directory.Build.props` ne porte plus que la propriété `TeumesseCastleVersion` (le package de reference assemblies est implicite pour le projet SDK restant).
+  - Comportement réseau documenté dans `docs/NETWORK.md` (référence à maintenir à chaque changement).
+- **Conséquences** : plus aucun appel HTTP sortant hors infrastructure auditée, sauf l'opt-in GitHub ; la solution ne contient plus qu'un projet.

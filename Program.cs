@@ -16,6 +16,7 @@ using TeumesseCastle.Scanners;
 using TeumesseCastle.Cloud.Common;
 using TeumesseCastle.Cloud.RESTServices.Azure;
 using TeumesseCastle.Cloud.Tokens;
+using TeumesseCastle.misc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,7 +43,6 @@ namespace TeumesseCastle
         Regen,
         Reload,
         DemoReport,
-        UploadAllRports,
         FakeReport,
         CloudHealthCheck,
         ExportRulesXml,
@@ -138,7 +138,6 @@ namespace TeumesseCastle
                 {PossibleTasks.Regen,                    tasks.RegenerateHtmlTask},
                 {PossibleTasks.Reload,                   tasks.ReloadXmlReport},
                 {PossibleTasks.DemoReport,               tasks.GenerateDemoReportTask},
-                {PossibleTasks.UploadAllRports,          tasks.UploadAllReportInCurrentDirectory},
                 {PossibleTasks.FakeReport,               tasks.GenerateFakeReport},
                 {PossibleTasks.CloudHealthCheck,         tasks.AnalyzeTask},
                 {PossibleTasks.ExportRulesXml,           tasks.GenerateRuleList},
@@ -153,7 +152,6 @@ namespace TeumesseCastle
                 {PossibleTasks.Carto,                  new string[] {"Server"}},
                 {PossibleTasks.Regen,                  new string[] {"File"}},
                 {PossibleTasks.Reload,                  new string[] {"File"}},
-                {PossibleTasks.UploadAllRports,                  new string[] {"Directory"}},
                 {PossibleTasks.FakeReport,                  new string[] {"Directory"}},
                 {PossibleTasks.CloudHealthCheck,        new string[] {"AzureADCredential"}},
             };
@@ -218,30 +216,6 @@ namespace TeumesseCastle
                 {
                     switch (args[i])
                     {
-                        case "--api-endpoint":
-                            if (i + 1 >= args.Length)
-                            {
-                                WriteInRed("argument for --api-endpoint is mandatory");
-                                return false;
-                            }
-                            settings.apiEndpoint = args[++i];
-                            {
-                                Uri res;
-                                if (!Uri.TryCreate(settings.apiEndpoint, UriKind.Absolute, out res))
-                                {
-                                    WriteInRed("unable to convert api-endpoint into an URI");
-                                    return false;
-                                }
-                            }
-                            break;
-                        case "--api-key":
-                            if (i + 1 >= args.Length)
-                            {
-                                WriteInRed("argument for --api-key is mandatory");
-                                return false;
-                            }
-                            settings.apiKey = args[++i];
-                            break;
                         case "--azuread":
                             requestedActions.Add(PossibleTasks.CloudHealthCheck);
                             break;
@@ -374,6 +348,10 @@ namespace TeumesseCastle
                         case "--hc-conso":
                             requestedActions.Add(PossibleTasks.ADConso);
                             break;
+                        case "--check-update":
+                            // Opt-in only: one GET on the GitHub Releases API, nothing downloaded (see docs/NETWORK.md).
+                            UpdateChecker.Run(Assembly.GetExecutingAssembly().GetName().Version, false);
+                            return false;
                         case "--help":
                             DisplayHelp();
                             return false;
@@ -732,9 +710,6 @@ namespace TeumesseCastle
                             }
                             settings.thumbprint = args[++i];
                             break;
-                        case "--upload-all-reports":
-                            requestedActions.Add(PossibleTasks.UploadAllRports);
-                            break;
                         case "--user":
                             if (i + 1 >= args.Length)
                             {
@@ -946,6 +921,7 @@ namespace TeumesseCastle
                 new ConsoleMenuItem("decrypt","Decrypt a xml report"),
                 new ConsoleMenuItem("regenerate","Regenerate the html report based on the xml report"),
                 new ConsoleMenuItem("log","Enable logging (log is " + (Trace.Listeners.Count > 1 ? "enabled":"disabled") + ")"),
+                new ConsoleMenuItem("checkupdate","Check on GitHub whether a newer release exists (nothing is downloaded)"),
             };
 
             ConsoleMenu.Title = "What do you want to do?";
@@ -979,6 +955,12 @@ namespace TeumesseCastle
                     ReportHealthCheckSingle.MaxNumberUsersInHtmlReport = int.MaxValue;
                     ConsoleMenu.Notice = "Limitation removed";
                     return DisplayState.Exit;
+                case "checkupdate":
+                    {
+                        bool newer;
+                        ConsoleMenu.Notice = UpdateChecker.Describe(Assembly.GetExecutingAssembly().GetName().Version, true, out newer);
+                        return DisplayState.Exit;
+                    }
             }
         }
 
@@ -1017,8 +999,7 @@ namespace TeumesseCastle
             Console.WriteLine("  --log               : generate a log file");
             Console.WriteLine("  --log-console       : add log to the console");
             Console.WriteLine("  --log-samba <option>: enable samba login (example: 10)");
-            Console.WriteLine("  --api-endpoint <>   : to upload report via api call eg: http://server");
-            Console.WriteLine("  --api-key  <key>    : and using the api key as registered");
+            Console.WriteLine("  --check-update      : check on GitHub whether a newer release exists (opt-in, nothing is downloaded)");
             Console.WriteLine("");
             Console.WriteLine("Common options when connecting to the AD");
             Console.WriteLine("  --server <server>   : use this server (default: current domain controller)");
@@ -1136,11 +1117,6 @@ namespace TeumesseCastle
             Console.WriteLine("   With P12");
             Console.WriteLine("     --p12-file xxx : specify the P12 file to use");
             Console.WriteLine("     --p12-pass xxx : specify the password to use");
-            Console.WriteLine("");
-            Console.WriteLine("  --upload-all-reports: use the API to upload all reports in the current directory");
-            Console.WriteLine("    --api-endpoint <> : upload report via api call eg: http://server");
-            Console.WriteLine("    --api-key  <key>  : and using the api key as registered");
-            Console.WriteLine("                        Note: do not forget to set --level Full to send all the information available");
             Console.WriteLine("");
             Console.WriteLine("  --export-rules : export all rule in a single xml file");
 

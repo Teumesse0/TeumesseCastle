@@ -8,7 +8,7 @@ Dernière mise à jour : 2026-10-31
 | 1 — Cadre légal et fondations | **Terminée** | `main` : build/chore commits, push initial | ADR-0002 résolu (SDK-style, net452) |
 | 2 — Rebranding | **Terminée** | `phase-2-rebranding` → PR → `main` | `ad_hc_` conservé (ADR-0005) ; bannière vérifiable seulement après Phase 3 (licence expirée) |
 | 3 — Libération (licence/éditions) | **Terminée** | `phase-3-liberation` → PR → `main` | ADR-0009 ; BREAKING CHANGE dans CHANGELOG |
-| 4 — Réseau et mise à jour GitHub | À faire (validation requise) | | 3 appels sortants éditeur à supprimer (§6 audit) |
+| 4 — Réseau et mise à jour GitHub | **Terminée** | `phase-4-network` → PR → `main` | ADR-0010 ; `docs/NETWORK.md` |
 | 5 — Commentaires exhaustifs | À faire | | 72 712 LOC, 356 fichiers |
 | 6 — Qualité, tests, CI/CD | À faire | | |
 | 7 — Release v1.0.0 | À faire | | |
@@ -42,6 +42,13 @@ Dernière mise à jour : 2026-10-31
 - Toutes les sections de rapport, le branding personnalisé, les règles personnalisées et les honeypots illimités sont disponibles sans condition.
 - Tests manuels : `--help` fonctionne (plus d'arrêt « unsupported since ») ; `--rules` génère `ad_hc_rules_list.html` (sans AD, 1 Mo, 432 cellules d'identifiants de règles) avec logo et pied de page TeumesseCastle, la seule occurrence « pingcastle » du HTML est l'attribution ; `--export-rules` et `--generate-key` fonctionnent ; `--scanner`/`--export` sans argument renvoient le message d'erreur attendu.
 - `docs/ROADMAP.md` créé (fonctionnalités non portées : console Enterprise, benchmark, auto-updater).
+
+## Phase 4 — réalisé
+
+- `PingCastleAutoUpdater/` supprimé ; `--check-update` / menu `checkupdate` ajoutés (`misc/UpdateChecker.cs`, GET unique sur l'API GitHub Releases, timeout 5 s, rien n'est téléchargé, silencieux hors interactif).
+- Console Enterprise (`--api-endpoint`, `--api-key`, `--upload-all-reports` et tout le code `SendViaAPI`/`RetrieveSettingsViaAPI`) supprimée ; SMTP et WebDAV conservés.
+- `docs/NETWORK.md` rédigé ; grep de contrôle : plus aucune URL éditeur hors en-têtes et attribution ; clients HTTP restants = `UpdateChecker`, `ConnectionTesterHttp` (serveurs déclarés dans l'AD), `Cloud/` (Azure AD), `UploadToWebsite` (WebDAV utilisateur).
+- Build vert, `--check-update` testé (dépôt sans release : sortie silencieuse, code 0, trace « Update check failed »).
 
 ## Décisions à prendre par Johnny (non bloquantes)
 
