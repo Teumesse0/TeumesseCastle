@@ -4,6 +4,8 @@
 //
 // Licensed under the Non-Profit OSL. See LICENSE file in the project root for full license information.
 //
+// Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
+//
 using PingCastle.Cloud.RESTServices.Azure;
 using PingCastle.Cloud.Tokens;
 using System;
