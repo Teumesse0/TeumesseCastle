@@ -22,7 +22,7 @@ namespace TeumesseCastle.Report
     {
         private NetworkMapData data;
 
-        public string GenerateReportFile(TeumesseCastleReportCollection<HealthcheckData> report, ADHealthCheckingLicense license, string filename)
+        public string GenerateReportFile(TeumesseCastleReportCollection<HealthcheckData> report, string filename)
         {
             data = NetworkMapData.BuildFromConsolidation(report);
             return GenerateReportFile(filename);

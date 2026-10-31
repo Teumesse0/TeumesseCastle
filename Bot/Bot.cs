@@ -201,8 +201,7 @@ namespace TeumesseCastle.Bot
                 {
                     HealthcheckData healthcheckData = DataHelper<HealthcheckData>.LoadXml(ms, "bot", null);
                     var endUserReportGenerator = new ReportHealthCheckSingle();
-                    var license = LicenseManager.Validate(typeof(Program), new Program()) as ADHealthCheckingLicense;
-                    var report = endUserReportGenerator.GenerateReportFile(healthcheckData, license, healthcheckData.GetHumanReadableFileName());
+                    var report = endUserReportGenerator.GenerateReportFile(healthcheckData, healthcheckData.GetHumanReadableFileName());
 
                     var o = new BotInputOutput();
                     o.Data = new List<BotData>();

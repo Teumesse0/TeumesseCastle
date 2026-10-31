@@ -61,3 +61,19 @@ Format : contexte → décision → conséquences. Une entrée par décision non
 - **Contexte** : aucune identité Git globale sur le poste ; le dépôt est dans un dossier synchronisé OneDrive. Un verrou OneDrive a déjà fait échouer une écriture de fichier pendant la Phase 1 (contourné par une relance).
 - **Décision** : identité configurée **localement** dans le dépôt (`user.name = Johnny Cervantes`, `user.email = johnny.l.s.cervantes@gmail.com`, `core.autocrlf = false` pour préserver les CRLF de l'upstream). Le dépôt reste pour l'instant dans OneDrive ; la recommandation détaillée (déplacer le clone hors OneDrive, ne synchroniser que `releases/`) est rédigée dans `docs/RELEASING.md` en Phase 6 pour arbitrage.
 - **Conséquences** : les scripts de modification en masse intègrent une logique de relance sur verrou de fichier.
+
+## ADR-0009 — Phase 3 : branche conservée pour chaque point de contrôle d'édition
+
+- **Date** : 2026-10-31 (Phase 3, feu vert global)
+- **Contexte** : 23 points de contrôle inventoriés (audit §5). Règle du projet : toujours conserver la branche « fonctionnalité activée ».
+- **Décisions** :
+  - `License.cs`, `ReportBenchmark.cs` supprimés ; paramètre `license` retiré de toutes les signatures `GenerateReportFile`/`GenerateRawContent` ; `Tasks.License` supprimé ; `--license`/`--debug-license` retirés ; section `LicenseSettings` retirée du `.config`.
+  - Sections de rapport réservées (maturité, MITRE ATT&CK, distributions mot de passe / dernier logon, AES/RC4, badges de maturité en consolidation, scripts d'export de tables) : branche complète affichée.
+  - `Brand()` (logo/CSS/JS personnalisés via `appSettings`) : inconditionnel.
+  - `LoadCustomRules()` : inconditionnel ; section `customRulesSettings` déclarée dans `app.config` (elle existait dans le `.config` livré avec le binaire 3.0.0.0 mais pas dans la source du tag).
+  - `limitHoneyPot` : `false` partout (plus de limite à 25 honeypots).
+  - Alerte d'intégrité (« report has been modified ») : conservée telle que calculée par l'upstream pour les éditions payantes (`Report.version >= 3.0 && !IntegrityVerified`), avec un `TODO(review)` ; elle ne se déclenche que sur un rapport XML rechargé dont le hash des règles ne correspond plus.
+  - Encadré « This report has been generated with the Basic Edition … Being part of a commercial package is forbidden » remplacé par « generated with TeumesseCastle, free and open source (NPOSL-3.0) ».
+  - Le bouton « Compare with statistics » (POST vers `stat.pingcastle.com` avec la clé de licence) est supprimé dès la Phase 3 car il dépend de la classe de licence.
+  - Les options `--api-endpoint`/`--api-key` (console Enterprise) sont laissées en place pour la Phase 4 (réseau) ; seule la partie « licence renvoyée par l'API » est retirée.
+- **Conséquences** : `TeumesseCastle.exe` démarre sans vérification ni date d'expiration ; `--rules` produit le rapport des règles sans AD ; BREAKING CHANGE documenté dans `CHANGELOG.md`.

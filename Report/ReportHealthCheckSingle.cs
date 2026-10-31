@@ -30,15 +30,13 @@ namespace TeumesseCastle.Report
         protected HealthcheckData Report;
         public static int MaxNumberUsersInHtmlReport = 100;
         public static string MaxNumberUsersInHtmlReportMessage = "Output limited to {0} items - go to the advanced menu before running the report or add \"--no-enum-limit\" to remove that limit";
-        protected ADHealthCheckingLicense _license;
 
-        public string GenerateReportFile(HealthcheckData report, ADHealthCheckingLicense license, string filename)
+        public string GenerateReportFile(HealthcheckData report, string filename)
         {
             Report = report;
-            _license = license;
             report.InitializeReportingData();
             ReportID = GenerateUniqueID(report);
-            Brand(license);
+            Brand();
             return GenerateReportFile(filename);
         }
 
@@ -48,19 +46,13 @@ namespace TeumesseCastle.Report
             return GenerateUniqueID(report.Domain.DomainName, long.Parse(s[s.Length - 1]));
         }
 
-        public string GenerateRawContent(HealthcheckData report, ADHealthCheckingLicense aDHealthCheckingLicense)
+        public string GenerateRawContent(HealthcheckData report)
         {
             Report = report;
-            _license = aDHealthCheckingLicense;
             report.InitializeReportingData();
             sb.Length = 0;
             GenerateContent();
             return sb.ToString();
-        }
-
-        public string GenerateRawContent(HealthcheckData report)
-        {
-            return GenerateRawContent(report, null);
         }
 
         protected override void GenerateTitleInformation()
@@ -78,11 +70,8 @@ namespace TeumesseCastle.Report
             AddStyle(TemplateManager.LoadReportCompromiseGraphCss());
             AddScript(TemplateManager.LoadVisJs());
             AddScript(TemplateManager.LoadReportCompromiseGraphJs());
-            if (!string.IsNullOrEmpty(_license.Edition))
-            {
-                AddScript(TemplateManager.LoadTableExportJs());
-                AddScript(TemplateManager.LoadBootstrapTableExportJs());
-            }
+            AddScript(TemplateManager.LoadTableExportJs());
+            AddScript(TemplateManager.LoadBootstrapTableExportJs());
         }
 
         protected override void GenerateBodyInformation()
@@ -106,22 +95,7 @@ namespace TeumesseCastle.Report
             Add(@"</h3>
 ");
             Add(@"<div class=""alert alert-info"">
-This report has been generated with the ");
-            Add(String.IsNullOrEmpty(_license.Edition) ? "Basic" : _license.Edition);
-            Add(@" Edition of TeumesseCastle");
-            if (!string.IsNullOrEmpty(_license.CustomerNotice))
-            {
-                Add(@"&nbsp;<i class=""info-mark d-print-none"" data-bs-placement=""bottom"" data-bs-toggle=""tooltip""");
-                Add(@" title="""" data-bs-original-title=""");
-                AddEncoded(_license.CustomerNotice);
-                Add(@""">?</i>.");
-            }
-            if (String.IsNullOrEmpty(_license.Edition))
-            {
-                Add(@"
-<br><strong class='auditor'>Being part of a commercial package is forbidden</strong> (selling the information contained in the report).<br>
-If you are an auditor, you MUST purchase an Auditor license to share the development effort.");
-            }
+This report has been generated with TeumesseCastle, free and open source (NPOSL-3.0).");
             Add(@"</div>
 ");
             Add(@"</div></div>
@@ -142,56 +116,11 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
         }
 
 
-        protected void AddBenchmarkSection()
-        {
-            Add(@"
-<div class=""modal"" tabindex=""-1"" role=""dialog"" id=""privacyNoticeStatistics"" >
-  <div class=""modal-dialog"" role=""document"">
-    <div class=""modal-content"">
-      <div class=""modal-header"">
-        <h4 class=""modal-title"">Privacy notive</h4>
-        <button type=""button"" class=""btn-close"" data-bs-dismiss=""modal"" aria-label=""Close""></button>
-      </div>
-      <div class=""modal-body"">
-        <p>To produce the statistics page, TeumesseCastle will collect anonymous information in order to build this database.</p>
-        <p>The information collected depends on the license level.</p>
-        <p>Information collected:</p>
-<ul>
-<li>IP Adress<br><span class='text-muted'><small>The goal is to compute country statistics and provide protection against database poisoning.</small></span></li>
-<li>for the free license, the hash of the domain FQDN combined with the SID of the domain<br><span class='text-muted'><small>The goal is to compute the number of domains reported, without duplicates. The SID act as a salt to prohibit retrieving the original data by bruteforce.</small></span></li>
-<li>Report generation date<br><span class='text-muted'><small>This is to remove duplicates.</small></span></li>
-<li>The number of active users & active computers<br><span class='text-muted'><small>This is to compare with similar domain size.</small></span></li>
-<li>The domain score and maturity level<br><span class='text-muted'><small>This is to compare with similar domain.</small></span></li>
-<li>Rules ID that matched<br><span class='text-muted'><small>This is to present expected or non expected rules.</small></span></li>
-<li>the license<br><span class='text-muted'><small>This allows licensed customer to not transmit their domain identifier.</small></span></li>
-</ul>
-<p>Information not listed here are not sent to TeumesseCastle</p>
-      </div>
-      <div class=""modal-footer"">
-        <button type=""button"" class=""btn btn-secondary"" data-bs-dismiss=""modal"">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-");
-
-
-            var d = ReportBenchmark.GetData(Report, _license);
-            Add(@"<form class='d-print-none' action='");
-            Add(ReportBenchmark.GetDestination());
-            Add("' method='POST'>");
-
-            foreach (var item in d)
-            {
-                AddHiddenValue(item.Key, item.Value);
-            }
-            Add(@"<button type='submit' class='btn btn-default'>Compare with statistics</button></form>");
-            AddParagraph("<a href='#' data-bs-toggle='modal' data-bs-target='#privacyNoticeStatistics' class='d-print-none'>Privacy notice</a>");
-        }
-
         protected void GenerateContent()
         {
-            if (Report.version >= new Version(3, 0) && !string.IsNullOrEmpty(_license.Edition) && _license.Edition != "Basic")
+            // TODO(review): upstream showed this integrity warning only in paid editions; it relies on the XML
+            // integrity hash computed by CheckIntegrity() when a report is reloaded.
+            if (Report.version >= new Version(3, 0))
             {
                 if (!Report.IntegrityVerified)
                 {
@@ -201,7 +130,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
             GenerateSection("Active Directory Indicators", () =>
             {
                 AddParagraph("This section focuses on the core security indicators.<br>Locate the sub-process determining the score and fix some rules in that area to get a score improvement.");
-                GenerateIndicators(Report, Report.AllRiskRules, AddBenchmarkSection);
+                GenerateIndicators(Report, Report.AllRiskRules, null);
                 GenerateRiskModelPanel(Report.RiskRules);
             });
 
@@ -252,11 +181,6 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
         protected void GenerateMaturityInformation()
         {
             Add(@"<p>This section represents the maturity score (inspired from <a href='https://www.cert.ssi.gouv.fr/dur/CERTFR-2020-DUR-001/'>ANSSI</a>).</p>");
-            if (string.IsNullOrEmpty(_license.Edition))
-            {
-                AddParagraph("This feature is reserved for customers who have <a href='https://github.com/Teumesse0/TeumesseCastle'>purchased a license</a>");
-                return;
-            }
             var data = GetCurrentMaturityLevel();
             Add("<div class='row'><div class='col-sm-6 my-auto'><p class='display-4'>Maturity Level:</span></div><div class='col-sm-6'>");
             for (int i = 1; i <= 5; i++)
@@ -461,11 +385,6 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
         protected void GenerateMitreAttackInformation()
         {
             AddParagraph(@"This section represents an evaluation of the techniques available in the <a href=""https://attack.mitre.org/"">MITRE ATT&CK&#174;</a>");
-            if (string.IsNullOrEmpty(_license.Edition))
-            {
-                AddParagraph("This feature is reserved for customers who have <a href='https://github.com/Teumesse0/TeumesseCastle'>purchased a license</a>");
-                return;
-            }
             GenerateMitreTechnique();
             GenerateMitreMitigation();
         }
@@ -945,12 +864,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
             if (Report.PasswordDistribution != null && Report.PasswordDistribution.Count > 0)
             {
                 GenerateSubSection("Password Age Distribution", "passworddistribution");
-                if (string.IsNullOrEmpty(_license.Edition))
-                {
-                    AddParagraph("This feature is reserved for customers who have <a href='https://github.com/Teumesse0/TeumesseCastle'>purchased a license</a>");
-                }
-                else
-                {
+                                {
                     AddParagraph("Here is the distribution where the password has been changed for the last time. Only enabled user accounts are analyzed (no guest account for example).");
                     AddPasswordDistributionChart(Report.PasswordDistribution, "general");
                 }
@@ -1588,12 +1502,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
                 Add("</div></div>");
             }
             GenerateSubSection("Last Logon Distribution", "adminlastlogondistribution");
-            if (string.IsNullOrEmpty(_license.Edition))
-            {
-                AddParagraph("This feature is reserved for customers who have <a href='https://github.com/Teumesse0/TeumesseCastle'>purchased a license</a>");
-            }
-            else
-            {
+                        {
                 List<HealthcheckPwdDistributionData> lastLogon = new List<HealthcheckPwdDistributionData>();
                 Dictionary<int, string> tooltips = new Dictionary<int, string>();
                 Dictionary<int, string> tooltips2 = new Dictionary<int, string>();
@@ -3081,11 +2990,6 @@ Here are the settings found in GPO.");
             GenerateSubSection("Replacement of RC4 by AES in kerberos");
             AddParagraph(@"This section checks for know pain points in AES activation and RC4 removal for kerberos");
             bool OK;
-            if (string.IsNullOrEmpty(_license.Edition))
-            {
-                AddParagraph("This feature is reserved for customers who have <a href='https://github.com/Teumesse0/TeumesseCastle'>purchased a license</a>");
-                return;
-            }
             if (Report.DCWin2008Install == default(DateTime))
             {
                 AddParagraph("TeumesseCastle could not determine the creation date of the group 'Read-Only Domain Controllers'. As a consequence, it cannot evaluate the AES section");

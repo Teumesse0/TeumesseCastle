@@ -42,6 +42,17 @@ Version 1.0.0 is defined as functional parity with PingCastle 3.0.0.0 (upstream 
   sign-in dialog now takes its icon from the executable instead of an embedded resource.
 
 ### Removed
+- **BREAKING CHANGE: the license mechanism is gone.** `License.cs` (RSA-signed license keys, editions
+  Basic/Auditor/Pro/Enterprise, expiry date, domain limitation, customer notice), the embedded "Basic
+  edition" key, the `--license` and `--debug-license` switches and the `LicenseSettings` section of the
+  `.config` file are removed. The program no longer stops after an "end of support" date. Every feature
+  that upstream reserved to paid editions is now available to everyone:
+  maturity level and MITRE ATT&CK sections, password-age and last-logon distributions, AES/RC4 Kerberos
+  analysis, maturity badges in the consolidation report, table export buttons, custom branding of the
+  reports (`BrandLogo`/`BrandCss`/`BrandJs` appSettings), custom rule scores (`customRulesSettings`
+  section, now declared in the `.config` file) and more than 25 honey-pot accounts.
+- The "Compare with statistics" benchmark button of the HTML report, which posted the domain hash, scores
+  and license key to the vendor's statistics server (`Report/ReportBenchmark.cs`).
 - Post-build code-signing step bound to the upstream author's workstation (`signtool`, certificate
   "Ping Castle SAS").
 

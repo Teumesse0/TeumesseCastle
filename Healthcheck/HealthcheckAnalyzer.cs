@@ -44,7 +44,8 @@ namespace TeumesseCastle.Healthcheck
         private const string LatinUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private const string LatinLowerCase = "abcdefghijklmnopqrstuvwxyz";
 
-        public bool limitHoneyPot = true;
+        // TeumesseCastle: upstream limited the Basic edition to 25 honey pots; no limit here.
+        public bool limitHoneyPot = false;
 
         public HealthcheckAnalyzer()
         {
