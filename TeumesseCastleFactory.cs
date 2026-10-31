@@ -4,24 +4,24 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Data;
-using PingCastle.Exports;
-using PingCastle.Healthcheck;
-using PingCastle.Report;
-using PingCastle.Scanners;
+using TeumesseCastle.Data;
+using TeumesseCastle.Exports;
+using TeumesseCastle.Healthcheck;
+using TeumesseCastle.Report;
+using TeumesseCastle.Scanners;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace PingCastle
+namespace TeumesseCastle
 {
-    public class PingCastleFactory
+    public class TeumesseCastleFactory
     {
         public static Dictionary<string, Type> GetAllScanners()
         {
             var output = new Dictionary<string, Type>();
-            foreach (Type type in Assembly.GetAssembly(typeof(PingCastleFactory)).GetExportedTypes())
+            foreach (Type type in Assembly.GetAssembly(typeof(TeumesseCastleFactory)).GetExportedTypes())
             {
                 if (!type.IsAbstract && typeof(IScanner).IsAssignableFrom(type))
                 {
@@ -48,7 +48,7 @@ namespace PingCastle
         public static Dictionary<string, Type> GetAllExport()
         {
             var output = new Dictionary<string, Type>();
-            foreach (Type type in Assembly.GetAssembly(typeof(PingCastleFactory)).GetExportedTypes())
+            foreach (Type type in Assembly.GetAssembly(typeof(TeumesseCastleFactory)).GetExportedTypes())
             {
                 if (!type.IsAbstract && typeof(IExport).IsAssignableFrom(type))
                 {
@@ -65,7 +65,7 @@ namespace PingCastle
             return (IExport)Activator.CreateInstance(scannerType);
         }
 
-        public static string GetFilePatternForLoad<T>() where T : IPingCastleReport
+        public static string GetFilePatternForLoad<T>() where T : ITeumesseCastleReport
         {
             if (typeof(T) == typeof(HealthcheckData))
             {
@@ -76,7 +76,7 @@ namespace PingCastle
        
         static T GetImplementation<T>()
         {
-            foreach (Type type in Assembly.GetAssembly(typeof(PingCastleFactory)).GetExportedTypes())
+            foreach (Type type in Assembly.GetAssembly(typeof(TeumesseCastleFactory)).GetExportedTypes())
             {
                 if (typeof(T).IsAssignableFrom(type) && !type.IsAbstract)
                 {

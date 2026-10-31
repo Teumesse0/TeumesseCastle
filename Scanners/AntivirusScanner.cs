@@ -10,7 +10,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     public class AntivirusScanner : ScannerBase
     {
@@ -172,7 +172,7 @@ Or just press enter to use the default.";
             {
                 Trace.WriteLine("LsaOpenPolicy 0x" + ret.ToString("x") + " for " + computer);
                 sb.Append(computer);
-                sb.Append("\tUnable to connect\tPingCastle couldn't connect to the computer. The error was 0x" + ret.ToString("x"));
+                sb.Append("\tUnable to connect\tTeumesseCastle couldn't connect to the computer. The error was 0x" + ret.ToString("x"));
                 return sb.ToString();
             }
             var names = new NativeMethods.UNICODE_STRING[AVReference.Count + customService.Count];
@@ -196,14 +196,14 @@ Or just press enter to use the default.";
                 if (ret == 0xC0000073) //STATUS_NONE_MAPPED
                 {
                     sb.Append(computer);
-                    sb.Append("\tNo known service found\tIf you think that the information is incorrect, please contact PingCastle support to add the antivirus in the checked list.");
+                    sb.Append("\tNo known service found\tIf you think that the information is incorrect, please contact TeumesseCastle support to add the antivirus in the checked list.");
                     return sb.ToString();
                 }
                 if (ret != 0 && ret != 0x00000107) // ignore STATUS_SOME_NOT_MAPPED
                 {
                     Trace.WriteLine("LsaLookupNames 0x" + ret.ToString("x"));
                     sb.Append(computer);
-                    sb.Append("\tUnable to lookup\tPingCastle couldn't translate the SID to the computer. The error was 0x" + ret.ToString("x"));
+                    sb.Append("\tUnable to lookup\tTeumesseCastle couldn't translate the SID to the computer. The error was 0x" + ret.ToString("x"));
                     return sb.ToString();
                 }
                 try

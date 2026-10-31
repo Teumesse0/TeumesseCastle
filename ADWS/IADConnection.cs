@@ -6,7 +6,7 @@
 //
 using System.Security.Principal;
 
-namespace PingCastle.ADWS
+namespace TeumesseCastle.ADWS
 {
     public interface IADConnection
     {

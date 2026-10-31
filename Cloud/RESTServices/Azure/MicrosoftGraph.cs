@@ -6,9 +6,9 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Cloud.Credentials;
-using PingCastle.Cloud.RESTServices.Azure;
-using PingCastle.Cloud.Tokens;
+using TeumesseCastle.Cloud.Credentials;
+using TeumesseCastle.Cloud.RESTServices.Azure;
+using TeumesseCastle.Cloud.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace PingCastle.Cloud.RESTServices
+namespace TeumesseCastle.Cloud.RESTServices
 {
     [AzureService("1b730954-1685-4b74-9bfd-dac224a7b894", "https://graph.microsoft.com")]
     public class MicrosoftGraph : RESTClientBase<MicrosoftGraph>, IAzureService

@@ -6,13 +6,13 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.ADWS;
-using PingCastle.Data;
-using PingCastle.Graph.Reporting;
-using PingCastle.misc;
-using PingCastle.RPC;
-using PingCastle.Rules;
-using PingCastle.Scanners;
+using TeumesseCastle.ADWS;
+using TeumesseCastle.Data;
+using TeumesseCastle.Graph.Reporting;
+using TeumesseCastle.misc;
+using TeumesseCastle.RPC;
+using TeumesseCastle.Rules;
+using TeumesseCastle.Scanners;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,9 +34,9 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Xml;
 
-namespace PingCastle.Healthcheck
+namespace TeumesseCastle.Healthcheck
 {
-    public class HealthcheckAnalyzer : IPingCastleAnalyzer<HealthcheckData>
+    public class HealthcheckAnalyzer : ITeumesseCastleAnalyzer<HealthcheckData>
     {
         public static bool SkipNullSession { get; set; }
         HealthcheckData healthcheckData;
@@ -91,7 +91,7 @@ namespace PingCastle.Healthcheck
             return healthcheckData;
         }
 
-        public HealthcheckData PerformAnalyze(PingCastleAnalyzerParameters parameters)
+        public HealthcheckData PerformAnalyze(TeumesseCastleAnalyzerParameters parameters)
         {
             healthcheckData = new HealthcheckData();
             LoadHoneyPotData();
@@ -186,7 +186,7 @@ namespace PingCastle.Healthcheck
                 return;
             if (s.HoneyPots.Count > 25 && limitHoneyPot)
             {
-                throw new PingCastleException("You entered more than 25 HoneyPots in the configuration. Honey Pots should not be used as a way to setup exceptions to rules");
+                throw new TeumesseCastleException("You entered more than 25 HoneyPots in the configuration. Honey Pots should not be used as a way to setup exceptions to rules");
             }
             healthcheckData.ListHoneyPot = new List<HealthcheckAccountDetailData>();
             foreach (SingleHoneyPotSettings h in s.HoneyPots)
@@ -413,7 +413,7 @@ namespace PingCastle.Healthcheck
 #if DEBUG
             healthcheckData.EngineVersion += " Beta";
 #endif
-            healthcheckData.Level = PingCastleReportDataExportLevel.Full;
+            healthcheckData.Level = TeumesseCastleReportDataExportLevel.Full;
 
         }
 
@@ -566,7 +566,7 @@ namespace PingCastle.Healthcheck
                     {
                         Trace.WriteLine("Exception while working on " + x.DistinguishedName);
                         DisplayAdvancementWarning("Exception while working on " + x.DistinguishedName + "(" + ex.Message + ")");
-                        DisplayAdvancementWarning("Please contact support@pingcastle.com with a trace file to have this error fixed");
+                        DisplayAdvancementWarning("Please open an issue at https://github.com/Teumesse0/TeumesseCastle/issues with a trace file to have this error fixed");
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine(ex.StackTrace);
                         Console.ResetColor();
@@ -939,7 +939,7 @@ namespace PingCastle.Healthcheck
                     {
                         Trace.WriteLine("Exception while working on " + x.DistinguishedName);
                         DisplayAdvancementWarning("Exception while working on " + x.DistinguishedName + "(" + ex.Message + ")");
-                        DisplayAdvancementWarning("Please contact support@pingcastle.com with a trace file to have this error fixed");
+                        DisplayAdvancementWarning("Please open an issue at https://github.com/Teumesse0/TeumesseCastle/issues with a trace file to have this error fixed");
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine(ex.StackTrace);
                         Console.ResetColor();
@@ -1456,7 +1456,7 @@ namespace PingCastle.Healthcheck
             return output;
         }
 
-        private void GeneratePrivilegedGroupAndPermissionsData(ADDomainInfo domainInfo, ADWebService adws, PingCastleAnalyzerParameters parameters)
+        private void GeneratePrivilegedGroupAndPermissionsData(ADDomainInfo domainInfo, ADWebService adws, TeumesseCastleAnalyzerParameters parameters)
         {
             var generator = new ReportGenerator();
             generator.PerformAnalyze(healthcheckData, domainInfo, adws, parameters);
@@ -5544,7 +5544,7 @@ namespace PingCastle.Healthcheck
             catch (Exception ex)
             {
                 // if exception 0x8007200a is thrown (The specified directory service attribute or value does not exist)
-                // be sure that PingCastle is running in the highest context available (not UAC restricted)
+                // be sure that TeumesseCastle is running in the highest context available (not UAC restricted)
                 Trace.WriteLine("Unable to get Dns Data");
                 Trace.WriteLine(ex.Message);
                 Trace.WriteLine(ex.StackTrace);

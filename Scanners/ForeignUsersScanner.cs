@@ -6,7 +6,7 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.RPC;
+using TeumesseCastle.RPC;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Security.Principal;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     public class ForeignUsersScanner : IScanner
     {
@@ -71,7 +71,7 @@ Example of FQDN: bastion.local";
                 }
                 catch (Exception ex)
                 {
-                    throw new PingCastleException("The SID couldn't be parsed (error:" + ex.Message + ")");
+                    throw new TeumesseCastleException("The SID couldn't be parsed (error:" + ex.Message + ")");
                 }
             }
             else
@@ -80,7 +80,7 @@ Example of FQDN: bastion.local";
             }
             if (EnumInboundTrustSid == null)
             {
-                throw new PingCastleException("The domain " + EnumInboundSid + " couldn't be translated to a sid");
+                throw new TeumesseCastleException("The domain " + EnumInboundSid + " couldn't be translated to a sid");
             }
             filename = AddSuffix(filename, "_" + EnumInboundSid);
             using (sw = File.CreateText(filename))

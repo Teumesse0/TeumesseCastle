@@ -6,8 +6,8 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.ADWS;
-using PingCastle.Graph.Reporting;
+using TeumesseCastle.ADWS;
+using TeumesseCastle.Graph.Reporting;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,7 +15,7 @@ using System.Reflection;
 using System.Security.Principal;
 using System.Text.RegularExpressions;
 
-namespace PingCastle.Graph.Database
+namespace TeumesseCastle.Graph.Database
 {
     public struct DataStorageDomainTrusts
     {

@@ -6,12 +6,12 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Cloud.Data;
-using PingCastle.Data;
-using PingCastle.Graph.Database;
-using PingCastle.Healthcheck;
-using PingCastle.Rules;
-using PingCastle.template;
+using TeumesseCastle.Cloud.Data;
+using TeumesseCastle.Data;
+using TeumesseCastle.Graph.Database;
+using TeumesseCastle.Healthcheck;
+using TeumesseCastle.Rules;
+using TeumesseCastle.template;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -22,9 +22,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace PingCastle.Report
+namespace TeumesseCastle.Report
 {
-    public class ReportHealthCheckSingle : ReportRiskControls<HealthcheckData>, IPingCastleReportUser<HealthcheckData>
+    public class ReportHealthCheckSingle : ReportRiskControls<HealthcheckData>, ITeumesseCastleReportUser<HealthcheckData>
     {
 
         protected HealthcheckData Report;
@@ -42,7 +42,7 @@ namespace PingCastle.Report
             return GenerateReportFile(filename);
         }
 
-        private string GenerateUniqueID(IPingCastleReport report)
+        private string GenerateUniqueID(ITeumesseCastleReport report)
         {
             var s = report.Domain.DomainSID.Split('-');
             return GenerateUniqueID(report.Domain.DomainName, long.Parse(s[s.Length - 1]));
@@ -66,7 +66,7 @@ namespace PingCastle.Report
         protected override void GenerateTitleInformation()
         {
             AddEncoded(Report.DomainFQDN);
-            Add(" PingCastle ");
+            Add(" TeumesseCastle ");
             Add(Report.GenerationDate.ToString("yyyy-MM-dd"));
         }
 
@@ -93,7 +93,7 @@ namespace PingCastle.Report
 <div id=""wrapper"" class=""container well"">
 	<noscript>
 		<div class=""alert alert-warning"">
-			<p>PingCastle reports work best with Javascript enabled.</p>
+			<p>TeumesseCastle reports work best with Javascript enabled.</p>
 		</div>
 	</noscript>
 <div class=""row""><div class=""col-lg-12""><h1>");
@@ -108,7 +108,7 @@ namespace PingCastle.Report
             Add(@"<div class=""alert alert-info"">
 This report has been generated with the ");
             Add(String.IsNullOrEmpty(_license.Edition) ? "Basic" : _license.Edition);
-            Add(@" Edition of PingCastle");
+            Add(@" Edition of TeumesseCastle");
             if (!string.IsNullOrEmpty(_license.CustomerNotice))
             {
                 Add(@"&nbsp;<i class=""info-mark d-print-none"" data-bs-placement=""bottom"" data-bs-toggle=""tooltip""");
@@ -153,7 +153,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
         <button type=""button"" class=""btn-close"" data-bs-dismiss=""modal"" aria-label=""Close""></button>
       </div>
       <div class=""modal-body"">
-        <p>To produce the statistics page, PingCastle will collect anonymous information in order to build this database.</p>
+        <p>To produce the statistics page, TeumesseCastle will collect anonymous information in order to build this database.</p>
         <p>The information collected depends on the license level.</p>
         <p>Information collected:</p>
 <ul>
@@ -165,7 +165,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
 <li>Rules ID that matched<br><span class='text-muted'><small>This is to present expected or non expected rules.</small></span></li>
 <li>the license<br><span class='text-muted'><small>This allows licensed customer to not transmit their domain identifier.</small></span></li>
 </ul>
-<p>Information not listed here are not sent to PingCastle</p>
+<p>Information not listed here are not sent to TeumesseCastle</p>
       </div>
       <div class=""modal-footer"">
         <button type=""button"" class=""btn btn-secondary"" data-bs-dismiss=""modal"">Close</button>
@@ -195,7 +195,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
             {
                 if (!Report.IntegrityVerified)
                 {
-                    Add(@"<div class=""alert alert-warning""><p>PingCastle has detected that the report has been modified before being uploaded to the application.</p></div>");
+                    Add(@"<div class=""alert alert-warning""><p>TeumesseCastle has detected that the report has been modified before being uploaded to the application.</p></div>");
                 }
             }
             GenerateSection("Active Directory Indicators", () =>
@@ -254,7 +254,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
             Add(@"<p>This section represents the maturity score (inspired from <a href='https://www.cert.ssi.gouv.fr/dur/CERTFR-2020-DUR-001/'>ANSSI</a>).</p>");
             if (string.IsNullOrEmpty(_license.Edition))
             {
-                AddParagraph("This feature is reserved for customers who have <a href='https://www.pingcastle.com/services/'>purchased a license</a>");
+                AddParagraph("This feature is reserved for customers who have <a href='https://github.com/Teumesse0/TeumesseCastle'>purchased a license</a>");
                 return;
             }
             var data = GetCurrentMaturityLevel();
@@ -463,7 +463,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
             AddParagraph(@"This section represents an evaluation of the techniques available in the <a href=""https://attack.mitre.org/"">MITRE ATT&CK&#174;</a>");
             if (string.IsNullOrEmpty(_license.Edition))
             {
-                AddParagraph("This feature is reserved for customers who have <a href='https://www.pingcastle.com/services/'>purchased a license</a>");
+                AddParagraph("This feature is reserved for customers who have <a href='https://github.com/Teumesse0/TeumesseCastle'>purchased a license</a>");
                 return;
             }
             GenerateMitreTechnique();
@@ -907,7 +907,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
                 AddHeaderText("Nb Password not Req.", "Indicates the number of enabled accounts which have a flag set in useraccountcontrol allowing empty passwords.");
                 AddHeaderText("Nb Des enabled.", "Indicates the number of enabled accounts allowing the unsafe DES algorithm for authentication.");
             }
-            AddHeaderText("Nb unconstrained delegations", "Indicates the number of enabled accounts having been granted the right to impersonate any users without any restrictions. PingCastle checks if the flag TRUSTED_FOR_DELEGATION is present in the useraccountcontrol attribute.");
+            AddHeaderText("Nb unconstrained delegations", "Indicates the number of enabled accounts having been granted the right to impersonate any users without any restrictions. TeumesseCastle checks if the flag TRUSTED_FOR_DELEGATION is present in the useraccountcontrol attribute.");
             AddHeaderText("Nb Reversible password", "Indicates the number of enabled accounts whose password can be retrieved in clear text using hacking tools.");
         }
 
@@ -917,7 +917,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
             if (Report.ListHoneyPot != null && Report.ListHoneyPot.Count > 0)
             {
                 GenerateSubSection("Honey Pot", "honeypot");
-                AddParagraph("A honey pot has been configured. It is used to generate fake security issues that are heavily monitored and that a hacker will spot using security tools like PingCastle. By enabling this feature, all the accounts listed below will not be evaluated with PingCastle rules.");
+                AddParagraph("A honey pot has been configured. It is used to generate fake security issues that are heavily monitored and that a hacker will spot using security tools like TeumesseCastle. By enabling this feature, all the accounts listed below will not be evaluated with TeumesseCastle rules.");
                 GenerateAccordion("honeypotaccordion", () => GenerateListAccountDetail("honeypotaccordion", "honeypotid", "Honey pot accounts", Report.ListHoneyPot));
             }
             GenerateSubSection("Account analysis", "useraccountanalysis");
@@ -947,7 +947,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
                 GenerateSubSection("Password Age Distribution", "passworddistribution");
                 if (string.IsNullOrEmpty(_license.Edition))
                 {
-                    AddParagraph("This feature is reserved for customers who have <a href='https://www.pingcastle.com/services/'>purchased a license</a>");
+                    AddParagraph("This feature is reserved for customers who have <a href='https://github.com/Teumesse0/TeumesseCastle'>purchased a license</a>");
                 }
                 else
                 {
@@ -1294,7 +1294,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
         private void GenerateOperatingSystemList()
         {
             GenerateSubSection("Operating Systems", "operatingsystems");
-            AddParagraph("If you need to find the computers running a specific OS, we advise to use PingCastle.exe and the export / computers feature available from the main menu. " +
+            AddParagraph("If you need to find the computers running a specific OS, we advise to use TeumesseCastle.exe and the export / computers feature available from the main menu. " +
                         "Indeed the computer details are not included in the report for performance issues. Doing this will impact significantly the report size and the time to load the report.");
             bool oldOS = Report.version <= new Version(2, 5, 0, 0);
             if (oldOS)
@@ -1590,7 +1590,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
             GenerateSubSection("Last Logon Distribution", "adminlastlogondistribution");
             if (string.IsNullOrEmpty(_license.Edition))
             {
-                AddParagraph("This feature is reserved for customers who have <a href='https://www.pingcastle.com/services/'>purchased a license</a>");
+                AddParagraph("This feature is reserved for customers who have <a href='https://github.com/Teumesse0/TeumesseCastle'>purchased a license</a>");
             }
             else
             {
@@ -2409,11 +2409,11 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
         {
             for (int i = 0; i < Report.ControlPaths.Data.Count; i++)
             {
-                AddLine(@"<script type=""application/json"" data-pingcastle-selector=""Data_" + GenerateModalId(Report.ControlPaths.Data[i].Description) + @""">");
+                AddLine(@"<script type=""application/json"" data-teumessecastle-selector=""Data_" + GenerateModalId(Report.ControlPaths.Data[i].Description) + @""">");
                 AddLine(BuildJasonFromSingleCompromiseGraph(Report.ControlPaths.Data[i]));
                 AddLine("</script>");
             }
-            AddLine(@"<script type=""application/json"" data-pingcastle-selector=""RelationTypeDescription"">");
+            AddLine(@"<script type=""application/json"" data-teumessecastle-selector=""RelationTypeDescription"">");
             AddLine("{");
             bool first = true;
             foreach (var relationtype in (RelationType[])Enum.GetValues(typeof(RelationType)))
@@ -2521,11 +2521,11 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
             AddHeaderText("SID Filtering active", @"<div class='text-start'>Indicates if the protection for the trust has been enabled or disabled.<br>
                 A NO means that forged kerberos ticket with a security identifier from this domain will be accepted.<br>
                 Please note that this check is being performed only at ONE direction of a BI-directional trust<br>
-                Make sure you also run PingCastle in the Trust Partner domain for complete information</div>",
+                Make sure you also run TeumesseCastle in the Trust Partner domain for complete information</div>",
                 true, true);
             AddHeaderText("TGT Delegation", @"<div class='text-start'>Indicates if the kerberos delegation works accross forest trusts<br>
                 A YES means that TGTs are being sent over the trust<br>
-                Please note that this check is being performed only at ONE direction of a BI-directional trust<br>Make sure you also run PingCastle in the Trust Partner domain for complete information</div>",
+                Please note that this check is being performed only at ONE direction of a BI-directional trust<br>Make sure you also run TeumesseCastle in the Trust Partner domain for complete information</div>",
                 true, true);
             AddHeaderText("Creation", "Indicates creation date of the underlying AD object");
             AddHeaderText("Is Active ?", "The account used to store the secret should be modified every 30 days if it is active. It indicates if a change occured during the last 40 days");
@@ -2602,7 +2602,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
             AddEndTable();
 
             GenerateSubSection("Reachable Domains");
-            AddParagraph("These are the domains that PingCastle was able to detect but which is not releated to direct trusts. It may be children of a forest or bastions.");
+            AddParagraph("These are the domains that TeumesseCastle was able to detect but which is not releated to direct trusts. It may be children of a forest or bastions.");
             AddBeginTable("Reachable domains list");
             AddHeaderText("Reachable domain");
             AddHeaderText("Discovered using");
@@ -2918,7 +2918,7 @@ Here are the settings found in GPO.");
             {
                 GenerateSubSection("Exchange settings", "Exchangesettings");
                 AddParagraph(@"Echange is the mail server of Microsoft. Because it is deeply integrated into the Active Directory, it is a component to be monitored");
-                AddParagraph("PingCastle is checking objects of type msExchExchangeServer and the schema to provide the information below.");
+                AddParagraph("TeumesseCastle is checking objects of type msExchExchangeServer and the schema to provide the information below.");
                 if (Report.ExchangeInstall != default(DateTime))
                 {
                     Add("Since recent version, Exchange allows information to be stored in the Active Directory Schema to perform offline configuration. It is a copy of some information stored locally on the servers");
@@ -2964,7 +2964,7 @@ Here are the settings found in GPO.");
             {
                 GenerateSubSection("SCCM settings", "SCCMsettings");
                 AddParagraph(@"SCCM or its more recent name Microsoft Endpoint Manager is the Microsoft tool to manage the workstations and servers. It is used typically to deploy packages.");
-                AddParagraph("PingCastle is checking objects of type mSSMSManagementPoint and the schema to provide the information below.");
+                AddParagraph("TeumesseCastle is checking objects of type mSSMSManagementPoint and the schema to provide the information below.");
                 if (Report.SCCMInstalled != default(DateTime))
                 {
                     Add(@"
@@ -3028,7 +3028,7 @@ Here are the settings found in GPO.");
                 GenerateSubSection("Service Connection Points", "servicePoints");
                 AddParagraph(@"Service Connection Points are a configuration stored in the AD to expose services to all computers.");
                 AddBeginTable("Service Connection Points list");
-                AddHeaderText("Service", "This value is guessed by PingCastle based on well known class names");
+                AddHeaderText("Service", "This value is guessed by TeumesseCastle based on well known class names");
                 AddHeaderText("Class", "This is the value of the property ServiceClassName");
                 AddHeaderText("DNS", "This is the value of the property ServiceDNSName");
                 AddHeaderText("Binding Info", "The value used to establish the connection. Its meaning is on a per class basis");
@@ -3083,12 +3083,12 @@ Here are the settings found in GPO.");
             bool OK;
             if (string.IsNullOrEmpty(_license.Edition))
             {
-                AddParagraph("This feature is reserved for customers who have <a href='https://www.pingcastle.com/services/'>purchased a license</a>");
+                AddParagraph("This feature is reserved for customers who have <a href='https://github.com/Teumesse0/TeumesseCastle'>purchased a license</a>");
                 return;
             }
             if (Report.DCWin2008Install == default(DateTime))
             {
-                AddParagraph("PingCastle could not determine the creation date of the group 'Read-Only Domain Controllers'. As a consequence, it cannot evaluate the AES section");
+                AddParagraph("TeumesseCastle could not determine the creation date of the group 'Read-Only Domain Controllers'. As a consequence, it cannot evaluate the AES section");
                 return;
             }
             AddParagraph("This section is here to evaluate the know problems when removing RC4. If you plan to do so, you should check all the items highlighted below and proceed with a small group of test computers.");
@@ -3338,7 +3338,7 @@ Here are the settings found in GPO.");
             Add(@"
 		<div class=""row""><div class=""col-lg-12"">
 <p>The program checks the last date of the AD backup. This date is computed using the replication metadata of the attribute dsaSignature (<a href=""https://technet.microsoft.com/en-us/library/jj130668(v=ws.10).aspx"">reference</a>).</p>
-<p><strong>Last backup date: </strong> " + (Report.LastADBackup == DateTime.MaxValue ? "<span class=\"unticked\">Never</span>" : (Report.LastADBackup == DateTime.MinValue ? "<span class=\"unticked\">Not checked (older version of PingCastle)</span>" : Report.LastADBackup.ToString("u"))) + @"</p>
+<p><strong>Last backup date: </strong> " + (Report.LastADBackup == DateTime.MaxValue ? "<span class=\"unticked\">Never</span>" : (Report.LastADBackup == DateTime.MinValue ? "<span class=\"unticked\">Not checked (older version of TeumesseCastle)</span>" : Report.LastADBackup.ToString("u"))) + @"</p>
 		</div></div>
 ");
 
@@ -3349,7 +3349,7 @@ Here are the settings found in GPO.");
 Then this password is changed at a fixed interval. The risk is when a local administrator hash is retrieved and used on other workstation in a pass-the-hash attack.
 Please note that the LAPS schema is installed on the forest and as a consequence the installation date can be before the domain creation date.</p>
 <p>Mitigation: having a process when a new workstation is created or install LAPS and apply it through a GPO</p>
-<p><strong>LAPS installation date: </strong> " + (Report.LAPSInstalled == DateTime.MaxValue ? "<span class=\"unticked\">Never</span>" : (Report.LAPSInstalled == DateTime.MinValue ? "<span class=\"unticked\">Not checked (older version of PingCastle)</span>" : Report.LAPSInstalled.ToString("u"))) + @"</p>
+<p><strong>LAPS installation date: </strong> " + (Report.LAPSInstalled == DateTime.MaxValue ? "<span class=\"unticked\">Never</span>" : (Report.LAPSInstalled == DateTime.MinValue ? "<span class=\"unticked\">Not checked (older version of TeumesseCastle)</span>" : Report.LAPSInstalled.ToString("u"))) + @"</p>
 		</div></div>
 ");
             if (Report.ListLAPSJoinedComputersToReview != null && Report.ListLAPSJoinedComputersToReview.Count > 0)
@@ -4133,7 +4133,7 @@ The best practice is to reset these passwords on a regular basis or to uncheck a
             }
             AddEndTable();
 
-            AddParagraph("Here are the security checks that have been check by PingCastle and where no applicable GPO have been found.");
+            AddParagraph("Here are the security checks that have been check by TeumesseCastle and where no applicable GPO have been found.");
             AddBeginTable("Security settings not found list");
             AddHeaderText("Setting");
             AddBeginTableData();

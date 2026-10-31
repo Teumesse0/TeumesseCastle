@@ -6,12 +6,12 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Data;
-using PingCastle.Rules;
+using TeumesseCastle.Data;
+using TeumesseCastle.Rules;
 using System;
 using System.Collections.Generic;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("S-SIDHistory", RiskRuleCategory.StaleObjects, RiskModelCategory.ObjectConfig)]
     [RuleComputation(RuleComputationType.PerDiscoverWithAMinimumOf, 5, Threshold: 15)]

@@ -7,7 +7,7 @@
 using System;
 using System.Net;
 
-namespace PingCastle.misc
+namespace TeumesseCastle.misc
 {
     public class Subnet
     {

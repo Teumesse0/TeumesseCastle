@@ -6,9 +6,9 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("A-NTFRSOnSysvol", RiskRuleCategory.Anomalies, RiskModelCategory.NetworkSniffing)]
     [RuleComputation(RuleComputationType.TriggerOnThreshold, 5, Threshold: 2, Order: 1)]

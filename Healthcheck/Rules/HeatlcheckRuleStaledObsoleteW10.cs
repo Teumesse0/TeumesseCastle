@@ -6,11 +6,11 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 using System;
 using System.Text.RegularExpressions;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("S-OS-W10", RiskRuleCategory.StaleObjects, RiskModelCategory.ObsoleteOS)]
     [RuleComputation(RuleComputationType.TriggerOnThreshold, 15, Threshold: 15, Order: 1)]

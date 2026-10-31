@@ -10,7 +10,7 @@ using System;
 using System.Diagnostics;
 using System.Text;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     public class Smb3QueryNetworkScanner : ScannerBase
     {

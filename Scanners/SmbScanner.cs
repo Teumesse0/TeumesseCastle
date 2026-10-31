@@ -6,12 +6,12 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Healthcheck;
+using TeumesseCastle.Healthcheck;
 using System;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     [Serializable]
     public class SmbScannerException : Exception

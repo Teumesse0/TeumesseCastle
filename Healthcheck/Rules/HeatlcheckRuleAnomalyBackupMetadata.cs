@@ -6,10 +6,10 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 using System;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("A-BackupMetadata", RiskRuleCategory.Anomalies, RiskModelCategory.Backup)]
     [RuleComputation(RuleComputationType.TriggerOnThreshold, 15, Threshold: 7)]

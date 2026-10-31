@@ -8,7 +8,7 @@
 //
 using System.ComponentModel;
 
-namespace PingCastle.Rules
+namespace TeumesseCastle.Rules
 {
 
     public enum RiskModelCategory

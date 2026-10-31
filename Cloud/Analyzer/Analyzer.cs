@@ -6,13 +6,13 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Cloud.Credentials;
-using PingCastle.Cloud.Data;
-using PingCastle.Cloud.PublicServices;
-using PingCastle.Cloud.RESTServices;
-using PingCastle.Cloud.RESTServices.Azure;
-using PingCastle.Cloud.RESTServices.O365;
-using PingCastle.Cloud.Rules;
+using TeumesseCastle.Cloud.Credentials;
+using TeumesseCastle.Cloud.Data;
+using TeumesseCastle.Cloud.PublicServices;
+using TeumesseCastle.Cloud.RESTServices;
+using TeumesseCastle.Cloud.RESTServices.Azure;
+using TeumesseCastle.Cloud.RESTServices.O365;
+using TeumesseCastle.Cloud.Rules;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,12 +20,12 @@ using System.Linq;
 using System.Net.Mail;
 using System.Reflection;
 using System.Text;
-using PingCastle.Cloud.Tokens;
+using TeumesseCastle.Cloud.Tokens;
 using System.Threading.Tasks;
-using PingCastle.Cloud.Common;
-using PingCastle.Rules;
+using TeumesseCastle.Cloud.Common;
+using TeumesseCastle.Rules;
 
-namespace PingCastle.Cloud.Analyzer
+namespace TeumesseCastle.Cloud.Analyzer
 {
     public class Analyzer
     {

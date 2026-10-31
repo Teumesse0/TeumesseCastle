@@ -4,14 +4,14 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Cloud.Data;
-using PingCastle.Healthcheck;
-using PingCastle.Rules;
+using TeumesseCastle.Cloud.Data;
+using TeumesseCastle.Healthcheck;
+using TeumesseCastle.Rules;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PingCastle.Report
+namespace TeumesseCastle.Report
 {
     public interface IActionPlan
     {

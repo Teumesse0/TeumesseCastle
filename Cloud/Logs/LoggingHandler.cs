@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PingCastle.Cloud.Logs
+namespace TeumesseCastle.Cloud.Logs
 {
     public class LoggingHandler : DelegatingHandler
     {

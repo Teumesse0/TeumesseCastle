@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingCastle.Cloud.Common
+namespace TeumesseCastle.Cloud.Common
 {
     public abstract class JsonSerialization<T>
     {

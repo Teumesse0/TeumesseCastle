@@ -14,7 +14,7 @@ using System.Security.Permissions;
 using System.Security.Principal;
 using System.Xml;
 
-namespace PingCastle.ADWS
+namespace TeumesseCastle.ADWS
 {
     public class ADDomainInfo
     {

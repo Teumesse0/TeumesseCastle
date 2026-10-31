@@ -6,7 +6,7 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Cloud.Logs;
+using TeumesseCastle.Cloud.Logs;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,7 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace PingCastle.Cloud.Common
+namespace TeumesseCastle.Cloud.Common
 {
     public class HttpClientHelper
     {

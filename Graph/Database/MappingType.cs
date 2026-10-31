@@ -7,7 +7,7 @@
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
 
-namespace PingCastle.Graph.Database
+namespace TeumesseCastle.Graph.Database
 {
     public enum MappingType
     {

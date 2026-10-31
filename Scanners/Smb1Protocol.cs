@@ -4,7 +4,7 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Healthcheck;
+using TeumesseCastle.Healthcheck;
 using System;
 using System.Diagnostics;
 using System.Net.Sockets;
@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Text;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     public class Smb1Protocol
     {

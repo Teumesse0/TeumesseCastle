@@ -6,14 +6,14 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("A-WeakRSARootCert", RiskRuleCategory.Anomalies, RiskModelCategory.CertificateTakeOver)]
     [RuleComputation(RuleComputationType.TriggerOnPresence, 5)]

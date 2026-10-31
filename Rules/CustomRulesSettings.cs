@@ -7,7 +7,7 @@
 using System;
 using System.Configuration;
 
-namespace PingCastle.Rules
+namespace TeumesseCastle.Rules
 {
     internal class CustomRulesSettings : ConfigurationSection
     {

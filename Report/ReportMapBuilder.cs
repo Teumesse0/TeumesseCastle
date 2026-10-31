@@ -6,28 +6,28 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Data;
-using PingCastle.Healthcheck;
-using PingCastle.template;
+using TeumesseCastle.Data;
+using TeumesseCastle.Healthcheck;
+using TeumesseCastle.template;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace PingCastle.Report
+namespace TeumesseCastle.Report
 {
     public class ReportHealthCheckMapBuilder : ReportBase
     {
-        protected PingCastleReportCollection<HealthcheckData> Report = null;
+        protected TeumesseCastleReportCollection<HealthcheckData> Report = null;
         protected OwnerInformationReferences EntityData = null;
 
-        public ReportHealthCheckMapBuilder(PingCastleReportCollection<HealthcheckData> consolidation, OwnerInformationReferences ownerInformationReferences)
+        public ReportHealthCheckMapBuilder(TeumesseCastleReportCollection<HealthcheckData> consolidation, OwnerInformationReferences ownerInformationReferences)
         {
             this.Report = consolidation;
             EntityData = ownerInformationReferences;
             FullNodeMap = true;
         }
-        public ReportHealthCheckMapBuilder(PingCastleReportCollection<HealthcheckData> consolidation, ADHealthCheckingLicense license) : this(consolidation, (OwnerInformationReferences)null)
+        public ReportHealthCheckMapBuilder(TeumesseCastleReportCollection<HealthcheckData> consolidation, ADHealthCheckingLicense license) : this(consolidation, (OwnerInformationReferences)null)
         {
             Brand(license);
         }
@@ -57,7 +57,7 @@ namespace PingCastle.Report
 
         protected override void GenerateTitleInformation()
         {
-            Add("PingCastle AD Map ");
+            Add("TeumesseCastle AD Map ");
             Add(DateTime.Now.ToString("yyyy-MM-dd"));
             Add(" (");
             Add(Nodes.Count);
@@ -118,7 +118,7 @@ namespace PingCastle.Report
 
         protected override void GenerateFooterInformation()
         {
-            AddLine(@"<script type=""application/json"" data-pingcastle-selector=""Data"">");
+            AddLine(@"<script type=""application/json"" data-teumessecastle-selector=""Data"">");
             if (FullNodeMap)
             {
                 AddLine(GenerateJsonFileFull(migrationChecker));
@@ -128,7 +128,7 @@ namespace PingCastle.Report
                 AddLine(GenerateJsonFileSimple(CenterDomainForSimpliedGraph));
             }
             AddLine(@"</script>");
-            AddLine(@"<script type=""application/json"" data-pingcastle-selector=""FullNodeMap"">");
+            AddLine(@"<script type=""application/json"" data-teumessecastle-selector=""FullNodeMap"">");
             if (FullNodeMap)
                 Add("true");
             else

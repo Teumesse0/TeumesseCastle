@@ -6,11 +6,11 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("A-MD4IntermediateCert", RiskRuleCategory.Anomalies, RiskModelCategory.CertificateTakeOver)]
     [RuleComputation(RuleComputationType.TriggerOnPresence, 10)]

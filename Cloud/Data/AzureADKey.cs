@@ -4,7 +4,7 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Data;
+using TeumesseCastle.Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingCastle.Cloud.Data
+namespace TeumesseCastle.Cloud.Data
 {
     public class AzureADKey
     {
@@ -41,7 +41,7 @@ namespace PingCastle.Cloud.Data
                 if (!Guid.TryParse(tenantID, out guid))
                 {
                     Trace.WriteLine("Unable to parse the TenantID " + tenantID);
-                    throw new PingCastleException("Unable to parse the TenantID \"" + tenantID + "\" - it should be a guid");
+                    throw new TeumesseCastleException("Unable to parse the TenantID \"" + tenantID + "\" - it should be a guid");
                 }
                 TenantID = tenantID;
             }

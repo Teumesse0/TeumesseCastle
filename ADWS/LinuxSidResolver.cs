@@ -12,13 +12,13 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 
-namespace PingCastle.ADWS
+namespace TeumesseCastle.ADWS
 {
     internal class LinuxSidResolver : IDisposable
     {
         const int SECURITY_MAX_SID_SIZE = 68;
 
-        internal const string SmbLibrary = "libPingCastlesmb";
+        internal const string SmbLibrary = "libTeumesseCastlesmb";
 
         [DllImport(SmbLibrary, CharSet = CharSet.Ansi)]
         static internal extern IntPtr _talloc_stackframe(string context);
@@ -113,7 +113,7 @@ namespace PingCastle.ADWS
         {
             if (credential == null)
                 throw new NotImplementedException("Credential required");
-            memoryContext = _talloc_stackframe("PingCastle");
+            memoryContext = _talloc_stackframe("TeumesseCastle");
             this.credential = credential;
             this.remoteserver = remoteserver;
         }
@@ -132,7 +132,7 @@ namespace PingCastle.ADWS
         private int ConnectWithFull()
         {
             Trace.WriteLine(@"Before ConnectoWithFull");
-            return cli_full_connection(out connectionHandle, "PingCastle", remoteserver,
+            return cli_full_connection(out connectionHandle, "TeumesseCastle", remoteserver,
                 IntPtr.Zero, 0,
                 "IPC$", "IPC",
                 credential.UserName,

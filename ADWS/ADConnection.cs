@@ -12,7 +12,7 @@ using System.Net;
 using System.Security.Principal;
 using System.Threading;
 
-namespace PingCastle.ADWS
+namespace TeumesseCastle.ADWS
 {
     public abstract class ADConnection : IADConnection
     {

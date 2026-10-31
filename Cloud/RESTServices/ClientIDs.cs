@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingCastle.Cloud.RESTServices.Azure
+namespace TeumesseCastle.Cloud.RESTServices.Azure
 {
     public class ClientIDs
     {

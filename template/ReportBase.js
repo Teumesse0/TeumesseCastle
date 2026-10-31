@@ -77,7 +77,7 @@ function strip(html) {
 function getData(dataSelect) {
     try {
         var inlineJsonElement = document.querySelector(
-            'script[type="application/json"][data-pingcastle-selector="' + dataSelect + '"]'
+            'script[type="application/json"][data-teumessecastle-selector="' + dataSelect + '"]'
         );
         var data = JSON.parse(inlineJsonElement.textContent);
         return data;

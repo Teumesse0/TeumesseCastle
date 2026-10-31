@@ -4,13 +4,13 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Healthcheck;
+using TeumesseCastle.Healthcheck;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace PingCastle.Report
+namespace TeumesseCastle.Report
 {
     public class ReportBenchmark
     {

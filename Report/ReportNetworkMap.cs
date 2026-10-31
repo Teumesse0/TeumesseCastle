@@ -4,10 +4,10 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Data;
-using PingCastle.Healthcheck;
-using PingCastle.misc;
-using PingCastle.template;
+using TeumesseCastle.Data;
+using TeumesseCastle.Healthcheck;
+using TeumesseCastle.misc;
+using TeumesseCastle.template;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,19 +16,19 @@ using System.IO;
 using System.Net;
 using System.Reflection;
 
-namespace PingCastle.Report
+namespace TeumesseCastle.Report
 {
     public class ReportNetworkMap : ReportBase
     {
         private NetworkMapData data;
 
-        public string GenerateReportFile(PingCastleReportCollection<HealthcheckData> report, ADHealthCheckingLicense license, string filename)
+        public string GenerateReportFile(TeumesseCastleReportCollection<HealthcheckData> report, ADHealthCheckingLicense license, string filename)
         {
             data = NetworkMapData.BuildFromConsolidation(report);
             return GenerateReportFile(filename);
         }
 
-        public string GenerateRawContent(PingCastleReportCollection<HealthcheckData> report)
+        public string GenerateRawContent(TeumesseCastleReportCollection<HealthcheckData> report)
         {
             data = NetworkMapData.BuildFromConsolidation(report);
             sb.Length = 0;
@@ -42,7 +42,7 @@ namespace PingCastle.Report
 
         protected override void GenerateTitleInformation()
         {
-            Add("PingCastle Network map - ");
+            Add("TeumesseCastle Network map - ");
             Add(DateTime.Now.ToString("yyyy-MM-dd"));
         }
 
@@ -65,7 +65,7 @@ namespace PingCastle.Report
 <div id=""wrapper"" class=""container well"">
 	<noscript>
 		<div class=""alert alert-warning"">
-			<p>PingCastle reports work best with Javascript enabled.</p>
+			<p>TeumesseCastle reports work best with Javascript enabled.</p>
 		</div>
 	</noscript>
 <div class=""row""><div class=""col-lg-12""><h1>Network map</h1>
@@ -85,7 +85,7 @@ namespace PingCastle.Report
             public Dictionary<string, List<NetworkMapDataItem>> networkrange { get; set; }
             public List<NetworkMapDCItem> DomainControllers { get; set; }
 
-            public static NetworkMapData BuildFromConsolidation(PingCastleReportCollection<HealthcheckData> reports)
+            public static NetworkMapData BuildFromConsolidation(TeumesseCastleReportCollection<HealthcheckData> reports)
             {
                 var data = new NetworkMapData()
                 {
@@ -482,7 +482,7 @@ Each square represent a network. It can be used to detect non occupied space or 
 
         void GenerateJson()
         {
-            AddLine(@"<script type=""application/json"" data-pingcastle-selector=""Views"">");
+            AddLine(@"<script type=""application/json"" data-teumessecastle-selector=""Views"">");
             AddLine("[");
             int id = 0;
             foreach (var view in data.Views)
@@ -509,7 +509,7 @@ Each square represent a network. It can be used to detect non occupied space or 
             }
             AddLine("]");
             AddLine(@"</script>");
-            AddLine(@"<script type=""application/json"" data-pingcastle-selector=""Network"">");
+            AddLine(@"<script type=""application/json"" data-teumessecastle-selector=""Network"">");
             AddLine(@"[");
             id = 0;
             foreach (var key in data.networkrange.Keys)
@@ -555,7 +555,7 @@ Each square represent a network. It can be used to detect non occupied space or 
                 }
             AddLine(@"]");
             AddLine(@"</script>");
-            AddLine(@"<script type=""application/json"" data-pingcastle-selector=""DC"">");
+            AddLine(@"<script type=""application/json"" data-teumessecastle-selector=""DC"">");
             AddLine("[");
             id = 0;
             foreach (var dc in data.DomainControllers)

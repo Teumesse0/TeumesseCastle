@@ -9,7 +9,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace PingCastle.misc
+namespace TeumesseCastle.misc
 {
     public class BlockingQueue<T>
     {

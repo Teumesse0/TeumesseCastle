@@ -6,11 +6,11 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Data;
+using TeumesseCastle.Data;
 using System;
 using System.Collections.Generic;
 
-namespace PingCastle.Healthcheck
+namespace TeumesseCastle.Healthcheck
 {
     public interface IMigrationChecker
     {

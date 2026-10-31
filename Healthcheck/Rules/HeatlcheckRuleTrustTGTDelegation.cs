@@ -6,11 +6,11 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Data;
-using PingCastle.Rules;
+using TeumesseCastle.Data;
+using TeumesseCastle.Rules;
 using System.Collections.Generic;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("T-TGTDelegation", RiskRuleCategory.Trusts, RiskModelCategory.TrustImpermeability)]
     [RuleComputation(RuleComputationType.PerDiscover, 10)]

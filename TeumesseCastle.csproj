@@ -11,9 +11,9 @@
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
     <OutputType>Exe</OutputType>
-    <RootNamespace>PingCastle</RootNamespace>
-    <AssemblyName>PingCastle</AssemblyName>
-    <ApplicationIcon>pingcastle.ico</ApplicationIcon>
+    <RootNamespace>TeumesseCastle</RootNamespace>
+    <AssemblyName>TeumesseCastle</AssemblyName>
+    <ApplicationIcon>assets\branding\TeumesseCastle.ico</ApplicationIcon>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
     <FileAlignment>512</FileAlignment>

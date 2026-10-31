@@ -4,7 +4,7 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-namespace PingCastle.Cloud.UI
+namespace TeumesseCastle.Cloud.UI
 {
     partial class AuthenticationDialog
     {
@@ -62,7 +62,7 @@ namespace PingCastle.Cloud.UI
             this.Controls.Add(this.webBrowser);
             this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetEntryAssembly().Location);
             this.Name = "AuthenticationDialog";
-            this.Text = "PingCastle Cloud";
+            this.Text = "TeumesseCastle Cloud";
             this.ResumeLayout(false);
 
         }

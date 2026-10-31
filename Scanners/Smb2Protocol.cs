@@ -4,8 +4,8 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Healthcheck;
-using PingCastle.RPC;
+using TeumesseCastle.Healthcheck;
+using TeumesseCastle.RPC;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +18,7 @@ using System.Security.Cryptography;
 using System.Security.Permissions;
 using System.Text;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     public class Smb2Protocol
     {

@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Security.Principal;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
 
     public class localAdminsEnumerator

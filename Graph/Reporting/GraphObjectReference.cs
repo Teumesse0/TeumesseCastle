@@ -4,12 +4,12 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.ADWS;
-using PingCastle.Data;
+using TeumesseCastle.ADWS;
+using TeumesseCastle.Data;
 using System;
 using System.Collections.Generic;
 
-namespace PingCastle.Graph.Reporting
+namespace TeumesseCastle.Graph.Reporting
 {
     public class GraphSingleObject
     {

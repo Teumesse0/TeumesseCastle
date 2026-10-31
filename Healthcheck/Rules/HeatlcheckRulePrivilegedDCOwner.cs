@@ -6,10 +6,10 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 using System.Security.Principal;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("P-DCOwner", RiskRuleCategory.PrivilegedAccounts, RiskModelCategory.ACLCheck)]
     [RuleComputation(RuleComputationType.TriggerOnPresence, 10)]

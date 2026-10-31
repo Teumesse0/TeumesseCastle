@@ -6,9 +6,9 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("S-Duplicate", RiskRuleCategory.StaleObjects, RiskModelCategory.Replication)]
     [RuleComputation(RuleComputationType.TriggerOnPresence, 5)]

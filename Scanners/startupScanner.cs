@@ -8,7 +8,7 @@
 //
 using System;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     public class startupScanner : ScannerBase
     {

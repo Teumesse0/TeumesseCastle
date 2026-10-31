@@ -7,17 +7,17 @@
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
 using Newtonsoft.Json;
-using PingCastle.Rules;
-using PingCastle.template;
-using PingCastle.Cloud.Data;
-using PingCastle.Cloud.Rules;
+using TeumesseCastle.Rules;
+using TeumesseCastle.template;
+using TeumesseCastle.Cloud.Data;
+using TeumesseCastle.Cloud.Rules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
-using PingCastle.Healthcheck;
+using TeumesseCastle.Healthcheck;
 
-namespace PingCastle.Report
+namespace TeumesseCastle.Report
 {
     public class ReportCloudCompared : ReportCloud
     {

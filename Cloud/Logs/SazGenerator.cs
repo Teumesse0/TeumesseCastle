@@ -18,7 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace PingCastle.Cloud.Logs
+namespace TeumesseCastle.Cloud.Logs
 {
     public class SazGenerator : IDisposable
     {
@@ -199,7 +199,7 @@ namespace PingCastle.Cloud.Logs
             };
 
             metadata.SessionFlags.Add(new SessionFlag { Name = SessionFlag.ClientIP, Value = "127.0.0.1" });
-            metadata.SessionFlags.Add(new SessionFlag { Name = SessionFlag.ProcessInfo, Value = "pingcastlecloud.exe:1234" });
+            metadata.SessionFlags.Add(new SessionFlag { Name = SessionFlag.ProcessInfo, Value = "teumessecastlecloud.exe:1234" });
             if (!string.IsNullOrEmpty(SessionComment))
             {
                 metadata.SessionFlags.Add(new SessionFlag { Name = SessionFlag.Comment, Value = SessionComment });

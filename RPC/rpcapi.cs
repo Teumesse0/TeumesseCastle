@@ -11,7 +11,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 
-namespace PingCastle.RPC
+namespace TeumesseCastle.RPC
 {
     public abstract class rpcapi
     {

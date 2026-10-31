@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Security.Principal;
 
-namespace PingCastle.RPC
+namespace TeumesseCastle.RPC
 {
     public enum TypeOfEnumeration
     {

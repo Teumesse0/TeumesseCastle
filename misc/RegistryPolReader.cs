@@ -7,7 +7,7 @@
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
 using Microsoft.Win32;
-using PingCastle.ADWS;
+using TeumesseCastle.ADWS;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,7 +15,7 @@ using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-namespace PingCastle.misc
+namespace TeumesseCastle.misc
 {
     [DebuggerDisplay("{Key}: {Value}")]
     public class RegistryPolRecord

@@ -6,9 +6,9 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("S-DC-2003", RiskRuleCategory.StaleObjects, RiskModelCategory.ObsoleteOS)]
     [RuleComputation(RuleComputationType.TriggerOnPresence, 20)]

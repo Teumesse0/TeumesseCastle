@@ -6,12 +6,12 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.misc;
-using PingCastle.Rules;
+using TeumesseCastle.misc;
+using TeumesseCastle.Rules;
 using System.Collections.Generic;
 using System.Net;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("S-DC-SubnetMissing", RiskRuleCategory.StaleObjects, RiskModelCategory.NetworkTopography)]
     [RuleComputation(RuleComputationType.TriggerOnPresence, 5)]

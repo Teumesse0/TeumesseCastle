@@ -2,7 +2,7 @@
 // TinyJson - minimal JSON parser bundled with PingCastle 3.0.0.0 (https://www.pingcastle.com).
 // Original author: Alex Parker (https://github.com/zanders3/json), MIT license.
 // TODO(review): confirm the exact upstream license text for this third-party file.
-// Distributed as part of PingCastle under the Non-Profit OSL 3.0. See LICENSE.md in the project root.
+// Distributed as part of TeumesseCastle under the Non-Profit OSL 3.0. See LICENSE.md in the project root.
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //

@@ -9,7 +9,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace PingCastle.Graph.Database
+namespace TeumesseCastle.Graph.Database
 {
     [DebuggerDisplay("From: {FromId} To: {ToId} Hints: {string.Join(\" \", Hint)}")]
     public class Relation

@@ -10,7 +10,7 @@ using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
-namespace PingCastle.Data
+namespace TeumesseCastle.Data
 {
     [DebuggerDisplay("FQDN: {DomainName} SID: {DomainSID} NetBIOS: {DomainNetBIOS}")]
     public class DomainKey : IComparable<DomainKey>, IEquatable<DomainKey>
@@ -54,7 +54,7 @@ namespace PingCastle.Data
                 else
                 {
                     Trace.WriteLine("Unable to parse the SID " + domainSid);
-                    throw new PingCastleException("Unable to parse the SID \"" + domainSid + "\" - it should be like S-1-5-21-3777291851-731158365-1300944990");
+                    throw new TeumesseCastleException("Unable to parse the SID \"" + domainSid + "\" - it should be like S-1-5-21-3777291851-731158365-1300944990");
                 }
             }
             if (!string.IsNullOrEmpty(domainNetbios))

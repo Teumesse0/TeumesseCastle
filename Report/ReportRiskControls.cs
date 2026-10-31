@@ -4,12 +4,12 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Healthcheck;
-using PingCastle.Rules;
+using TeumesseCastle.Healthcheck;
+using TeumesseCastle.Rules;
 using System;
 using System.Collections.Generic;
 
-namespace PingCastle.Report
+namespace TeumesseCastle.Report
 {
     public abstract class ReportRiskControls<T> : ReportBase where T : IRiskEvaluation
     {

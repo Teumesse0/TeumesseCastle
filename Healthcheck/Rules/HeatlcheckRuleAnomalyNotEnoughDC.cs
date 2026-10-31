@@ -6,9 +6,9 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("A-NotEnoughDC", RiskRuleCategory.Anomalies, RiskModelCategory.Backup)]
     [RuleComputation(RuleComputationType.TriggerIfLessThan, 5, Threshold: 2)]

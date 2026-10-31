@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace PingCastle.Rules
+namespace TeumesseCastle.Rules
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = false)]
     public class RuleModelAttribute : Attribute

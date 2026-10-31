@@ -9,7 +9,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace PingCastle.RPC
+namespace TeumesseCastle.RPC
 {
     internal class NativeMethods
     {
@@ -24,11 +24,11 @@ namespace PingCastle.RPC
 
         [DllImport("Rpcrt4.dll", EntryPoint = "NdrClientCall2", CallingConvention = CallingConvention.Cdecl,
            CharSet = CharSet.Unicode, SetLastError = false)]
-        internal static extern IntPtr NdrClientCall2x64(IntPtr pMIDL_STUB_DESC, IntPtr formatString, IntPtr intptrServer, int flag, ref PingCastle.RPC.nrpc3.NETLOGON_TRUSTED_DOMAIN_ARRAY output);
+        internal static extern IntPtr NdrClientCall2x64(IntPtr pMIDL_STUB_DESC, IntPtr formatString, IntPtr intptrServer, int flag, ref TeumesseCastle.RPC.nrpc3.NETLOGON_TRUSTED_DOMAIN_ARRAY output);
 
         [DllImport("Rpcrt4.dll", EntryPoint = "NdrClientCall2", CallingConvention = CallingConvention.Cdecl,
            CharSet = CharSet.Unicode, SetLastError = false)]
-        internal static extern IntPtr NdrClientCall2x64(IntPtr pMIDL_STUB_DESC, IntPtr formatString, IntPtr intptrSystemName, ref PingCastle.RPC.lsa.LSAPR_OBJECT_ATTRIBUTES objectAttributes, UInt32 DesiredAccess, out IntPtr PolicyHandle);
+        internal static extern IntPtr NdrClientCall2x64(IntPtr pMIDL_STUB_DESC, IntPtr formatString, IntPtr intptrSystemName, ref TeumesseCastle.RPC.lsa.LSAPR_OBJECT_ATTRIBUTES objectAttributes, UInt32 DesiredAccess, out IntPtr PolicyHandle);
 
         [DllImport("Rpcrt4.dll", EntryPoint = "NdrClientCall2", CallingConvention = CallingConvention.Cdecl,
            CharSet = CharSet.Unicode, SetLastError = false)]
@@ -36,7 +36,7 @@ namespace PingCastle.RPC
 
         [DllImport("Rpcrt4.dll", EntryPoint = "NdrClientCall2", CallingConvention = CallingConvention.Cdecl,
            CharSet = CharSet.Unicode, SetLastError = false)]
-        internal static extern IntPtr NdrClientCall2x64(IntPtr pMIDL_STUB_DESC, IntPtr formatString, IntPtr PolicyHandle, PingCastle.RPC.lsa.LSAPR_SID_ENUM_BUFFER enumBuffer, out IntPtr IntPtrReferencedDomains, IntPtr IntPtrTranslatedNames, UInt32 LookupLevel, out UInt32 MappedCount);
+        internal static extern IntPtr NdrClientCall2x64(IntPtr pMIDL_STUB_DESC, IntPtr formatString, IntPtr PolicyHandle, TeumesseCastle.RPC.lsa.LSAPR_SID_ENUM_BUFFER enumBuffer, out IntPtr IntPtrReferencedDomains, IntPtr IntPtrTranslatedNames, UInt32 LookupLevel, out UInt32 MappedCount);
 
         [DllImport("Rpcrt4.dll", EntryPoint = "NdrClientCall2", CallingConvention = CallingConvention.Cdecl,
            CharSet = CharSet.Unicode, SetLastError = false)]
@@ -48,7 +48,7 @@ namespace PingCastle.RPC
 
         [DllImport("Rpcrt4.dll", EntryPoint = "NdrClientCall2", CallingConvention = CallingConvention.Cdecl,
            CharSet = CharSet.Unicode, SetLastError = false)]
-        internal static extern IntPtr NdrClientCall2x64(IntPtr pMIDL_STUB_DESC, IntPtr formatString, IntPtr ServerHandle, PingCastle.NativeMethods.UNICODE_STRING NameString, out IntPtr sid);
+        internal static extern IntPtr NdrClientCall2x64(IntPtr pMIDL_STUB_DESC, IntPtr formatString, IntPtr ServerHandle, TeumesseCastle.NativeMethods.UNICODE_STRING NameString, out IntPtr sid);
 
         [DllImport("Rpcrt4.dll", EntryPoint = "NdrClientCall2", CallingConvention = CallingConvention.Cdecl,
            CharSet = CharSet.Unicode, SetLastError = false)]
@@ -72,7 +72,7 @@ namespace PingCastle.RPC
 
         [DllImport("Rpcrt4.dll", EntryPoint = "NdrClientCall2", CallingConvention = CallingConvention.Cdecl,
            CharSet = CharSet.Unicode, SetLastError = false)]
-        internal static extern IntPtr NdrClientCall2x64(IntPtr pMIDL_STUB_DESC, IntPtr formatString, IntPtr Handle, ref PingCastle.RPC.OxidBindings.COMVERSION i1, out System.IntPtr i2, ref uint i3);
+        internal static extern IntPtr NdrClientCall2x64(IntPtr pMIDL_STUB_DESC, IntPtr formatString, IntPtr Handle, ref TeumesseCastle.RPC.OxidBindings.COMVERSION i1, out System.IntPtr i2, ref uint i3);
 
         [DllImport("Rpcrt4.dll", EntryPoint = "RpcBindingFree", CallingConvention = CallingConvention.StdCall,
             CharSet = CharSet.Unicode, SetLastError = false)]

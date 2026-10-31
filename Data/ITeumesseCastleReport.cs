@@ -9,9 +9,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace PingCastle.Data
+namespace TeumesseCastle.Data
 {
-    public interface IPingCastleReport
+    public interface ITeumesseCastleReport
     {
         DomainKey Domain { get; }
         DateTime GenerationDate { get; }
@@ -20,7 +20,7 @@ namespace PingCastle.Data
         IList<DomainKey> DomainKnown { get; }
         string GetHumanReadableFileName();
         string GetMachineReadableFileName();
-        void SetExportLevel(PingCastleReportDataExportLevel level);
+        void SetExportLevel(TeumesseCastleReportDataExportLevel level);
         void SetIntegrity();
         void CheckIntegrity();
     }

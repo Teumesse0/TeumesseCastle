@@ -6,10 +6,10 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 using System;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("S-OS-Win8", RiskRuleCategory.StaleObjects, RiskModelCategory.ObsoleteOS)]
     [RuleComputation(RuleComputationType.TriggerOnThreshold, 5, Threshold: 15, Order: 1)]

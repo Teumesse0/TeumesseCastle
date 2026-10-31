@@ -9,17 +9,17 @@
 using System;
 using System.Collections.Generic;
 
-namespace PingCastle.Data
+namespace TeumesseCastle.Data
 {
 
-    public class PingCastleReportCollection<T> : ICollection<T> where T : IPingCastleReport
+    public class TeumesseCastleReportCollection<T> : ICollection<T> where T : ITeumesseCastleReport
     {
         Dictionary<string, T> data { get; set; }
         // database of FQDN, all SID
         Dictionary<string, List<string>> AmbigiousNameReference { get; set; }
         Dictionary<string, DomainKey> DomainReference { get; set; }
 
-        public PingCastleReportCollection()
+        public TeumesseCastleReportCollection()
         {
             data = new Dictionary<string, T>();
             AmbigiousNameReference = new Dictionary<string, List<string>>();

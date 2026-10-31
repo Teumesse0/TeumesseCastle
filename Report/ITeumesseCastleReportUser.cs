@@ -4,17 +4,17 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Cloud.Data;
-using PingCastle.Data;
+using TeumesseCastle.Cloud.Data;
+using TeumesseCastle.Data;
 
-namespace PingCastle.Report
+namespace TeumesseCastle.Report
 {
     public delegate string GetUrlDelegateDomain(DomainKey domainKey, string displayName, string optionalRiskId);
     public delegate string GetUrlDelegateAzureAD(AzureADKey domainKey, string displayName, string optionalRiskId);
     public delegate string GetAdditionInfoDelegate(DomainKey domainKey);
     public delegate string AddHtmlToTabSection(string section);
 
-    public interface IPingCastleReportUser<T> where T : IPingCastleReport
+    public interface ITeumesseCastleReportUser<T> where T : ITeumesseCastleReport
     {
         string GenerateReportFile(T report, ADHealthCheckingLicense license, string filename);
         string GenerateRawContent(T report);

@@ -6,21 +6,21 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Healthcheck;
+using TeumesseCastle.Healthcheck;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
 
-namespace PingCastle.Data
+namespace TeumesseCastle.Data
 {
-    public class PingCastleReportHelper<T> where T : IPingCastleReport
+    public class TeumesseCastleReportHelper<T> where T : ITeumesseCastleReport
     {
-        public static PingCastleReportCollection<T> LoadXmls(string Xmls, DateTime maxfiltervalue)
+        public static TeumesseCastleReportCollection<T> LoadXmls(string Xmls, DateTime maxfiltervalue)
         {
-            var output = new PingCastleReportCollection<T>();
+            var output = new TeumesseCastleReportCollection<T>();
             int files = 0;
-            foreach (string filename in Directory.GetFiles(Xmls, PingCastleFactory.GetFilePatternForLoad<T>(), SearchOption.AllDirectories))
+            foreach (string filename in Directory.GetFiles(Xmls, TeumesseCastleFactory.GetFilePatternForLoad<T>(), SearchOption.AllDirectories))
             {
                 try
                 {
@@ -49,9 +49,9 @@ namespace PingCastle.Data
             return output;
         }
 
-        public static PingCastleReportHistoryCollection<T> LoadHistory(string Xmls, DateTime maxfiltervalue)
+        public static TeumesseCastleReportHistoryCollection<T> LoadHistory(string Xmls, DateTime maxfiltervalue)
         {
-            var output = new PingCastleReportHistoryCollection<T>();
+            var output = new TeumesseCastleReportHistoryCollection<T>();
             int files = 0;
             foreach (string filename in Directory.GetFiles(Xmls, "*ad_hc_*.xml", SearchOption.AllDirectories))
             {
@@ -81,11 +81,11 @@ namespace PingCastle.Data
             return output;
         }
 
-        public static PingCastleReportCollection<HealthcheckData> TransformReportsToDemo(PingCastleReportCollection<HealthcheckData> consolidation)
+        public static TeumesseCastleReportCollection<HealthcheckData> TransformReportsToDemo(TeumesseCastleReportCollection<HealthcheckData> consolidation)
         {
             string rotKey = GenerateRandomRotKey();
 
-            var output = new PingCastleReportCollection<HealthcheckData>();
+            var output = new TeumesseCastleReportCollection<HealthcheckData>();
             foreach (HealthcheckData data in consolidation)
             {
                 HealthcheckData demoreport = TransformReportToDemo(rotKey, data);

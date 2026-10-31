@@ -6,7 +6,7 @@
 //
 using System.Runtime.InteropServices;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     public class ZeroLogonScanner : ScannerBase
     {

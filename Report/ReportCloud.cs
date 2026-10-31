@@ -7,18 +7,18 @@
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
 using Newtonsoft.Json;
-using PingCastle.Rules;
-using PingCastle.template;
-using PingCastle.Cloud.Data;
-using PingCastle.Cloud.Rules;
+using TeumesseCastle.Rules;
+using TeumesseCastle.template;
+using TeumesseCastle.Cloud.Data;
+using TeumesseCastle.Cloud.Rules;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
-using PingCastle.Data;
+using TeumesseCastle.Data;
 
-namespace PingCastle.Report
+namespace TeumesseCastle.Report
 {
     public class ReportCloud : ReportBase
     {
@@ -49,7 +49,7 @@ namespace PingCastle.Report
         protected override void GenerateTitleInformation()
         {
             AddEncoded(Report.TenantName);
-            Add(" PingCastle ");
+            Add(" TeumesseCastle ");
             Add(Report.GenerationDate.ToString("yyyy-MM-dd"));
         }
 
@@ -71,7 +71,7 @@ namespace PingCastle.Report
 <div id=""wrapper"" class=""container well"">
 	<noscript>
 		<div class=""alert alert-warning"">
-			<p>PingCastle reports work best with Javascript enabled.</p>
+			<p>TeumesseCastle reports work best with Javascript enabled.</p>
 		</div>
 	</noscript>
 <div class=""row""><div class=""col-lg-12""><h1>");
@@ -86,7 +86,7 @@ namespace PingCastle.Report
             Add(@"<div class=""alert alert-info"">
 This report has been generated with the ");
             Add(String.IsNullOrEmpty(_license.Edition) ? "Basic" : _license.Edition);
-            Add(@" Edition of PingCastle");
+            Add(@" Edition of TeumesseCastle");
             if (!string.IsNullOrEmpty(_license.CustomerNotice))
             {
                 Add(@"&nbsp;<i class=""info-mark d-print-none"" data-bs-placement=""bottom"" data-bs-toggle=""tooltip""");
@@ -394,7 +394,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
             Add(@"<p>This section represents the maturity score (inspired from <a href='https://www.cert.ssi.gouv.fr/dur/CERTFR-2020-DUR-001/'>ANSSI</a>).</p>");
             if (string.IsNullOrEmpty(_license.Edition))
             {
-                AddParagraph("This feature is reserved for customers who have <a href='https://www.pingcastle.com/services/'>purchased a license</a>");
+                AddParagraph("This feature is reserved for customers who have <a href='https://github.com/Teumesse0/TeumesseCastle'>purchased a license</a>");
                 return;
             }
             var data = GetCurrentMaturityLevel();
@@ -603,7 +603,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
             AddParagraph(@"This section represents an evaluation of the techniques available in the <a href=""https://attack.mitre.org/"">MITRE ATT&CK&#174;</a>");
             if (string.IsNullOrEmpty(_license.Edition))
             {
-                AddParagraph("This feature is reserved for customers who have <a href='https://www.pingcastle.com/services/'>purchased a license</a>");
+                AddParagraph("This feature is reserved for customers who have <a href='https://github.com/Teumesse0/TeumesseCastle'>purchased a license</a>");
                 return;
             }
             GenerateMitreTechnique();
@@ -1362,7 +1362,7 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
                 AddEndTable();
                 Add("</div>");
 
-                Add(@"<script type='application/json' data-pingcastle-selector='ForeignTenants'>");
+                Add(@"<script type='application/json' data-teumessecastle-selector='ForeignTenants'>");
                 Add(JsonConvert.SerializeObject(Report.ForeignDomains));
                 Add(@"</script>");
             }
@@ -1879,13 +1879,13 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
             }
             AddEndTable();
             Add("</div>");
-            Add(@"<script type='application/json' data-pingcastle-selector='App'>");
+            Add(@"<script type='application/json' data-teumessecastle-selector='App'>");
             Add(JsonConvert.SerializeObject(Report.Applications));
             Add(@"</script>");
-            Add(@"<script type='application/json' data-pingcastle-selector='dangerousAppPermissions'>");
+            Add(@"<script type='application/json' data-teumessecastle-selector='dangerousAppPermissions'>");
             Add(JsonConvert.SerializeObject(dangerousAppPermissions));
             Add(@"</script>");
-            Add(@"<script type='application/json' data-pingcastle-selector='dangerousDelegatedPermissions'>");
+            Add(@"<script type='application/json' data-teumessecastle-selector='dangerousDelegatedPermissions'>");
             Add(JsonConvert.SerializeObject(dangerousDelegatedPermissions));
             Add(@"</script>");
 

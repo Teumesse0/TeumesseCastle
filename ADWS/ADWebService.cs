@@ -13,7 +13,7 @@ using System.DirectoryServices.ActiveDirectory;
 using System.Net;
 using System.Runtime.InteropServices;
 
-namespace PingCastle.ADWS
+namespace TeumesseCastle.ADWS
 {
     public delegate void WorkOnReturnedObjectByADWS(ADItem Object);
 

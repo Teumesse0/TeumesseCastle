@@ -6,16 +6,16 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.ADWS;
-using PingCastle.Data;
-using PingCastle.Exports;
-using PingCastle.Graph.Reporting;
-using PingCastle.Healthcheck;
-using PingCastle.Report;
-using PingCastle.Scanners;
-using PingCastle.Cloud.Common;
-using PingCastle.Cloud.RESTServices.Azure;
-using PingCastle.Cloud.Tokens;
+using TeumesseCastle.ADWS;
+using TeumesseCastle.Data;
+using TeumesseCastle.Exports;
+using TeumesseCastle.Graph.Reporting;
+using TeumesseCastle.Healthcheck;
+using TeumesseCastle.Report;
+using TeumesseCastle.Scanners;
+using TeumesseCastle.Cloud.Common;
+using TeumesseCastle.Cloud.RESTServices.Azure;
+using TeumesseCastle.Cloud.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,7 +27,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace PingCastle
+namespace TeumesseCastle
 {
     enum PossibleTasks
     {
@@ -48,8 +48,8 @@ namespace PingCastle
         ExportRulesXml,
     }
 
-    [LicenseProvider(typeof(PingCastle.ADHealthCheckingLicenseProvider))]
-    public class Program : IPingCastleLicenseInfo
+    [LicenseProvider(typeof(TeumesseCastle.ADHealthCheckingLicenseProvider))]
+    public class Program : ITeumesseCastleLicenseInfo
     {
         
         Dictionary<PossibleTasks, Func<bool>> actions;
@@ -109,7 +109,7 @@ namespace PingCastle
         {
             ADHealthCheckingLicense license = null;
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
-            Trace.WriteLine("PingCastle version " + version.ToString(4));
+            Trace.WriteLine("TeumesseCastle version " + version.ToString(4));
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i].Equals("--debug-license", StringComparison.InvariantCultureIgnoreCase))
@@ -210,18 +210,18 @@ namespace PingCastle
             };
 
             LoadCustomRules(tasks);
-            ConsoleMenu.Header = @"  \==--O___      PingCastle (Version " + version.ToString(4) + @"     " + ConsoleMenu.GetBuildDateTime(Assembly.GetExecutingAssembly()) + @")
-   \  / \  ¨¨>   Get Active Directory Security at 80% in 20% of the time
+            ConsoleMenu.Header = @"  \==--O___      TeumesseCastle (Version " + version.ToString(4) + @"     " + ConsoleMenu.GetBuildDateTime(Assembly.GetExecutingAssembly()) + @")
+   \  / \  ¨¨>   Active Directory security audit, free and open source forever
     \/   \ ,’    " + (license.EndTime < DateTime.MaxValue ? "End of support: " + license.EndTime.ToShortDateString() : "") + @"
      O¨---O                                                     
-      \ ,'       Vincent LE TOUX (contact@pingcastle.com)
-       v         twitter: @mysmartlogon       https://www.pingcastle.com";
+      \ ,'       Teumesse - https://github.com/Teumesse0/TeumesseCastle
+       v         Based on PingCastle 3.0.0.0 by Vincent Le Toux (NPOSL-3.0)";
 
             if (!ParseCommandLine(args))
                 return;
             // Trace to file or console may be enabled here
             Trace.WriteLine("[New run]" + DateTime.Now.ToString("u"));
-            Trace.WriteLine("PingCastle version " + version.ToString(4));
+            Trace.WriteLine("TeumesseCastle version " + version.ToString(4));
             Trace.WriteLine("Running on dotnet:" + Environment.Version);
             if (!String.IsNullOrEmpty(license.DomainLimitation) && !Tasks.compareStringWithWildcard(license.DomainLimitation, settings.Server))
             {
@@ -254,7 +254,7 @@ namespace PingCastle
                 return;
             if (string.Equals(tasks.License.Edition, "Basic", StringComparison.OrdinalIgnoreCase))
                 return;
-            PingCastle.Rules.RuleSet<HealthcheckData>.LoadCustomRules();
+            TeumesseCastle.Rules.RuleSet<HealthcheckData>.LoadCustomRules();
         }
 
         const string basicEditionLicense = "PC2H4sIAAAAAAAEAGNkYGDgAGKGAzLT7jy6xcgMZBYBsRuQTAVCBQZXhhSGTIYSIM5nyAPy8xnSgGQAkJ/HkM7gzJDIUAyUzQGrNWbQYzAAYwUGXSD2A6ouAdJpQLoISCcD6VwgTAXykoEmJAL1KTCUAk1IBbmBoQGImQ4+s9j59X9w1rOF7t6nn097JNLF6H92Pif/vFNT/87qVDt2pf4W+954r+YKwdUn4tq2pwsl5b2oKOWas9X8Rsdeb6O1PyTPzJ7/fwPbOcWwrtbci73XXKa8uBt1I+lVzxW/J2asCZZHbTw2h3++tb5sXfkHAc1DV89xt7PM68tV2K7paaFkAQD18TqOEgEAAA==";
@@ -312,7 +312,7 @@ namespace PingCastle
             }
             catch (Exception)
             {
-                throw new PingCastleException("Unable to load the license from the .config file and the license embedded in PingCastle is not valid. Check that all files have been copied in the same directory and that you have a valid license");
+                throw new TeumesseCastleException("Unable to load the license from the .config file and the license embedded in TeumesseCastle is not valid. Check that all files have been copied in the same directory and that you have a valid license");
             }
             return _serialNumber;
         }
@@ -442,7 +442,7 @@ namespace PingCastle
                                 return false;
                             }
                             {
-                                var exports = PingCastleFactory.GetAllExport();
+                                var exports = TeumesseCastleFactory.GetAllExport();
                                 string exportname = args[++i];
                                 if (!exports.ContainsKey(exportname))
                                 {
@@ -518,11 +518,11 @@ namespace PingCastle
                             }
                             try
                             {
-                                tasks.ExportLevel = (PingCastleReportDataExportLevel)Enum.Parse(typeof(PingCastleReportDataExportLevel), args[++i]);
+                                tasks.ExportLevel = (TeumesseCastleReportDataExportLevel)Enum.Parse(typeof(TeumesseCastleReportDataExportLevel), args[++i]);
                             }
                             catch (Exception)
                             {
-                                WriteInRed("Unable to parse the level [" + args[i] + "] to one of the predefined value (" + String.Join(",", Enum.GetNames(typeof(PingCastleReportDataExportLevel))) + ")");
+                                WriteInRed("Unable to parse the level [" + args[i] + "] to one of the predefined value (" + String.Join(",", Enum.GetNames(typeof(TeumesseCastleReportDataExportLevel))) + ")");
                                 return false;
                             }
                             break;
@@ -731,7 +731,7 @@ namespace PingCastle
                                 return false;
                             }
                             {
-                                var scanners = PingCastleFactory.GetAllScanners();
+                                var scanners = TeumesseCastleFactory.GetAllScanners();
                                 string scannername = args[++i];
                                 if (!scanners.ContainsKey(scannername))
                                 {
@@ -1020,13 +1020,13 @@ namespace PingCastle
             requestedActions.Clear();
 
             List<ConsoleMenuItem> choices = new List<ConsoleMenuItem>() {
-                new ConsoleMenuItem("healthcheck","Score the risk of a domain", "This is the main functionnality of PingCastle. In a matter of minutes, it produces a report which will give you an overview of your Active Directory security. This report can be generated on other domains by using the existing trust links."),
-                new ConsoleMenuItem("azuread","Score the risk of AzureAD", "This is the main functionnality of PingCastle. In a matter of minutes, it produces a report which will give you an overview of your AzureAD security."),
+                new ConsoleMenuItem("healthcheck","Score the risk of a domain", "This is the main functionnality of TeumesseCastle. In a matter of minutes, it produces a report which will give you an overview of your Active Directory security. This report can be generated on other domains by using the existing trust links."),
+                new ConsoleMenuItem("azuread","Score the risk of AzureAD", "This is the main functionnality of TeumesseCastle. In a matter of minutes, it produces a report which will give you an overview of your AzureAD security."),
                 new ConsoleMenuItem("conso","Aggregate multiple reports into a single one", "With many healthcheck reports, you can get a single report for a whole scope. Maps will be generated."),
                 new ConsoleMenuItem("carto","Build a map of all interconnected domains", "It combines the healthcheck reports that would be run on all trusted domains and then the conso option. But lighter and then faster."),
                 new ConsoleMenuItem("scanner","Perform specific security checks on workstations", "You can know your local admins, if Bitlocker is properly configured, discover unprotect shares, ... A menu will be shown to select the right scanner."),
                 new ConsoleMenuItem("export","Export users or computers", "Don't involve your admin and get the list of users or computers you want to get. A menu will be shown to select the export."),
-                new ConsoleMenuItem("advanced","Open the advanced menu", "This is the place you want to configure PingCastle without playing with command line switches."),
+                new ConsoleMenuItem("advanced","Open the advanced menu", "This is the place you want to configure TeumesseCastle without playing with command line switches."),
             };
 
             ConsoleMenu.Title = "What do you want to do?";
@@ -1066,7 +1066,7 @@ namespace PingCastle
         {
             List<ConsoleMenuItem> choices = new List<ConsoleMenuItem>() {
                 new ConsoleMenuItem("protocol","Change the protocol used to query the AD (LDAP, ADWS, ...)"),
-                new ConsoleMenuItem("hcrules","Generate a report containing all rules applied by PingCastle"),
+                new ConsoleMenuItem("hcrules","Generate a report containing all rules applied by TeumesseCastle"),
                 new ConsoleMenuItem("generatekey","Generate RSA keys used to encrypt and decrypt reports"),
                 new ConsoleMenuItem("noenumlimit","Remove the 100 items limitation in healthcheck reports"),
                 new ConsoleMenuItem("decrypt","Decrypt a xml report"),
@@ -1191,7 +1191,7 @@ namespace PingCastle
             Console.WriteLine("    --I-swear-I-paid-win7-support : meaningless");
             Console.WriteLine("    --I-swear-I-paid-win8-support : meaningless");
             Console.WriteLine("");
-            Console.WriteLine("--rules               : Generate an html containing all the rules used by PingCastle");
+            Console.WriteLine("--rules               : Generate an html containing all the rules used by TeumesseCastle");
             Console.WriteLine("");
             Console.WriteLine("  --generate-key      : generate and display a new RSA key for encryption");
             Console.WriteLine("");
@@ -1211,13 +1211,13 @@ namespace PingCastle
             Console.WriteLine("");
             Console.WriteLine("  --scanner <type>    : perform a scan on one of all computers of the domain (using --server)");
             Console.WriteLine("");
-            var scanner = PingCastleFactory.GetAllScanners();
+            var scanner = TeumesseCastleFactory.GetAllScanners();
             var scannerNames = new List<string>(scanner.Keys);
             scannerNames.Sort();
             foreach (var scannerName in scannerNames)
             {
                 Type scannerType = scanner[scannerName];
-                IScanner iscanner = PingCastleFactory.LoadScanner(scannerType);
+                IScanner iscanner = TeumesseCastleFactory.LoadScanner(scannerType);
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine(iscanner.Name);
                 Console.ResetColor();
@@ -1235,13 +1235,13 @@ namespace PingCastle
             Console.WriteLine("                        Example of SID: S-1-5-21-4005144719-3948538632-2546531719");
             Console.WriteLine("");
             Console.WriteLine("  --export <type>    : perform an export of objects of the domain (using --server)");
-            var exports = PingCastleFactory.GetAllExport();
+            var exports = TeumesseCastleFactory.GetAllExport();
             var exportNames = new List<string>(exports.Keys);
             exportNames.Sort();
             foreach (var exportName in exportNames)
             {
                 Type exportType = exports[exportName];
-                IExport iexport = PingCastleFactory.LoadExport(exportType);
+                IExport iexport = TeumesseCastleFactory.LoadExport(exportType);
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine(iexport.Name);
                 Console.ResetColor();

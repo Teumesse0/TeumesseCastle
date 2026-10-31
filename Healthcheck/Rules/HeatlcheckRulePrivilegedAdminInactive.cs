@@ -6,9 +6,9 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("P-Inactive", RiskRuleCategory.PrivilegedAccounts, RiskModelCategory.AdminControl)]
     [RuleComputation(RuleComputationType.TriggerOnThreshold, 30, Threshold: 30, Order: 1)]

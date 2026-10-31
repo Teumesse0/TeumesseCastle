@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace PingCastle.ADWS
+namespace TeumesseCastle.ADWS
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct berval
@@ -293,7 +293,7 @@ namespace PingCastle.ADWS
             }
         }
 
-        internal const string LdapLibrary = "libPingCastleldap";
+        internal const string LdapLibrary = "libTeumesseCastleldap";
 
         internal enum LDAPScope : int
         {

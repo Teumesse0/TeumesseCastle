@@ -6,10 +6,10 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.RPC;
+using TeumesseCastle.RPC;
 using System;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     public class SpoolerScanner : ScannerBase
     {
@@ -37,7 +37,7 @@ namespace PingCastle.Scanners
             IntPtr hHandle = IntPtr.Zero;
             var test = new rprn();
 
-            var devmodeContainer = new PingCastle.RPC.rprn.DEVMODE_CONTAINER();
+            var devmodeContainer = new TeumesseCastle.RPC.rprn.DEVMODE_CONTAINER();
             try
             {
                 var ret = test.RpcOpenPrinter("\\\\" + computer, out hHandle, null, ref devmodeContainer, 0);

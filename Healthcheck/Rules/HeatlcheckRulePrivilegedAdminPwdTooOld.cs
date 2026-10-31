@@ -6,11 +6,11 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 using System;
 using System.Collections.Generic;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("P-AdminPwdTooOld", RiskRuleCategory.PrivilegedAccounts, RiskModelCategory.AccountTakeOver)]
     [RuleComputation(RuleComputationType.TriggerOnPresence, 10)]

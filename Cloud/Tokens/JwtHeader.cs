@@ -6,14 +6,14 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Cloud.Common;
+using TeumesseCastle.Cloud.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingCastle.Cloud.Tokens
+namespace TeumesseCastle.Cloud.Tokens
 {
     public class JwtHeader : JsonSerialization<JwtHeader>
     {

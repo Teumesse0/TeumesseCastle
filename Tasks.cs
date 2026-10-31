@@ -6,15 +6,15 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Data;
-using PingCastle.Exports;
-using PingCastle.Healthcheck;
-using PingCastle.misc;
-using PingCastle.Report;
-using PingCastle.Rules;
-using PingCastle.Scanners;
-using PingCastle.Cloud.Credentials;
-using PingCastle.Cloud.Data;
+using TeumesseCastle.Data;
+using TeumesseCastle.Exports;
+using TeumesseCastle.Healthcheck;
+using TeumesseCastle.misc;
+using TeumesseCastle.Report;
+using TeumesseCastle.Rules;
+using TeumesseCastle.Scanners;
+using TeumesseCastle.Cloud.Credentials;
+using TeumesseCastle.Cloud.Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -30,7 +30,7 @@ using TinyJson;
 using System.Xml.Serialization;
 using System.Xml;
 
-namespace PingCastle
+namespace TeumesseCastle
 {
     public class Tasks
     {
@@ -39,7 +39,7 @@ namespace PingCastle
         public NetworkCredential Credential = null;
         public List<string> NodesToInvestigate = new List<string>();
 
-        public PingCastleReportDataExportLevel ExportLevel = PingCastleReportDataExportLevel.Normal;
+        public TeumesseCastleReportDataExportLevel ExportLevel = TeumesseCastleReportDataExportLevel.Normal;
 
 
         Dictionary<string, string> xmlreports = new Dictionary<string, string>();
@@ -56,7 +56,7 @@ namespace PingCastle
             Trace.AutoFlush = true;
             TextWriterTraceListener listener = new TextWriterTraceListener("trace.log");
             Trace.Listeners.Add(listener);
-            PingCastle.Cloud.Common.HttpClientHelper.EnableLoging(new PingCastle.Cloud.Logs.SazGenerator());
+            TeumesseCastle.Cloud.Common.HttpClientHelper.EnableLoging(new TeumesseCastle.Cloud.Logs.SazGenerator());
         }
 
         public bool GenerateKeyTask()
@@ -84,8 +84,8 @@ namespace PingCastle
                         Console.WriteLine("Select the role Global Reader");
                         Console.WriteLine("Click on Add assignments and add the previously created account");
                         Console.WriteLine("Make sure the App registration is listed on Assignments before leaving");
-                        var tenant = "pingcastle.com";
-                        PingCastle.Cloud.Credentials.CertificateBuilder.GenerateAzureADCertificate(tenant, "vletoux", DateTime.Now.AddYears(2));
+                        var tenant = "teumessecastle.local";
+                        TeumesseCastle.Cloud.Credentials.CertificateBuilder.GenerateAzureADCertificate(tenant, "teumessecastle", DateTime.Now.AddYears(2));
                         return;
 
                         //CertificateBuilder.GenerateAzureADCertificate("pingcatle.c
@@ -98,7 +98,7 @@ namespace PingCastle
                     () =>
                     {
                         PropertyInfo pi = Settings.Scanner.GetProperty("Name");
-                        IScanner scanner = PingCastleFactory.LoadScanner(Settings.Scanner);
+                        IScanner scanner = TeumesseCastleFactory.LoadScanner(Settings.Scanner);
                         string name = pi.GetValue(scanner, null) as string;
                         DisplayAdvancement("Running scanner " + name);
                         scanner.Initialize(Settings);
@@ -133,7 +133,7 @@ namespace PingCastle
                         Console.WriteLine(domain.domain);
                     }
                 });
-            var consolidation = new PingCastleReportCollection<HealthcheckData>();
+            var consolidation = new TeumesseCastleReportCollection<HealthcheckData>();
             StartTask("Examining all domains in parallele (this can take a few minutes)",
             () =>
             {
@@ -204,7 +204,7 @@ namespace PingCastle
             {
                 Console.WriteLine("Performing demo report transformation");
                 Trace.WriteLine("Performing demo report transformation");
-                consolidation = PingCastleReportHelper<HealthcheckData>.TransformReportsToDemo(consolidation);
+                consolidation = TeumesseCastleReportHelper<HealthcheckData>.TransformReportsToDemo(consolidation);
             }
             if (!StartTask("Healthcheck consolidation",
                 () =>
@@ -222,7 +222,7 @@ namespace PingCastle
             return true;
         }
 
-        public bool AnalysisTask<T>() where T : IPingCastleReport
+        public bool AnalysisTask<T>() where T : ITeumesseCastleReport
         {
             if (!string.IsNullOrEmpty(Settings.apiEndpoint) && !string.IsNullOrEmpty(Settings.apiKey))
             {
@@ -268,17 +268,17 @@ namespace PingCastle
                         var fakegenerator = new FakeHealthCheckDataGenerator();
                         var hcconso = fakegenerator.GenerateData();
 
-                        foreach (var pingCastleReport in hcconso)
+                        foreach (var teumesseCastleReport in hcconso)
                         {
                             var enduserReportGenerator = new ReportHealthCheckSingle();
-                            enduserReportGenerator.GenerateReportFile(pingCastleReport, License, pingCastleReport.GetHumanReadableFileName());
+                            enduserReportGenerator.GenerateReportFile(teumesseCastleReport, License, teumesseCastleReport.GetHumanReadableFileName());
                             DisplayAdvancement("Export level is " + ExportLevel);
-                            if (ExportLevel != PingCastleReportDataExportLevel.Full)
+                            if (ExportLevel != TeumesseCastleReportDataExportLevel.Full)
                             {
                                 DisplayAdvancement("Personal data will NOT be included in the .xml file (add --level Full to add it)");
                             }
-                            pingCastleReport.SetExportLevel(ExportLevel);
-                            DataHelper<HealthcheckData>.SaveAsXml(pingCastleReport, pingCastleReport.GetMachineReadableFileName(), Settings.EncryptReport);
+                            teumesseCastleReport.SetExportLevel(ExportLevel);
+                            DataHelper<HealthcheckData>.SaveAsXml(teumesseCastleReport, teumesseCastleReport.GetMachineReadableFileName(), Settings.EncryptReport);
 
                         }
 
@@ -330,7 +330,7 @@ namespace PingCastle
                     () =>
                     {
                         var rules = new List<ExportedRule>();
-                        foreach (var r in PingCastle.Rules.RuleSet<HealthcheckData>.Rules)
+                        foreach (var r in TeumesseCastle.Rules.RuleSet<HealthcheckData>.Rules)
                         {
                             rules.Add(new ExportedRule()
                             {
@@ -350,7 +350,7 @@ namespace PingCastle
                             });
                         }
 
-                        foreach (var r in PingCastle.Rules.RuleSet<HealthCheckCloudData>.Rules)
+                        foreach (var r in TeumesseCastle.Rules.RuleSet<HealthCheckCloudData>.Rules)
                         {
                             rules.Add(new ExportedRule()
                             {
@@ -379,7 +379,7 @@ namespace PingCastle
                         {
                             xs.Serialize(wr2, rules);
                         }
-                        xmlDoc.Save("PingCastleRules.xml");
+                        xmlDoc.Save("TeumesseCastleRules.xml");
 
                     }
             );
@@ -390,7 +390,7 @@ namespace PingCastle
             return true;
         }
 
-        public bool AnalysisTask<T>(string server) where T : IPingCastleReport
+        public bool AnalysisTask<T>(string server) where T : ITeumesseCastleReport
         {
             Trace.WriteLine("Working on " + server);
             if (server == "*" && Settings.InteractiveMode)
@@ -541,13 +541,13 @@ namespace PingCastle
 
         HealthcheckData PerformTheAnalysis(string server)
         {
-            HealthcheckData pingCastleReport = null;
+            HealthcheckData teumesseCastleReport = null;
             bool status = StartTask("Perform analysis for " + server,
                 () =>
                 {
                     var analyzer = new HealthcheckAnalyzer();
                     analyzer.limitHoneyPot = string.IsNullOrEmpty(License.Edition);
-                    pingCastleReport = analyzer.PerformAnalyze(new PingCastleAnalyzerParameters()
+                    teumesseCastleReport = analyzer.PerformAnalyze(new TeumesseCastleAnalyzerParameters()
                     {
                         Server = server,
                         Port = Settings.Port,
@@ -555,37 +555,37 @@ namespace PingCastle
                         PerformExtendedTrustDiscovery = Settings.AnalyzeReachableDomains,
                         AdditionalNamesForDelegationAnalysis = NodesToInvestigate,
                     });
-                    string domain = pingCastleReport.Domain.DomainName;
+                    string domain = teumesseCastleReport.Domain.DomainName;
                     DisplayAdvancement("Generating html report");
                     var enduserReportGenerator = new ReportHealthCheckSingle();
-                    htmlreports[domain] = enduserReportGenerator.GenerateReportFile(pingCastleReport, License, pingCastleReport.GetHumanReadableFileName());
+                    htmlreports[domain] = enduserReportGenerator.GenerateReportFile(teumesseCastleReport, License, teumesseCastleReport.GetHumanReadableFileName());
                     DisplayAdvancement("Generating xml file for consolidation report" + (Settings.EncryptReport ? " (encrypted)" : ""));
                     DisplayAdvancement("Export level is " + ExportLevel);
-                    if (ExportLevel != PingCastleReportDataExportLevel.Full)
+                    if (ExportLevel != TeumesseCastleReportDataExportLevel.Full)
                     {
                         DisplayAdvancement("Personal data will NOT be included in the .xml file (add --level Full to add it)");
                     }
-                    pingCastleReport.SetExportLevel(ExportLevel);
-                    xmlreports[domain] = DataHelper<HealthcheckData>.SaveAsXml(pingCastleReport, pingCastleReport.GetMachineReadableFileName(), Settings.EncryptReport);
+                    teumesseCastleReport.SetExportLevel(ExportLevel);
+                    xmlreports[domain] = DataHelper<HealthcheckData>.SaveAsXml(teumesseCastleReport, teumesseCastleReport.GetMachineReadableFileName(), Settings.EncryptReport);
                     DisplayAdvancement("Done");
                 });
-            return pingCastleReport;
+            return teumesseCastleReport;
         }
 
-        public bool ConsolidationTask<T>() where T : IPingCastleReport
+        public bool ConsolidationTask<T>() where T : ITeumesseCastleReport
         {
-            return StartTask("PingCastle report consolidation (" + typeof(T).Name + ")",
+            return StartTask("TeumesseCastle report consolidation (" + typeof(T).Name + ")",
                     () =>
                     {
-                        var consolidation = PingCastleReportHelper<T>.LoadXmls(Settings.InputDirectory, Settings.FilterReportDate);
+                        var consolidation = TeumesseCastleReportHelper<T>.LoadXmls(Settings.InputDirectory, Settings.FilterReportDate);
                         if (consolidation.Count == 0)
                         {
-                            WriteInRed("No report has been found. Please generate one with PingCastle and try again. The task will stop.");
+                            WriteInRed("No report has been found. Please generate one with TeumesseCastle and try again. The task will stop.");
                             return;
                         }
                         if (typeof(T) == typeof(HealthcheckData))
                         {
-                            var hcconso = consolidation as PingCastleReportCollection<HealthcheckData>;
+                            var hcconso = consolidation as TeumesseCastleReportCollection<HealthcheckData>;
                             var report = new ReportHealthCheckConsolidation();
                             report.GenerateReportFile(hcconso, License, "ad_hc_summary.html");
                             ReportHealthCheckMapBuilder nodeAnalyzer = new ReportHealthCheckMapBuilder(hcconso, License);
@@ -603,7 +603,7 @@ namespace PingCastle
 
         public bool HealthCheckRulesTask()
         {
-            return StartTask("PingCastle Health Check rules",
+            return StartTask("TeumesseCastle Health Check rules",
                     () =>
                     {
                         var rulesBuilder = new ReportHealthCheckRules();
@@ -637,7 +637,7 @@ namespace PingCastle
                                 }
                                 report.CheckIntegrity();
                                 var reportGenerator = new ReportCloud();
-                                reportGenerator.GenerateReportFile(report, License, "pingcastlecloud_" + report.TenantName + ".html");
+                                reportGenerator.GenerateReportFile(report, License, "teumessecastlecloud_" + report.TenantName + ".html");
 
                             }
                         }
@@ -696,10 +696,10 @@ namespace PingCastle
             return StartTask("Analyze",
                 () =>
                 {
-                    var analyze = new PingCastle.Cloud.Analyzer.Analyzer(Settings.AzureCredential);
+                    var analyze = new TeumesseCastle.Cloud.Analyzer.Analyzer(Settings.AzureCredential);
                     var report = analyze.Analyze().GetAwaiter().GetResult();
                     report.SetIntegrity();
-                    using (var sr = File.OpenWrite("pingcastlecloud_" + report.TenantName + ".json.gz"))
+                    using (var sr = File.OpenWrite("teumessecastlecloud_" + report.TenantName + ".json.gz"))
                     using (var gz = new GZipStream(sr, CompressionMode.Compress))
                     using (var sw = new StreamWriter(gz))
                     {
@@ -707,7 +707,7 @@ namespace PingCastle
                     }
 
                     var reportGenerator = new ReportCloud();
-                    reportGenerator.GenerateReportFile(report, License, "pingcastlecloud_" + report.TenantName + ".html");
+                    reportGenerator.GenerateReportFile(report, License, "teumessecastlecloud_" + report.TenantName + ".html");
                 });
         }
 
@@ -717,7 +717,7 @@ namespace PingCastle
                 () =>
                 {
                     if (String.IsNullOrEmpty(Settings.apiKey) || String.IsNullOrEmpty(Settings.apiEndpoint))
-                        throw new PingCastleException("API end point not available");
+                        throw new TeumesseCastleException("API end point not available");
                     var files = new List<string>(Directory.GetFiles(Directory.GetCurrentDirectory(), "*ad_*.xml", SearchOption.AllDirectories));
                     files.Sort();
                     DisplayAdvancement(files.Count + " files to import (only ad_*.xml files are uploaded)");
@@ -751,13 +751,13 @@ namespace PingCastle
                         {
                             Directory.CreateDirectory(path);
                         }
-                        var consolidation = PingCastleReportHelper<HealthcheckData>.LoadXmls(Settings.InputDirectory, Settings.FilterReportDate);
+                        var consolidation = TeumesseCastleReportHelper<HealthcheckData>.LoadXmls(Settings.InputDirectory, Settings.FilterReportDate);
                         if (consolidation.Count == 0)
                         {
-                            WriteInRed("No report has been found. Please generate one with PingCastle and the Health Check mode. The program will stop.");
+                            WriteInRed("No report has been found. Please generate one with TeumesseCastle and the Health Check mode. The program will stop.");
                             return;
                         }
-                        consolidation = PingCastleReportHelper<HealthcheckData>.TransformReportsToDemo(consolidation);
+                        consolidation = TeumesseCastleReportHelper<HealthcheckData>.TransformReportsToDemo(consolidation);
                         foreach (HealthcheckData data in consolidation)
                         {
                             string domain = data.DomainFQDN;
@@ -789,7 +789,7 @@ namespace PingCastle
             }
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-            client.Headers.Add(HttpRequestHeader.UserAgent, "PingCastle " + version.ToString(4));
+            client.Headers.Add(HttpRequestHeader.UserAgent, "TeumesseCastle " + version.ToString(4));
             //client.Headers.Add("Authorization", token);
             string token;
             byte[] answer = null;
@@ -858,7 +858,7 @@ namespace PingCastle
             byte[] answer = null;
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-            client.Headers.Add(HttpRequestHeader.UserAgent, "PingCastle " + version.ToString(4));
+            client.Headers.Add(HttpRequestHeader.UserAgent, "TeumesseCastle " + version.ToString(4));
             try
             {
                 Trace.WriteLine("using filename:" + filename);
@@ -883,7 +883,7 @@ namespace PingCastle
                             string responseText = reader.ReadToEnd();
                             if (string.IsNullOrEmpty(responseText))
                                 responseText = ex.Message;
-                            throw new PingCastleException(responseText);
+                            throw new TeumesseCastleException(responseText);
                         }
                     }
                 }
@@ -920,7 +920,7 @@ namespace PingCastle
         {
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-            client.Headers.Add(HttpRequestHeader.UserAgent, "PingCastle " + version.ToString(4));
+            client.Headers.Add(HttpRequestHeader.UserAgent, "TeumesseCastle " + version.ToString(4));
             try
             {
                 string answer = client.DownloadString(Settings.apiEndpoint + "api/Agent/GetSettings");
@@ -972,11 +972,11 @@ namespace PingCastle
                     try
                     {
                         // enum parsed as string to avoid a problem is a newer version of the enum is sent over the wire
-                        ExportLevel = (PingCastleReportDataExportLevel)Enum.Parse(typeof(PingCastleReportDataExportLevel), deserializedResult.ExportLevel);
+                        ExportLevel = (TeumesseCastleReportDataExportLevel)Enum.Parse(typeof(TeumesseCastleReportDataExportLevel), deserializedResult.ExportLevel);
                     }
                     catch (Exception)
                     {
-                        Trace.WriteLine("Unable to parse the level [" + deserializedResult.ExportLevel + "] to one of the predefined value (" + String.Join(",", Enum.GetNames(typeof(PingCastleReportDataExportLevel))) + ")");
+                        Trace.WriteLine("Unable to parse the level [" + deserializedResult.ExportLevel + "] to one of the predefined value (" + String.Join(",", Enum.GetNames(typeof(TeumesseCastleReportDataExportLevel))) + ")");
                     }
                 }
                 if (deserializedResult.CustomRules != null && deserializedResult.CustomRules.Count != 0)
@@ -1052,7 +1052,7 @@ namespace PingCastle
                             string responseText = reader.ReadToEnd();
                             if (string.IsNullOrEmpty(responseText))
                                 responseText = ex.Message;
-                            throw new PingCastleException(responseText);
+                            throw new TeumesseCastleException(responseText);
                         }
                     }
                 }
@@ -1153,9 +1153,9 @@ namespace PingCastle
 #endif
             string body = @"Hello,
 
-This is the PingCastle program sending reports for:
+This is the TeumesseCastle program sending reports for:
 - " + String.Join("\r\n- ", domains.ToArray());
-            SendEmail(email, "[PingCastle][" + versionString + "] Reports for " + String.Join(",", domains.ToArray()), body, Files);
+            SendEmail(email, "[TeumesseCastle][" + versionString + "] Reports for " + String.Join(",", domains.ToArray()), body, Files);
         }
 
         void SendEmail(string email, bool xml, bool html)
@@ -1235,7 +1235,7 @@ This is the PingCastle program sending reports for:
             return StartTask("Running Bot",
                     () =>
                     {
-                        var bot = new PingCastle.Bot.Bot();
+                        var bot = new TeumesseCastle.Bot.Bot();
                         bot.Run(Settings.botPipe);
                     }
             );
@@ -1248,7 +1248,7 @@ This is the PingCastle program sending reports for:
                     {
 
                         PropertyInfo pi = Settings.Export.GetProperty("Name");
-                        IExport export = PingCastleFactory.LoadExport(Settings.Export);
+                        IExport export = TeumesseCastleFactory.LoadExport(Settings.Export);
                         string name = pi.GetValue(export, null) as string;
                         DisplayAdvancement("Running export " + name);
                         export.Initialize(Settings);
@@ -1276,7 +1276,7 @@ This is the PingCastle program sending reports for:
             {
                 taskdelegate();
             }
-            catch (PingCastleException ex)
+            catch (TeumesseCastleException ex)
             {
                 WriteInRed("[" + DateTime.Now.ToLongTimeString() + "] An exception occured when doing the task: " + taskname);
                 WriteInRed(ex.Message);
@@ -1286,7 +1286,7 @@ This is the PingCastle program sending reports for:
                 }
             }
             // better exception message
-            catch (PingCastleDataException ex)
+            catch (TeumesseCastleDataException ex)
             {
                 WriteInRed("[" + DateTime.Now.ToLongTimeString() + "] An exception occured when doing the task: " + taskname);
                 WriteInRed(ex.ReportName + "-" + ex.Message);

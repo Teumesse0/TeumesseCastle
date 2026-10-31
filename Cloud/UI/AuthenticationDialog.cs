@@ -6,11 +6,11 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Cloud.Common;
-using PingCastle.Cloud.Credentials;
-using PingCastle.Cloud.RESTServices;
-using PingCastle.Cloud.RESTServices.Azure;
-using PingCastle.Cloud.Tokens;
+using TeumesseCastle.Cloud.Common;
+using TeumesseCastle.Cloud.Credentials;
+using TeumesseCastle.Cloud.RESTServices;
+using TeumesseCastle.Cloud.RESTServices.Azure;
+using TeumesseCastle.Cloud.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +26,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
 
-namespace PingCastle.Cloud.UI
+namespace TeumesseCastle.Cloud.UI
 {
     internal partial class AuthenticationDialog : Form
     {
@@ -108,7 +108,7 @@ namespace PingCastle.Cloud.UI
                     case "login_required":
                     case "interaction_required":
                     default:
-                        throw new PingCastleCloudException("Unable to authenticate (" + error + ") : " + error_description);
+                        throw new TeumesseCastleCloudException("Unable to authenticate (" + error + ") : " + error_description);
 
                 }
             }

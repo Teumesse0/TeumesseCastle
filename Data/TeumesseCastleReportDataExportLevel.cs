@@ -4,9 +4,9 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-namespace PingCastle.Data
+namespace TeumesseCastle.Data
 {
-    public enum PingCastleReportDataExportLevel
+    public enum TeumesseCastleReportDataExportLevel
     {
         Full,
         Normal,
