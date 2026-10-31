@@ -18,6 +18,10 @@ Version 1.0.0 is defined as functional parity with PingCastle 3.0.0.0 (upstream 
 
 - Teumesse branding: `assets/branding/` (logo, multi-size icon, generator script), new application icon,
   new favicon and navigation-bar logo in the HTML reports.
+- `--check-update` (and "checkupdate" in the interactive advanced menu): opt-in comparison of the running
+  version with the latest GitHub release. One GET on the GitHub Releases API, 5-second timeout, nothing
+  downloaded, silent on network error outside the interactive menu. Never runs automatically.
+- `docs/NETWORK.md`: exhaustive description of every network connection the program can open.
 
 ### Changed
 - **Rebranding**: namespaces `PingCastle.*` become `TeumesseCastle.*`; the assembly, executable, solution
@@ -53,6 +57,11 @@ Version 1.0.0 is defined as functional parity with PingCastle 3.0.0.0 (upstream 
   section, now declared in the `.config` file) and more than 25 honey-pot accounts.
 - The "Compare with statistics" benchmark button of the HTML report, which posted the domain hash, scores
   and license key to the vendor's statistics server (`Report/ReportBenchmark.cs`).
+- `PingCastleAutoUpdater` project (downloaded releases from the vendor's GitHub and replaced the binaries).
+- Enterprise console integration: `--api-endpoint`, `--api-key`, `--upload-all-reports`, the agent login /
+  report upload / settings retrieval code and the custom rules pushed by the server. These depend on a
+  proprietary server that is not part of the open source code (see `docs/ROADMAP.md`). Reports can still be
+  sent by e-mail or to a WebDAV share.
 - Post-build code-signing step bound to the upstream author's workstation (`signtool`, certificate
   "Ping Castle SAS").
 

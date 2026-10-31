@@ -30,7 +30,7 @@
     <EnableNETAnalyzers>false</EnableNETAnalyzers>
 
     <!-- Folders that must never be globbed into this project. -->
-    <DefaultItemExcludes>$(DefaultItemExcludes);PingCastleAutoUpdater/**;reference/**;docs/**;assets/**;tools/**;.github/**</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);reference/**;docs/**;assets/**;tools/**;.github/**</DefaultItemExcludes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">

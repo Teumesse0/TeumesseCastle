@@ -77,8 +77,6 @@ namespace TeumesseCastle
         public DateTime FilterReportDate = DateTime.MaxValue;
         public bool smtpTls;
 
-        public string apiEndpoint;
-        public string apiKey;
         public bool AnalyzeReachableDomains;
         public string botPipe;
 
