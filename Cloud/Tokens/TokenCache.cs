@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingCastle.Cloud.Tokens
+namespace TeumesseCastle.Cloud.Tokens
 {
     public class TokenCache
     {

@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Principal;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     public class localAdminsScanner : ScannerBase
     {

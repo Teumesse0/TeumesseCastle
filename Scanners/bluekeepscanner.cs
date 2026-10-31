@@ -16,7 +16,7 @@ using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
 	public class bluekeepscanner : ScannerBase
 	{

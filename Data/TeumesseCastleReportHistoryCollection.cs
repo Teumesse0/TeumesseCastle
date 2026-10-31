@@ -6,18 +6,18 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Data;
+using TeumesseCastle.Data;
 using System;
 using System.Collections.Generic;
 
-namespace PingCastle.Healthcheck
+namespace TeumesseCastle.Healthcheck
 {
-    public class PingCastleReportHistoryCollection<T> : ICollection<T> where T : IPingCastleReport
+    public class TeumesseCastleReportHistoryCollection<T> : ICollection<T> where T : ITeumesseCastleReport
     {
 
         Dictionary<string, Dictionary<DateTime, T>> data { get; set; }
 
-        public PingCastleReportHistoryCollection()
+        public TeumesseCastleReportHistoryCollection()
         {
             data = new Dictionary<string, Dictionary<DateTime, T>>();
         }
@@ -93,9 +93,9 @@ namespace PingCastle.Healthcheck
             return this.GetEnumerator();
         }
 
-        public PingCastleReportCollection<T> ToLatestReportCollection()
+        public TeumesseCastleReportCollection<T> ToLatestReportCollection()
         {
-            var output = new PingCastleReportCollection<T>();
+            var output = new TeumesseCastleReportCollection<T>();
             foreach (var sid in data.Keys)
             {
                 DateTime maxDate = DateTime.MinValue;
@@ -128,9 +128,9 @@ namespace PingCastle.Healthcheck
             return data[key.Key][key.Value];
         }
 
-        public PingCastleReportCollection<T> GetDataReportAtDate(DateTime dateToIssueReport)
+        public TeumesseCastleReportCollection<T> GetDataReportAtDate(DateTime dateToIssueReport)
         {
-            var output = new PingCastleReportCollection<T>();
+            var output = new TeumesseCastleReportCollection<T>();
             foreach (var sid in data.Keys)
             {
                 DateTime min = DateTime.MinValue;

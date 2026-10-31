@@ -6,7 +6,7 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Cloud.Common;
+using TeumesseCastle.Cloud.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingCastle.Cloud.RESTServices
+namespace TeumesseCastle.Cloud.RESTServices
 {
     [DataContractAttribute]
     public class ChallengeResponse : JsonSerialization<ChallengeResponse>

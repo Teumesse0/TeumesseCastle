@@ -10,12 +10,12 @@ using System.Diagnostics;
 using System.Text;
 using System.Xml;
 
-namespace PingCastle.Data
+namespace TeumesseCastle.Data
 {
     // the goal of this class is to not crash the program when unsafe char (0x1F) is found
     // indeed the xml specification doesn't support such char
     // a workaround would be to ignore this error (char are encoded), but then loading will have to be modified too.
-    // that means that newer reports won't be loaded into older version of PingCastle.
+    // that means that newer reports won't be loaded into older version of TeumesseCastle.
     // this is a problem, typically for Enterprise version not updated
     // as a consequence, unsafe char are detected and replaced by character which does not trigger a problem when loading reports
     internal class SafeXmlWriter : XmlWriter

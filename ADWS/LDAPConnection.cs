@@ -13,7 +13,7 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 
-namespace PingCastle.ADWS
+namespace TeumesseCastle.ADWS
 {
     public class LDAPConnection : ADConnection
     {

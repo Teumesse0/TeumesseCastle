@@ -283,7 +283,7 @@ Under Guest user access, change the value to Guest user access is restricted to 
 	<data name="GuestUserAccessRestriction2_TechnicalExplanation" xml:space="preserve">
     <value>By default guests users are restricted from exploring the directory.
 But giving an existing account it is possible to explore the most of the directory.
-The technic, available in the export section of PingCastle, consists of enumerating groups from a given users, then to enumerate the members of these groups and to continue recursively.
+The technic, available in the export section of TeumesseCastle, consists of enumerating groups from a given users, then to enumerate the members of these groups and to continue recursively.
 To prohibit this technic, there are a most restrictive to limit this exploration to the groups where the guess belongs.</value>
   </data>
 	<data name="GuestUserAccessRestriction2_Title" xml:space="preserve">

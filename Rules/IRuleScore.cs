@@ -7,7 +7,7 @@
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
 
-namespace PingCastle.Rules
+namespace TeumesseCastle.Rules
 {
     public interface IRuleScore
     {

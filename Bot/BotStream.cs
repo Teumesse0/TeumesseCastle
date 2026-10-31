@@ -9,7 +9,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace PingCastle.Bot
+namespace TeumesseCastle.Bot
 {
     internal class BotStream
     {

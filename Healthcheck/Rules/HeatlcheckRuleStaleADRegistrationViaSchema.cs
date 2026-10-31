@@ -1,4 +1,4 @@
-﻿using PingCastle.Graph.Reporting;
+﻿using TeumesseCastle.Graph.Reporting;
 //
 // Copyright (c) Ping Castle. All rights reserved.
 // https://www.pingcastle.com
@@ -7,11 +7,11 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("S-ADRegistrationSchema", RiskRuleCategory.StaleObjects, RiskModelCategory.Provisioning)]
     [RuleComputation(RuleComputationType.TriggerOnPresence, 10)]

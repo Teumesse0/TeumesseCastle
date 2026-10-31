@@ -7,9 +7,9 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Cloud.Common;
-using PingCastle.Cloud.RESTServices.Azure;
-using PingCastle.Rules;
+using TeumesseCastle.Cloud.Common;
+using TeumesseCastle.Cloud.RESTServices.Azure;
+using TeumesseCastle.Rules;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,7 +20,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace PingCastle.Cloud.Data
+namespace TeumesseCastle.Cloud.Data
 {
     [DebuggerDisplay("{appDisplayName}")]
     public class HealthCheckCloudDataForwardingMailboxes

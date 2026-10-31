@@ -6,9 +6,9 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.ADWS;
-using PingCastle.Graph.Database;
-using PingCastle.misc;
+using TeumesseCastle.ADWS;
+using TeumesseCastle.Graph.Database;
+using TeumesseCastle.misc;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,7 +18,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace PingCastle.Graph.Export
+namespace TeumesseCastle.Graph.Export
 {
 
     public interface IRelationFactory

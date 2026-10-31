@@ -6,12 +6,12 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Data;
+using TeumesseCastle.Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace PingCastle.Healthcheck
+namespace TeumesseCastle.Healthcheck
 {
 
     public class GraphNodeCollection : ICollection<GraphNode>
@@ -109,7 +109,7 @@ namespace PingCastle.Healthcheck
         }
 
         // sometimes we have only the netbios name. Try to find if we know the FQDN
-        private static void EnrichDomainInfo(PingCastleReportCollection<HealthcheckData> consolidation, HealthCheckTrustDomainInfoData di)
+        private static void EnrichDomainInfo(TeumesseCastleReportCollection<HealthcheckData> consolidation, HealthCheckTrustDomainInfoData di)
         {
             bool enriched = false;
             // search direct report
@@ -157,7 +157,7 @@ namespace PingCastle.Healthcheck
             }
         }
 
-        static public GraphNodeCollection BuildModel(PingCastleReportCollection<HealthcheckData> consolidation, OwnerInformationReferences EntityData)
+        static public GraphNodeCollection BuildModel(TeumesseCastleReportCollection<HealthcheckData> consolidation, OwnerInformationReferences EntityData)
         {
             GraphNodeCollection nodes = new GraphNodeCollection();
             // build links based on the most to the less reliable information

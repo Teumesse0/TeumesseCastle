@@ -7,26 +7,26 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace PingCastle
+namespace TeumesseCastle
 {
     [Serializable]
-    public class PingCastleException : Exception
+    public class TeumesseCastleException : Exception
     {
-        public PingCastleException()
+        public TeumesseCastleException()
         {
         }
 
-        public PingCastleException(string message)
+        public TeumesseCastleException(string message)
             : base(message)
         {
         }
 
-        public PingCastleException(string message, Exception innerException)
+        public TeumesseCastleException(string message, Exception innerException)
             : base(message, innerException)
         {
         }
 
-        protected PingCastleException(SerializationInfo info, StreamingContext context)
+        protected TeumesseCastleException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }

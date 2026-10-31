@@ -6,11 +6,11 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Data;
-using PingCastle.Rules;
+using TeumesseCastle.Data;
+using TeumesseCastle.Rules;
 using System.Collections.Generic;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("T-SIDFiltering", RiskRuleCategory.Trusts, RiskModelCategory.SIDFiltering)]
     [RuleComputation(RuleComputationType.TriggerOnThreshold, 100, Threshold: 4, Order: 1)]

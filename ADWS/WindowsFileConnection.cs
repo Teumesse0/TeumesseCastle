@@ -15,7 +15,7 @@ using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Text;
 
-namespace PingCastle.ADWS
+namespace TeumesseCastle.ADWS
 {
     public interface IFileConnection : IDisposable
     {

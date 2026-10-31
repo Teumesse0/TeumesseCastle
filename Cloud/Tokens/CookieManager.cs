@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingCastle.Cloud.RESTServices
+namespace TeumesseCastle.Cloud.RESTServices
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct ProofOfPossessionCookieInfo

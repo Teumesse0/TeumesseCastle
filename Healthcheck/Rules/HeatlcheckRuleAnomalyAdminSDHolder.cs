@@ -6,9 +6,9 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("A-AdminSDHolder", RiskRuleCategory.Anomalies, RiskModelCategory.TemporaryAdmins)]
     [RuleComputation(RuleComputationType.TriggerOnThreshold, 50, Threshold: 50, Order: 1)]

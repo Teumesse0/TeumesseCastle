@@ -8,7 +8,7 @@
 //
 using System.Collections.Generic;
 
-namespace PingCastle.Rules
+namespace TeumesseCastle.Rules
 {
     public interface IRiskEvaluation
     {

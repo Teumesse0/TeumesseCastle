@@ -12,7 +12,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Reflection;
 
-namespace PingCastle.template
+namespace TeumesseCastle.template
 {
     public class TemplateManager
     {

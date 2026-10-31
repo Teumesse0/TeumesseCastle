@@ -6,7 +6,7 @@
 //
 using System.Configuration;
 
-namespace PingCastle.Healthcheck
+namespace TeumesseCastle.Healthcheck
 {
     internal class HoneyPotSettings : ConfigurationSection
     {

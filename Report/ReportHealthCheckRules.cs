@@ -4,15 +4,15 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Healthcheck;
-using PingCastle.Rules;
-using PingCastle.template;
+using TeumesseCastle.Healthcheck;
+using TeumesseCastle.Rules;
+using TeumesseCastle.template;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Resources;
 
-namespace PingCastle.Report
+namespace TeumesseCastle.Report
 {
     public class ReportHealthCheckRules : ReportBase
     {
@@ -30,7 +30,7 @@ namespace PingCastle.Report
 
         protected override void GenerateTitleInformation()
         {
-            Add("PingCastle Health Check rules - ");
+            Add("TeumesseCastle Health Check rules - ");
             Add(DateTime.Now.ToString("yyyy-MM-dd"));
         }
 
@@ -52,10 +52,10 @@ namespace PingCastle.Report
 <div id=""wrapper"" class=""container well"">
 	<noscript>
 		<div class=""alert alert-warning"">
-			<p>PingCastle reports work best with Javascript enabled.</p>
+			<p>TeumesseCastle reports work best with Javascript enabled.</p>
 		</div>
 	</noscript>
-<div class=""row""><div class=""col-lg-12""><h1>Rules evaluated during PingCastle Healthcheck</h1>
+<div class=""row""><div class=""col-lg-12""><h1>Rules evaluated during TeumesseCastle Healthcheck</h1>
 			<h3>Date: " + DateTime.Now.ToString("yyyy-MM-dd") + @" - Engine version: " + versionString + @"</h3>
 </div></div>
 ");
@@ -82,7 +82,7 @@ namespace PingCastle.Report
             GenerateANSSISection();
         }
 
-        ResourceManager _resourceManager = new ResourceManager("PingCastle.Healthcheck.Rules.RuleDescription", typeof(RuleBase<>).Assembly);
+        ResourceManager _resourceManager = new ResourceManager("TeumesseCastle.Healthcheck.Rules.RuleDescription", typeof(RuleBase<>).Assembly);
 
         private void GenerateRuleAccordeon(RiskRuleCategory category)
         {
@@ -275,7 +275,7 @@ namespace PingCastle.Report
                     object[] models = hcrule.GetType().GetCustomAttributes(typeof(RuleIntroducedInAttribute), true);
                     if (models != null && models.Length != 0)
                     {
-                        var model = (PingCastle.Rules.RuleIntroducedInAttribute)models[0];
+                        var model = (TeumesseCastle.Rules.RuleIntroducedInAttribute)models[0];
                         Add("<strong>Introduced in:</strong>");
                         Add("<p class=\"text-justify\">");
                         Add(model.Version.ToString());
@@ -295,7 +295,7 @@ namespace PingCastle.Report
 
         private void GenerateMitreSection()
         {
-            AddParagraph("This is the mapping of the Mitre Att&ck framework with PingCastle rules.");
+            AddParagraph("This is the mapping of the Mitre Att&ck framework with TeumesseCastle rules.");
             int covered = 0, notcovered = 0;
             foreach (var rule in RuleSet<HealthcheckData>.Rules)
             {
@@ -346,7 +346,7 @@ namespace PingCastle.Report
             Add("<p>Number of Mitre rules matched: ");
             Add(reference.Count);
             Add("</p>");
-            Add("<p>Number of PingCastle rules not covered: ");
+            Add("<p>Number of TeumesseCastle rules not covered: ");
             Add(notcovered);
             Add("</p>");
 
@@ -404,7 +404,7 @@ namespace PingCastle.Report
             Add("<p>Number of Mitre rules matched: ");
             Add(reference.Count);
             Add("</p>");
-            Add("<p>Number of PingCastle rules not covered: ");
+            Add("<p>Number of TeumesseCastle rules not covered: ");
             Add(notcovered);
             Add("</p>");
 
@@ -466,7 +466,7 @@ namespace PingCastle.Report
 
         private void GenerateANSSISection()
         {
-            AddParagraph("This is the mapping of the ANSSI rules with PingCastle rules.");
+            AddParagraph("This is the mapping of the ANSSI rules with TeumesseCastle rules.");
             var reference = new Dictionary<RuleDurANSSIAttribute, List<RuleBase<HealthcheckData>>>();
             foreach (var rule in RuleSet<HealthcheckData>.Rules)
             {
@@ -569,7 +569,7 @@ namespace PingCastle.Report
                 Add("</div>");
                 Add("<div class='row'>");
                 Add("<div class='col-lg-12'>");
-                Add("<p>PingCastle ID&nbsp;:");
+                Add("<p>TeumesseCastle ID&nbsp;:");
                 r.PCRules.Sort((RuleBase<HealthcheckData> a, RuleBase<HealthcheckData> b) => { return string.CompareOrdinal(a.RiskId, b.RiskId); });
                 foreach (var l in r.PCRules)
                 {

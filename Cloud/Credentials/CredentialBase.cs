@@ -6,15 +6,15 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Cloud.RESTServices.Azure;
-using PingCastle.Cloud.Tokens;
+using TeumesseCastle.Cloud.RESTServices.Azure;
+using TeumesseCastle.Cloud.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingCastle.Cloud.Credentials
+namespace TeumesseCastle.Cloud.Credentials
 {
     public abstract class CredentialBase : IAzureCredential
     {

@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingCastle.Cloud
+namespace TeumesseCastle.Cloud
 {
     public class Constants
     {

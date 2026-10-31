@@ -8,7 +8,7 @@ using System;
 using System.ComponentModel;
 using System.Reflection;
 
-namespace PingCastle.Report
+namespace TeumesseCastle.Report
 {
     public class ReportHelper
     {

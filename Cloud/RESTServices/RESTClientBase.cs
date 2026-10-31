@@ -7,9 +7,9 @@
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
 using Newtonsoft.Json;
-using PingCastle.Cloud.Common;
-using PingCastle.Cloud.Credentials;
-using PingCastle.Cloud.Tokens;
+using TeumesseCastle.Cloud.Common;
+using TeumesseCastle.Cloud.Credentials;
+using TeumesseCastle.Cloud.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -19,7 +19,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingCastle.Cloud.RESTServices.Azure
+namespace TeumesseCastle.Cloud.RESTServices.Azure
 {
     public abstract class RESTClientBase<API> where API: IAzureService
     {

@@ -6,10 +6,10 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 using System;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("P-RODCRevealOnDemand", RiskRuleCategory.PrivilegedAccounts, RiskModelCategory.RODC)]
     [RuleComputation(RuleComputationType.TriggerOnPresence, 5)]

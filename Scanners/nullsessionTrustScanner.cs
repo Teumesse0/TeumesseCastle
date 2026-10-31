@@ -6,8 +6,8 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Healthcheck;
-using PingCastle.RPC;
+using TeumesseCastle.Healthcheck;
+using TeumesseCastle.RPC;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +15,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     public class nullsessionTrustScanner : IScanner
     {

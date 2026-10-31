@@ -4,14 +4,14 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.ADWS;
-using PingCastle.Healthcheck;
+using TeumesseCastle.ADWS;
+using TeumesseCastle.Healthcheck;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace PingCastle.Exports
+namespace TeumesseCastle.Exports
 {
     public class ExportComputers : ExportBase
     {
@@ -91,7 +91,7 @@ namespace PingCastle.Exports
                                 if (x.OperatingSystem.Contains("Windows"))
                                 {
                                     var osv = new HealthcheckOSVersionData(x);
-                                    data.Add(PingCastle.Report.ReportBase.GetOSVersionString(osv));
+                                    data.Add(TeumesseCastle.Report.ReportBase.GetOSVersionString(osv));
                                 }
                                 else
                                 {

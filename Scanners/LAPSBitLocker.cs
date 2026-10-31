@@ -4,7 +4,7 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.ADWS;
+using TeumesseCastle.ADWS;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,7 +12,7 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     public class LAPSBitLocker : IScanner
     {

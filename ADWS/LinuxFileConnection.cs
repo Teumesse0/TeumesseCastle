@@ -15,7 +15,7 @@ using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Text;
 
-namespace PingCastle.ADWS
+namespace TeumesseCastle.ADWS
 {
     public class LinuxFileConnection : IFileConnection
     {
@@ -349,7 +349,7 @@ namespace PingCastle.ADWS
         }
 
         #region pinvoke
-        internal const string SmbLibrary = "libPingCastlesmb";
+        internal const string SmbLibrary = "libTeumesseCastlesmb";
         
         [DllImport(SmbLibrary, CharSet = CharSet.Ansi)]
         static extern IntPtr smbc_new_context();

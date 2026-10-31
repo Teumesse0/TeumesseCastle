@@ -6,13 +6,13 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.RPC;
+using TeumesseCastle.RPC;
 using System;
 using System.Diagnostics;
 using System.Security.Principal;
 using System.Text;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     public class NullSessionScanner : ScannerBase
     {

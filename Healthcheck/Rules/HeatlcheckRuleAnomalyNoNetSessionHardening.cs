@@ -6,10 +6,10 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 using System;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("A-NoNetSessionHardening", RiskRuleCategory.Anomalies, RiskModelCategory.Reconnaissance)]
     [RuleComputation(RuleComputationType.TriggerOnPresence, 0)]

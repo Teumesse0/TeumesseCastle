@@ -4,9 +4,9 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Healthcheck;
+using TeumesseCastle.Healthcheck;
 
-namespace PingCastle.Report
+namespace TeumesseCastle.Report
 {
     public class ReportHealthCheckSingleCompared : ReportHealthCheckSingle
     {

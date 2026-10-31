@@ -1,4 +1,4 @@
-﻿using PingCastle.Healthcheck;
+﻿using TeumesseCastle.Healthcheck;
 //
 // Copyright (c) Ping Castle. All rights reserved.
 // https://www.pingcastle.com
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace PingCastle.Rules
+namespace TeumesseCastle.Rules
 {
     public class RuleSet<T> where T : IRiskEvaluation
     {
@@ -136,7 +136,7 @@ namespace PingCastle.Rules
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("An exception occured when running the rule : " + ruleName);
                     Trace.WriteLine("An exception occured when running the rule : " + ruleName);
-                    Console.WriteLine("Please contact support@pingcastle.com with the following details so the problem can be fixed");
+                    Console.WriteLine("Please open an issue at https://github.com/Teumesse0/TeumesseCastle/issues with the following details so the problem can be fixed");
                     Console.ResetColor();
                     Console.WriteLine("Message: " + ex.Message);
                     Trace.WriteLine("Message: " + ex.Message);

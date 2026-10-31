@@ -6,9 +6,9 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Cloud.Common;
-using PingCastle.Cloud.RESTServices;
-using PingCastle.Cloud.RESTServices.Azure;
+using TeumesseCastle.Cloud.Common;
+using TeumesseCastle.Cloud.RESTServices;
+using TeumesseCastle.Cloud.RESTServices.Azure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingCastle.Cloud.PublicServices
+namespace TeumesseCastle.Cloud.PublicServices
 {
     public class PublicService
     {

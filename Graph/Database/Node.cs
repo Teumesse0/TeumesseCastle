@@ -6,11 +6,11 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.ADWS;
+using TeumesseCastle.ADWS;
 using System;
 using System.Diagnostics;
 
-namespace PingCastle.Graph.Database
+namespace TeumesseCastle.Graph.Database
 {
     [DebuggerDisplay("{Type} {Shortname}")]
     public class Node

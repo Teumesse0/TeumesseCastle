@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 
-namespace PingCastle.Cloud.RESTServices.Azure
+namespace TeumesseCastle.Cloud.RESTServices.Azure
 {
     public class EndPointAttribute : Attribute
     {

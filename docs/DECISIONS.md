@@ -39,6 +39,7 @@ Format : contexte → décision → conséquences. Une entrée par décision non
 - **Contexte** : les rapports s'appellent `ad_hc_<domaine>.html/.xml`, `ad_hc_summary.html`, `ad_carto_*.html`, `ad_scanner_*`, `ad_export_*`. De nombreux scripts et outils tiers (consolidation, SIEM, PowerShell) consomment ces noms. Aucun préfixe ne contient la marque PingCastle.
 - **Décision** : conserver les préfixes historiques en v1.0.0 (option la plus conservatrice, recommandée par Johnny dans ses notes). Une option `--prefix` est inscrite à la roadmap v1.1.
 - **Conséquences** : compatibilité totale avec l'outillage existant ; la consolidation (`fi.Name.StartsWith("ad_hc_")`) reste inchangée.
+- **Exception** : le préfixe du rapport Azure AD `pingcastlecloud_<tenant>.html/.json.gz` contient la marque ; il devient `teumessecastlecloud_<tenant>` (même structure). De même, les valeurs d'exemple utilisées par `--generate-key` Azure AD (`tenant = "pingcastle.com"`, nom `vletoux`) deviennent `teumessecastle.local` / `teumessecastle` : elles ne servent qu'au sujet du certificat généré.
 
 ## ADR-0006 — Outils : GitHub CLI et génération des images
 

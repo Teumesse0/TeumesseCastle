@@ -1,4 +1,4 @@
-﻿using PingCastle.Report;
+﻿using TeumesseCastle.Report;
 //
 // Copyright (c) Ping Castle. All rights reserved.
 // https://www.pingcastle.com
@@ -7,9 +7,9 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("S-FunctionalLevel1", RiskRuleCategory.StaleObjects, RiskModelCategory.ObsoleteOS)]
     [RuleComputation(RuleComputationType.TriggerOnPresence, 5)]

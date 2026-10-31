@@ -4,10 +4,10 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Data;
-using PingCastle.Healthcheck;
-using PingCastle.Report;
-using PingCastle.Rules;
+using TeumesseCastle.Data;
+using TeumesseCastle.Healthcheck;
+using TeumesseCastle.Report;
+using TeumesseCastle.Rules;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +16,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace PingCastle.Bot
+namespace TeumesseCastle.Bot
 {
 
 
@@ -145,7 +145,7 @@ namespace PingCastle.Bot
             try
             {
                 var analyze = new HealthcheckAnalyzer();
-                var parameters = new PingCastleAnalyzerParameters();
+                var parameters = new TeumesseCastleAnalyzerParameters();
                 parameters.Server = GetItem(input, "Server");
                 var login = GetItem(input, "Login");
                 var password = GetItem(input, "Password");
@@ -178,7 +178,7 @@ namespace PingCastle.Bot
                     }
                 }
 
-                healthcheck.SetExportLevel(PingCastleReportDataExportLevel.Full);
+                healthcheck.SetExportLevel(TeumesseCastleReportDataExportLevel.Full);
                 var xmlreport = DataHelper<HealthcheckData>.SaveAsXml(healthcheck, null, false);
                 AddData(o, "Report", xmlreport);
 

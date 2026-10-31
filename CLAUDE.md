@@ -43,7 +43,7 @@ Prerequisites: Windows, .NET SDK 8.x. The projects target .NET Framework 4.5.2 (
 until removed); reference assemblies come from NuGet via `Directory.Build.props`, no targeting pack needed.
 
 ```powershell
-dotnet build TeumesseCastle.sln -c Release          # before Phase 2: PingCastle.sln
+dotnet build TeumesseCastle.sln -c Release
 dotnet test  TeumesseCastle.Tests -c Release        # from Phase 6
 .\bin\Release\TeumesseCastle.exe --help
 .\bin\Release\TeumesseCastle.exe --version

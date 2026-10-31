@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 
-namespace PingCastle.Exports
+namespace TeumesseCastle.Exports
 {
     public interface IExport
     {

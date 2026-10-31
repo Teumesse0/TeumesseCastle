@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 using System.Security.Principal;
 
 
-namespace PingCastle.misc
+namespace TeumesseCastle.misc
 {
     class RestrictedToken
     {

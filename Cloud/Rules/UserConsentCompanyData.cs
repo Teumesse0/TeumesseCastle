@@ -1,4 +1,4 @@
-﻿using PingCastle.Rules;
+﻿using TeumesseCastle.Rules;
 //
 // Copyright (c) Vincent LE TOUX for Ping Castle. All rights reserved.
 // https://www.pingcastle.com
@@ -7,14 +7,14 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Cloud.Data;
+using TeumesseCastle.Cloud.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingCastle.Cloud.Rules
+namespace TeumesseCastle.Cloud.Rules
 {
     [RuleModel("UserConsentCompanyData", RiskRuleCategory.Anomalies, RiskModelCategory.Reconnaissance)]
     [RuleComputation(RuleComputationType.TriggerOnPresence, 5)]

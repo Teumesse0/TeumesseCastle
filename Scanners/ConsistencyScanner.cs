@@ -7,7 +7,7 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.ADWS;
+using TeumesseCastle.ADWS;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,12 +16,12 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
 	public class ConsistencyScanner : IScanner
 	{
 		public string Name { get { return "corruptADDatabase"; } }
-		public string Description { get { return "Try to detect corrupted AD database. To run only when requested by PingCastle support."; } }
+		public string Description { get { return "Try to detect corrupted AD database. To run only when requested by TeumesseCastle support."; } }
 
 		public string Server { get; private set; }
 		public int Port { get; private set; }

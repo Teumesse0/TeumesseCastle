@@ -6,9 +6,9 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("A-Krbtgt", RiskRuleCategory.Anomalies, RiskModelCategory.GoldenTicket)]
     [RuleComputation(RuleComputationType.TriggerOnThreshold, 50, Threshold: 1464, Order: 1)]

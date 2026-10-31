@@ -4,11 +4,11 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.ADWS;
-using PingCastle.Graph.Database;
-using PingCastle.Graph.Export;
-using PingCastle.Graph.Reporting;
-using PingCastle.misc;
+using TeumesseCastle.ADWS;
+using TeumesseCastle.Graph.Database;
+using TeumesseCastle.Graph.Export;
+using TeumesseCastle.Graph.Reporting;
+using TeumesseCastle.misc;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,7 +19,7 @@ using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Threading;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     public class ACLScanner : IScanner
     {
@@ -143,7 +143,7 @@ namespace PingCastle.Scanners
             }
             if (UsersToMatch.Count == 0)
             {
-                throw new PingCastleException("The scanner has not ACL to search for");
+                throw new TeumesseCastleException("The scanner has not ACL to search for");
             }
         }
 

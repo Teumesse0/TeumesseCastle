@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace PingCastle.RPC
+namespace TeumesseCastle.RPC
 {
     public class OxidBindings : rpcapi
     {

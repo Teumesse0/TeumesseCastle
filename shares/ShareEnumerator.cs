@@ -15,7 +15,7 @@ using System.Security.AccessControl;
 using System.Security.Permissions;
 using System.Security.Principal;
 
-namespace PingCastle.shares
+namespace TeumesseCastle.shares
 {
     public class ShareEnumerator
     {

@@ -9,7 +9,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PingCastle.Healthcheck
+namespace TeumesseCastle.Healthcheck
 {
     public class TrustAnalyzer
     {

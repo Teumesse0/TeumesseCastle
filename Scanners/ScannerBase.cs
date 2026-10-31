@@ -6,8 +6,8 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.ADWS;
-using PingCastle.misc;
+using TeumesseCastle.ADWS;
+using TeumesseCastle.misc;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,7 +15,7 @@ using System.IO;
 using System.Net;
 using System.Threading;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     abstract public class ScannerBase : IScanner
     {

@@ -7,32 +7,24 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-// Les informations générales relatives à un assembly dépendent de 
-// l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
-// associées à un assembly.
-[assembly: AssemblyTitle("Ping Castle")]
-[assembly: AssemblyDescription("")]
+// General information about the assembly. The version numbers are the single source of truth for the
+// product version displayed by --version and in the reports (see docs/RELEASING.md).
+[assembly: AssemblyTitle("TeumesseCastle")]
+[assembly: AssemblyDescription("Active Directory security audit, free and open source forever")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Ping Castle")]
-[assembly: AssemblyProduct("Ping Castle")]
-[assembly: AssemblyCopyright("Copyright ©  2015-2022 Ping Castle")]
+[assembly: AssemblyCompany("Teumesse")]
+[assembly: AssemblyProduct("TeumesseCastle")]
+[assembly: AssemblyCopyright("Copyright © 2015-2022 Ping Castle. Modifications Copyright © 2026 Teumesse.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// L'affectation de la valeur false à ComVisible rend les types invisibles dans cet assembly 
-// aux composants COM. Si vous devez accéder à un type dans cet assembly à partir de 
-// COM, affectez la valeur true à l'attribut ComVisible sur ce type.
+// Types of this assembly are not exposed to COM.
 [assembly: ComVisible(false)]
 
-// Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-[assembly: Guid("ce59f8ff-0ecf-41e9-a1fd-1776ca0b703d")]
+// Type library identifier, should this assembly ever be exposed to COM (regenerated for the fork).
+[assembly: Guid("6f3d2b8e-9c41-4a7b-b2e5-7d1c0a9f4e21")]
 
-// Les informations de version pour un assembly se composent des quatre valeurs suivantes :
-//
-//      Version principale
-//      Version secondaire 
-//      Numéro de build
-//      Révision
-//
-[assembly: AssemblyVersion("3.0.0.0")]
-[assembly: AssemblyFileVersion("3.0.0.0")]
+// Version: Major.Minor.Patch.Revision (SemVer for the first three numbers).
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyInformationalVersion("1.0.0")]

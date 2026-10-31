@@ -14,7 +14,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingCastle.Cloud.Credentials
+namespace TeumesseCastle.Cloud.Credentials
 {
     class CertificateBuilder
     {

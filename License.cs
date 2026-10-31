@@ -17,15 +17,15 @@ using System.Text;
 
 namespace ADSecurityHealthCheck
 {
-    internal class ADHealthCheckingLicenseSettings : PingCastle.ADHealthCheckingLicenseSettings
+    internal class ADHealthCheckingLicenseSettings : TeumesseCastle.ADHealthCheckingLicenseSettings
     {
     }
 }
 
-namespace PingCastle
+namespace TeumesseCastle
 {
 
-    public interface IPingCastleLicenseInfo
+    public interface ITeumesseCastleLicenseInfo
     {
         string GetSerialNumber();
     }
@@ -45,7 +45,7 @@ namespace PingCastle
         /// <returns>A valid <see cref="License"/>.</returns>
         public override License GetLicense(LicenseContext context, Type type, object instance, bool allowExceptions)
         {
-            IPingCastleLicenseInfo licenseInfo = (IPingCastleLicenseInfo)instance;
+            ITeumesseCastleLicenseInfo licenseInfo = (ITeumesseCastleLicenseInfo)instance;
             return new ADHealthCheckingLicense(licenseInfo.GetSerialNumber());
         }
         #endregion
@@ -88,12 +88,12 @@ namespace PingCastle
         public ADHealthCheckingLicense(string license, bool DoAKeyCheck)
         {
             if (String.IsNullOrEmpty(license))
-                throw new PingCastleException("No PingCastle license has been provided");
+                throw new TeumesseCastleException("No TeumesseCastle license has been provided");
             _licKey = license;
             Trace.WriteLine("License: " + _licKey);
             if (!VerifyKey())
             {
-                throw new PingCastleException("The PingCastle license is not valid");
+                throw new TeumesseCastleException("The TeumesseCastle license is not valid");
             }
         }
 

@@ -6,7 +6,7 @@
 //
 using System.Collections.Generic;
 
-namespace PingCastle.Bot
+namespace TeumesseCastle.Bot
 {
     public class BotInputOutput
     {

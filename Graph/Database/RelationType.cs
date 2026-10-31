@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace PingCastle.Graph.Database
+namespace TeumesseCastle.Graph.Database
 {
 
     [AttributeUsage(AttributeTargets.Field, Inherited = false)]

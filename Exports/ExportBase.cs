@@ -4,14 +4,14 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.ADWS;
+using TeumesseCastle.ADWS;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using System.Text;
 
-namespace PingCastle.Exports
+namespace TeumesseCastle.Exports
 {
     public abstract class ExportBase : IExport
     {
@@ -39,12 +39,12 @@ namespace PingCastle.Exports
             Trace.WriteLine(value);
         }
 
-        protected class AddData : PingCastle.Healthcheck.IAddAccountData
+        protected class AddData : TeumesseCastle.Healthcheck.IAddAccountData
         {
             public static List<string> GetProperties()
             {
                 var output = new List<string>();
-                var ps = typeof(PingCastle.Healthcheck.HealthcheckAccountData).GetProperties();
+                var ps = typeof(TeumesseCastle.Healthcheck.HealthcheckAccountData).GetProperties();
                 foreach (var p in ps)
                 {
                     if (p.Name.StartsWith("Number"))

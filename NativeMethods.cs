@@ -15,7 +15,7 @@ using System.Security.Permissions;
 using System.Security.Principal;
 using System.Text;
 
-namespace PingCastle
+namespace TeumesseCastle
 {
     public class NativeMethods
     {

@@ -9,7 +9,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 
-namespace PingCastle.RPC
+namespace TeumesseCastle.RPC
 {
     using System.Net;
 

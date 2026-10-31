@@ -7,8 +7,8 @@
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
 using Newtonsoft.Json;
-using PingCastle.Cloud.Credentials;
-using PingCastle.Cloud.Tokens;
+using TeumesseCastle.Cloud.Credentials;
+using TeumesseCastle.Cloud.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -18,7 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace PingCastle.Cloud.RESTServices.Azure
+namespace TeumesseCastle.Cloud.RESTServices.Azure
 {
     [AzureService("d3590ed6-52b3-4102-aeff-aad2292ab01c", "74658136-14ec-4630-ad9b-26e160ff0fc6")]
     public class AzureADConnectApi : RESTClientBase<AzureADConnectApi>, IAzureService

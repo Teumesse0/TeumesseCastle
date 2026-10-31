@@ -6,8 +6,8 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Data;
-using PingCastle.Healthcheck;
+using TeumesseCastle.Data;
+using TeumesseCastle.Healthcheck;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +16,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace PingCastle.Rules
+namespace TeumesseCastle.Rules
 {
     public abstract class RuleBase<T> : IRuleScore
     {
@@ -168,7 +168,7 @@ namespace PingCastle.Rules
         public bool Analyze(T data, ICollection<DomainKey> AllowedMigrationDomains)
         {
             bool hasTheRuleMatched = false;
-            // PingCastle 2.5
+            // TeumesseCastle 2.5
             Points = 0;
             int? valueReturnedByAnalysis = AnalyzeDataNew(data, AllowedMigrationDomains);
             if (valueReturnedByAnalysis == null)

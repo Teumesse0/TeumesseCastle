@@ -10,7 +10,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace PingCastle
+namespace TeumesseCastle
 {
 
     public class ConsoleMenuItem

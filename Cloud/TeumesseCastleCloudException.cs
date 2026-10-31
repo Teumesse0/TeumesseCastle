@@ -11,11 +11,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PingCastle.Cloud
+namespace TeumesseCastle.Cloud
 {
-    class PingCastleCloudException : Exception
+    class TeumesseCastleCloudException : Exception
     {
-        public PingCastleCloudException(string message)
+        public TeumesseCastleCloudException(string message)
             : base(message)
         {
         }

@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Security.Principal;
 
-namespace PingCastle.RPC
+namespace TeumesseCastle.RPC
 {
 
     [DebuggerDisplay("{Name}")]
@@ -293,7 +293,7 @@ namespace PingCastle.RPC
             IntPtr result = IntPtr.Zero;
             DomainId = null;
             IntPtr sid = IntPtr.Zero;
-            using (var NameString = new PingCastle.NativeMethods.UNICODE_STRING())
+            using (var NameString = new TeumesseCastle.NativeMethods.UNICODE_STRING())
             {
                 try
                 {

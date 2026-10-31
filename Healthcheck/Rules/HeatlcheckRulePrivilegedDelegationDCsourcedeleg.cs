@@ -6,10 +6,10 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Graph.Database;
-using PingCastle.Rules;
+using TeumesseCastle.Graph.Database;
+using TeumesseCastle.Rules;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("P-DelegationDCsourcedeleg", RiskRuleCategory.PrivilegedAccounts, RiskModelCategory.DelegationCheck)]
     [RuleComputation(RuleComputationType.PerDiscover, 25)]

@@ -4,8 +4,8 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.ADWS;
-using PingCastle.Healthcheck;
+using TeumesseCastle.ADWS;
+using TeumesseCastle.Healthcheck;
 using System;
 using System.Collections.Generic;
 using System.DirectoryServices.Protocols;
@@ -13,7 +13,7 @@ using System.IO;
 using System.Security.Principal;
 using System.Text;
 
-namespace PingCastle.Exports
+namespace TeumesseCastle.Exports
 {
     public class ExportChanges : ExportBase
     {

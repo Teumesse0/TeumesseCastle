@@ -6,17 +6,17 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.ADWS;
-using PingCastle.Data;
-using PingCastle.Graph.Database;
-using PingCastle.Graph.Export;
-using PingCastle.Healthcheck;
+using TeumesseCastle.ADWS;
+using TeumesseCastle.Data;
+using TeumesseCastle.Graph.Database;
+using TeumesseCastle.Graph.Export;
+using TeumesseCastle.Healthcheck;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Principal;
 
-namespace PingCastle.Graph.Reporting
+namespace TeumesseCastle.Graph.Reporting
 {
     public class ReportGenerator
     {
@@ -32,7 +32,7 @@ namespace PingCastle.Graph.Reporting
         private IDataStorage storage;
         private List<string> stopNodes = new List<string>();
 
-        public void PerformAnalyze(HealthcheckData data, ADDomainInfo domainInfo, ADWebService adws, PingCastleAnalyzerParameters parameters)
+        public void PerformAnalyze(HealthcheckData data, ADDomainInfo domainInfo, ADWebService adws, TeumesseCastleAnalyzerParameters parameters)
         {
             ExportDataFromActiveDirectoryLive export = new ExportDataFromActiveDirectoryLive(domainInfo, adws, parameters.Credential);
             var ObjectReference = export.ExportData(parameters.AdditionalNamesForDelegationAnalysis);

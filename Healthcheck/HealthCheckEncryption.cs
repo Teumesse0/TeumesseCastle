@@ -15,12 +15,12 @@ using System.Xml;
 
 namespace ADSecurityHealthCheck.Healthcheck
 {
-    internal class EncryptionSettings : PingCastle.Healthcheck.EncryptionSettings
+    internal class EncryptionSettings : TeumesseCastle.Healthcheck.EncryptionSettings
     {
     }
 }
 
-namespace PingCastle.Healthcheck
+namespace TeumesseCastle.Healthcheck
 {
     internal class EncryptionSettings : ConfigurationSection
     {
@@ -184,7 +184,7 @@ namespace PingCastle.Healthcheck
                         return RSA;
                     }
                 }
-                throw new PingCastleException("No encryption key set in config file");
+                throw new TeumesseCastleException("No encryption key set in config file");
             }
             else
             {
@@ -198,12 +198,12 @@ namespace PingCastle.Healthcheck
                         else if (!String.IsNullOrEmpty(keyinfo.PrivateKey))
                             RSAKeyExtensions.FromXmlStringDotNetCore2(RSA, keyinfo.PrivateKey);
                         else
-                            throw new PingCastleException(@"The container """ + EncryptionKey + @""" does not contain a public or a private key");
+                            throw new TeumesseCastleException(@"The container """ + EncryptionKey + @""" does not contain a public or a private key");
                         return RSA;
                     }
                 }
             }
-            throw new PingCastleException("Encryption key not found (name:" + EncryptionKey + ")");
+            throw new TeumesseCastleException("Encryption key not found (name:" + EncryptionKey + ")");
         }
 
         static string XmlEscape(string unescaped)
@@ -258,7 +258,7 @@ namespace PingCastle.Healthcheck
                     }
                     catch (Exception ex)
                     {
-                        throw new PingCastleException("Unable to load the key \"" + keyinfo.Name + "\"", ex);
+                        throw new TeumesseCastleException("Unable to load the key \"" + keyinfo.Name + "\"", ex);
                     }
                     output.Add(RSA);
                 }

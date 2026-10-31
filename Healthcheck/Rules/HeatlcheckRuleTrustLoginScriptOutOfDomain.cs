@@ -6,12 +6,12 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Rules;
+using TeumesseCastle.Rules;
 using System;
 using System.Diagnostics;
 using System.Net;
 
-namespace PingCastle.Healthcheck.Rules
+namespace TeumesseCastle.Healthcheck.Rules
 {
     [RuleModel("T-ScriptOutOfDomain", RiskRuleCategory.Trusts, RiskModelCategory.TrustImpermeability)]
     [RuleComputation(RuleComputationType.TriggerOnPresence, 10)]

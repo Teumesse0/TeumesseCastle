@@ -6,11 +6,11 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Scanners;
+using TeumesseCastle.Scanners;
 using System;
 using System.Net.Sockets;
 
-namespace PingCastle.shares
+namespace TeumesseCastle.shares
 {
     public class ShareScanner : ScannerBase
     {

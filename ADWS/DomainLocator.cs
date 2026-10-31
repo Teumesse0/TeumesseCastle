@@ -12,7 +12,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 
-namespace PingCastle.ADWS
+namespace TeumesseCastle.ADWS
 {
     public class DomainLocator
     {
@@ -39,7 +39,7 @@ namespace PingCastle.ADWS
             DS_WEB_SERVICE_REQUIRED = 0x00100000,
         }
 
-        [DllImport("libPingCastlesmb", EntryPoint = "DsGetDcName", CharSet = CharSet.Ansi)]
+        [DllImport("libTeumesseCastlesmb", EntryPoint = "DsGetDcName", CharSet = CharSet.Ansi)]
         private static extern int DsGetDcNameUnix
         (
             string ComputerName,

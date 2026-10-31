@@ -6,7 +6,7 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Healthcheck;
+using TeumesseCastle.Healthcheck;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,7 +20,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Xml;
 
-namespace PingCastle.ADWS
+namespace TeumesseCastle.ADWS
 {
     [DebuggerDisplay("{DistinguishedName}")]
     public class ADItem

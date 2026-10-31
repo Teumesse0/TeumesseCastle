@@ -7,10 +7,10 @@
 using System.Collections.Generic;
 using System.Net;
 
-namespace PingCastle.Data
+namespace TeumesseCastle.Data
 {
 
-    public class PingCastleAnalyzerParameters
+    public class TeumesseCastleAnalyzerParameters
     {
         public string Server { get; set; }
         public int Port { get; set; }
@@ -19,8 +19,8 @@ namespace PingCastle.Data
         public List<string> AdditionalNamesForDelegationAnalysis { get; set; }
     }
 
-    public interface IPingCastleAnalyzer<T> where T : IPingCastleReport
+    public interface ITeumesseCastleAnalyzer<T> where T : ITeumesseCastleReport
     {
-        T PerformAnalyze(PingCastleAnalyzerParameters parameters);
+        T PerformAnalyze(TeumesseCastleAnalyzerParameters parameters);
     }
 }

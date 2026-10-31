@@ -14,7 +14,7 @@ using System.ServiceModel.Configuration;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 
-namespace PingCastle.ADWS
+namespace TeumesseCastle.ADWS
 {
 
     internal class SoapHeader

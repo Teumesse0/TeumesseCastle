@@ -6,11 +6,11 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Cloud.Common;
-using PingCastle.Cloud.Credentials;
-using PingCastle.Cloud.RESTServices;
-using PingCastle.Cloud.RESTServices.Azure;
-using PingCastle.Cloud.UI;
+using TeumesseCastle.Cloud.Common;
+using TeumesseCastle.Cloud.Credentials;
+using TeumesseCastle.Cloud.RESTServices;
+using TeumesseCastle.Cloud.RESTServices.Azure;
+using TeumesseCastle.Cloud.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -25,7 +25,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
 
-namespace PingCastle.Cloud.Tokens
+namespace TeumesseCastle.Cloud.Tokens
 {
     public class TokenFactory
     {

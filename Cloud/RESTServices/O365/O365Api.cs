@@ -7,9 +7,9 @@
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
 using Newtonsoft.Json;
-using PingCastle.Cloud.Credentials;
-using PingCastle.Cloud.RESTServices.Azure;
-using PingCastle.Cloud.Tokens;
+using TeumesseCastle.Cloud.Credentials;
+using TeumesseCastle.Cloud.RESTServices.Azure;
+using TeumesseCastle.Cloud.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,7 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace PingCastle.Cloud.RESTServices.O365
+namespace TeumesseCastle.Cloud.RESTServices.O365
 {
     [AzureService("fb78d390-0c51-40cd-8e17-fdbfab77341b", "https://outlook.office365.com", Constants.OrganisationsNativeClient)]
     [EndPoint("https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize", "https://login.microsoftonline.com/organizations/oauth2/v2.0/token")]

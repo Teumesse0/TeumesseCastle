@@ -7,7 +7,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 
-namespace PingCastle.Healthcheck
+namespace TeumesseCastle.Healthcheck
 {
     public interface IInfrastructureSettings
     {

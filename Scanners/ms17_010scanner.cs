@@ -14,7 +14,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
 	public class ms17_010scanner : ScannerBase
 	{

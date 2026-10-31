@@ -8,7 +8,7 @@
 //
 using System.Net;
 
-namespace PingCastle.Scanners
+namespace TeumesseCastle.Scanners
 {
     public interface IScanner
     {

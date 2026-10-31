@@ -4,16 +4,16 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.ADWS;
-using PingCastle.Data;
-using PingCastle.Graph.Reporting;
-using PingCastle.Rules;
+using TeumesseCastle.ADWS;
+using TeumesseCastle.Data;
+using TeumesseCastle.Graph.Reporting;
+using TeumesseCastle.Rules;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace PingCastle.Healthcheck
+namespace TeumesseCastle.Healthcheck
 {
 
     public class FakeHealthCheckDataGeneratorModel
@@ -153,7 +153,7 @@ namespace PingCastle.Healthcheck
             return LocalNames[rnd.Next(LocalNames.Count)] + rnd.Next(100);
         }
 
-        public PingCastleReportCollection<HealthcheckData> GenerateData()
+        public TeumesseCastleReportCollection<HealthcheckData> GenerateData()
         {
             return GenerateData(new FakeHealthCheckDataGeneratorModel()
             {
@@ -161,9 +161,9 @@ namespace PingCastle.Healthcheck
                 TrustRatioInPercent = 40,
             });
         }
-        public PingCastleReportCollection<HealthcheckData> GenerateData(FakeHealthCheckDataGeneratorModel model)
+        public TeumesseCastleReportCollection<HealthcheckData> GenerateData(FakeHealthCheckDataGeneratorModel model)
         {
-            var output = new PingCastleReportCollection<HealthcheckData>();
+            var output = new TeumesseCastleReportCollection<HealthcheckData>();
 
             var num = 0;
             while (num < model.NumberOfDomains - 1)
@@ -243,7 +243,7 @@ namespace PingCastle.Healthcheck
             return output;
         }
 
-        HealthcheckData GetItem(PingCastleReportCollection<HealthcheckData> reports, int rank)
+        HealthcheckData GetItem(TeumesseCastleReportCollection<HealthcheckData> reports, int rank)
         {
             var e = reports.GetEnumerator();
             e.MoveNext();
@@ -254,10 +254,10 @@ namespace PingCastle.Healthcheck
             return e.Current;
         }
 
-        public PingCastleReportCollection<HealthcheckData> GenerateForest(int maxDomain = 15)
+        public TeumesseCastleReportCollection<HealthcheckData> GenerateForest(int maxDomain = 15)
         {
             int numberDomains = rnd.Next(5, maxDomain > 15 ? 15 : maxDomain);
-            var children = new PingCastleReportCollection<HealthcheckData>();
+            var children = new TeumesseCastleReportCollection<HealthcheckData>();
             // head of forest
             var root = GenerateSingleReport(new FakeHealthCheckDataGeneratorDomainModel() { Size = DomainSizeModel.VerySmall });
             for (int i = 0; i < numberDomains; i++)
@@ -554,7 +554,7 @@ namespace PingCastle.Healthcheck
 
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             healthcheckData.EngineVersion = version.ToString(4);
-            healthcheckData.Level = PingCastleReportDataExportLevel.Full;
+            healthcheckData.Level = TeumesseCastleReportDataExportLevel.Full;
         }
 
         private static int SchemaVersion(int forestFunctionalLevel)

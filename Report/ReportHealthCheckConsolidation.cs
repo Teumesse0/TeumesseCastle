@@ -6,22 +6,22 @@
 //
 // Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
 //
-using PingCastle.Data;
-using PingCastle.Healthcheck;
-using PingCastle.Rules;
-using PingCastle.template;
+using TeumesseCastle.Data;
+using TeumesseCastle.Healthcheck;
+using TeumesseCastle.Rules;
+using TeumesseCastle.template;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace PingCastle.Report
+namespace TeumesseCastle.Report
 {
     public class ReportHealthCheckConsolidation : ReportRiskControls<HealthcheckData>
     {
-        private PingCastleReportCollection<HealthcheckData> Report;
+        private TeumesseCastleReportCollection<HealthcheckData> Report;
         protected ADHealthCheckingLicense _license;
-        public string GenerateReportFile(PingCastleReportCollection<HealthcheckData> report, ADHealthCheckingLicense license, string filename)
+        public string GenerateReportFile(TeumesseCastleReportCollection<HealthcheckData> report, ADHealthCheckingLicense license, string filename)
         {
             Report = report;
             _license = license;
@@ -29,7 +29,7 @@ namespace PingCastle.Report
             return GenerateReportFile(filename);
         }
 
-        public string GenerateRawContent(PingCastleReportCollection<HealthcheckData> report, ADHealthCheckingLicense license, string selectedTab = null)
+        public string GenerateRawContent(TeumesseCastleReportCollection<HealthcheckData> report, ADHealthCheckingLicense license, string selectedTab = null)
         {
             Report = report;
             _license = license;
@@ -44,7 +44,7 @@ namespace PingCastle.Report
 
         protected override void GenerateTitleInformation()
         {
-            Add("PingCastle Consolidation report - ");
+            Add("TeumesseCastle Consolidation report - ");
             Add(DateTime.Now.ToString("yyyy-MM-dd"));
         }
 
@@ -76,7 +76,7 @@ namespace PingCastle.Report
 <div id=""wrapper"" class=""container-fluid well"">
 	<noscript>
 		<div class=""alert alert-warning"">
-			<p>PingCastle reports work best with Javascript enabled.</p>
+			<p>TeumesseCastle reports work best with Javascript enabled.</p>
 		</div>
 	</noscript>
 <div class=""row""><div class=""col-lg-12""><h1>Consolidation</h1>
