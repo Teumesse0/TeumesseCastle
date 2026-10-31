@@ -34,7 +34,6 @@ namespace TeumesseCastle
 {
     public class Tasks
     {
-        public ADHealthCheckingLicense License { get; set; }
 
         public NetworkCredential Credential = null;
         public List<string> NodesToInvestigate = new List<string>();
@@ -123,7 +122,7 @@ namespace TeumesseCastle
                 () =>
                 {
                     HealthcheckAnalyzer hcroot = new HealthcheckAnalyzer();
-                    hcroot.limitHoneyPot = string.IsNullOrEmpty(License.Edition);
+                    hcroot.limitHoneyPot = false; // TeumesseCastle: no edition-based limit
                     domains = hcroot.GetAllReachableDomains(Settings.Port, Settings.Credential);
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("List of domains that will be queried");
@@ -152,7 +151,7 @@ namespace TeumesseCastle
                             {
                                 Console.WriteLine("[" + DateTime.Now.ToLongTimeString() + "] " + "Starting the analysis of " + domain);
                                 HealthcheckAnalyzer hc = new HealthcheckAnalyzer();
-                                hc.limitHoneyPot = string.IsNullOrEmpty(License.Edition);
+                                hc.limitHoneyPot = false; // TeumesseCastle: no edition-based limit
 
                                 var data = hc.GenerateCartoReport(domain, Settings.Port, Settings.Credential, Settings.AnalyzeReachableDomains);
                                 consolidation.Add(data);
@@ -210,7 +209,7 @@ namespace TeumesseCastle
                 () =>
                 {
                     consolidation.EnrichInformation();
-                    ReportHealthCheckMapBuilder nodeAnalyzer = new ReportHealthCheckMapBuilder(consolidation, License);
+                    ReportHealthCheckMapBuilder nodeAnalyzer = new ReportHealthCheckMapBuilder(consolidation);
                     nodeAnalyzer.Log = Console.WriteLine;
                     nodeAnalyzer.CenterDomainForSimpliedGraph = Settings.CenterDomainForSimpliedGraph;
                     nodeAnalyzer.GenerateReportFile("ad_carto_full_node_map.html");
@@ -271,7 +270,7 @@ namespace TeumesseCastle
                         foreach (var teumesseCastleReport in hcconso)
                         {
                             var enduserReportGenerator = new ReportHealthCheckSingle();
-                            enduserReportGenerator.GenerateReportFile(teumesseCastleReport, License, teumesseCastleReport.GetHumanReadableFileName());
+                            enduserReportGenerator.GenerateReportFile(teumesseCastleReport, teumesseCastleReport.GetHumanReadableFileName());
                             DisplayAdvancement("Export level is " + ExportLevel);
                             if (ExportLevel != TeumesseCastleReportDataExportLevel.Full)
                             {
@@ -283,15 +282,15 @@ namespace TeumesseCastle
                         }
 
                         var reportConso = new ReportHealthCheckConsolidation();
-                        reportConso.GenerateReportFile(hcconso, License, "ad_hc_summary.html");
-                        ReportHealthCheckMapBuilder nodeAnalyzer = new ReportHealthCheckMapBuilder(hcconso, License);
+                        reportConso.GenerateReportFile(hcconso, "ad_hc_summary.html");
+                        ReportHealthCheckMapBuilder nodeAnalyzer = new ReportHealthCheckMapBuilder(hcconso);
                         nodeAnalyzer.Log = Console.WriteLine;
                         nodeAnalyzer.GenerateReportFile("ad_hc_summary_full_node_map.html");
                         nodeAnalyzer.FullNodeMap = false;
                         nodeAnalyzer.CenterDomainForSimpliedGraph = Settings.CenterDomainForSimpliedGraph;
                         nodeAnalyzer.GenerateReportFile("ad_hc_summary_simple_node_map.html");
                         var mapReport = new ReportNetworkMap();
-                        mapReport.GenerateReportFile(hcconso, License, "ad_hc_hilbert_map.html");
+                        mapReport.GenerateReportFile(hcconso, "ad_hc_hilbert_map.html");
                     }
                 );
         }
@@ -497,7 +496,7 @@ namespace TeumesseCastle
                 () =>
                 {
                     HealthcheckAnalyzer hcroot = new HealthcheckAnalyzer();
-                    hcroot.limitHoneyPot = string.IsNullOrEmpty(License.Edition);
+                    hcroot.limitHoneyPot = false; // TeumesseCastle: no edition-based limit
                     var reachableDomains = hcroot.GetAllReachableDomains(Settings.Port, Settings.Credential);
                     List<HealthcheckAnalyzer.ReachableDomainInfo> domainsfiltered = new List<HealthcheckAnalyzer.ReachableDomainInfo>();
                     Console.ForegroundColor = ConsoleColor.Yellow;
@@ -546,7 +545,7 @@ namespace TeumesseCastle
                 () =>
                 {
                     var analyzer = new HealthcheckAnalyzer();
-                    analyzer.limitHoneyPot = string.IsNullOrEmpty(License.Edition);
+                    analyzer.limitHoneyPot = false; // TeumesseCastle: no edition-based limit
                     teumesseCastleReport = analyzer.PerformAnalyze(new TeumesseCastleAnalyzerParameters()
                     {
                         Server = server,
@@ -558,7 +557,7 @@ namespace TeumesseCastle
                     string domain = teumesseCastleReport.Domain.DomainName;
                     DisplayAdvancement("Generating html report");
                     var enduserReportGenerator = new ReportHealthCheckSingle();
-                    htmlreports[domain] = enduserReportGenerator.GenerateReportFile(teumesseCastleReport, License, teumesseCastleReport.GetHumanReadableFileName());
+                    htmlreports[domain] = enduserReportGenerator.GenerateReportFile(teumesseCastleReport, teumesseCastleReport.GetHumanReadableFileName());
                     DisplayAdvancement("Generating xml file for consolidation report" + (Settings.EncryptReport ? " (encrypted)" : ""));
                     DisplayAdvancement("Export level is " + ExportLevel);
                     if (ExportLevel != TeumesseCastleReportDataExportLevel.Full)
@@ -587,15 +586,15 @@ namespace TeumesseCastle
                         {
                             var hcconso = consolidation as TeumesseCastleReportCollection<HealthcheckData>;
                             var report = new ReportHealthCheckConsolidation();
-                            report.GenerateReportFile(hcconso, License, "ad_hc_summary.html");
-                            ReportHealthCheckMapBuilder nodeAnalyzer = new ReportHealthCheckMapBuilder(hcconso, License);
+                            report.GenerateReportFile(hcconso, "ad_hc_summary.html");
+                            ReportHealthCheckMapBuilder nodeAnalyzer = new ReportHealthCheckMapBuilder(hcconso);
                             nodeAnalyzer.Log = Console.WriteLine;
                             nodeAnalyzer.GenerateReportFile("ad_hc_summary_full_node_map.html");
                             nodeAnalyzer.FullNodeMap = false;
                             nodeAnalyzer.CenterDomainForSimpliedGraph = Settings.CenterDomainForSimpliedGraph;
                             nodeAnalyzer.GenerateReportFile("ad_hc_summary_simple_node_map.html");
                             var mapReport = new ReportNetworkMap();
-                            mapReport.GenerateReportFile(hcconso, License, "ad_hc_hilbert_map.html");
+                            mapReport.GenerateReportFile(hcconso, "ad_hc_hilbert_map.html");
                         }
                     }
                 );
@@ -637,7 +636,7 @@ namespace TeumesseCastle
                                 }
                                 report.CheckIntegrity();
                                 var reportGenerator = new ReportCloud();
-                                reportGenerator.GenerateReportFile(report, License, "teumessecastlecloud_" + report.TenantName + ".html");
+                                reportGenerator.GenerateReportFile(report, "teumessecastlecloud_" + report.TenantName + ".html");
 
                             }
                         }
@@ -645,7 +644,7 @@ namespace TeumesseCastle
                         {
                             var healthcheckData = DataHelper<HealthcheckData>.LoadXml(Settings.InputFile);
                             var endUserReportGenerator = new ReportHealthCheckSingle();
-                            endUserReportGenerator.GenerateReportFile(healthcheckData, License, healthcheckData.GetHumanReadableFileName());
+                            endUserReportGenerator.GenerateReportFile(healthcheckData, healthcheckData.GetHumanReadableFileName());
                         }
                     }
                 );
@@ -707,7 +706,7 @@ namespace TeumesseCastle
                     }
 
                     var reportGenerator = new ReportCloud();
-                    reportGenerator.GenerateReportFile(report, License, "teumessecastlecloud_" + report.TenantName + ".html");
+                    reportGenerator.GenerateReportFile(report, "teumessecastlecloud_" + report.TenantName + ".html");
                 });
         }
 
@@ -762,7 +761,7 @@ namespace TeumesseCastle
                         {
                             string domain = data.DomainFQDN;
                             var endUserReportGenerator = new ReportHealthCheckSingle();
-                            string html = endUserReportGenerator.GenerateReportFile(data, License, Path.Combine(path, data.GetHumanReadableFileName()));
+                            string html = endUserReportGenerator.GenerateReportFile(data, Path.Combine(path, data.GetHumanReadableFileName()));
                             data.SetExportLevel(ExportLevel);
                             string xml = DataHelper<HealthcheckData>.SaveAsXml(data, Path.Combine(path, data.GetMachineReadableFileName()), Settings.EncryptReport);
                         }
@@ -935,38 +934,6 @@ namespace TeumesseCastle
                 //var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
                 //var deserializedResult = serializer.Deserialize<AgentSettings>(answer);
 
-                if (deserializedResult.License != null)
-                {
-                    try
-                    {
-                        var license = new ADHealthCheckingLicense(deserializedResult.License);
-
-                        Trace.WriteLine("License checked");
-                        Trace.WriteLine("CustomerNotice: " + license.CustomerNotice);
-                        Trace.WriteLine("DomainLimitation: " + license.DomainLimitation);
-                        Trace.WriteLine("DomainNumberLimit: " + license.DomainNumberLimit);
-                        Trace.WriteLine("Edition: " + license.Edition);
-                        Trace.WriteLine("EndTime: " + license.EndTime);
-
-                        if (license.EndTime > DateTime.Now)
-                        {
-                            License = license;
-                            DisplayAdvancement("A new license has been retrieved from the API. Using it.");
-                            if (!string.IsNullOrEmpty(license.CustomerNotice))
-                            {
-                                DisplayAdvancement(license.CustomerNotice);
-                            }
-                        }
-                        else
-                        {
-                            DisplayAdvancement("A new license has been retrieved from the API. But the license is out-dated.");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Trace.WriteLine(ex.Message);
-                    }
-                }
                 if (!string.IsNullOrEmpty(deserializedResult.ExportLevel))
                 {
                     try
@@ -981,11 +948,7 @@ namespace TeumesseCastle
                 }
                 if (deserializedResult.CustomRules != null && deserializedResult.CustomRules.Count != 0)
                 {
-                    if (string.IsNullOrEmpty(License.Edition) || License.Edition == "Auditor")
-                    {
-                        Trace.WriteLine("Custom rules not allowed");
-                    }
-                    else
+                    // TeumesseCastle: custom rules are always applied (no edition check).
                     {
                         foreach (var rule in deserializedResult.CustomRules)
                         {

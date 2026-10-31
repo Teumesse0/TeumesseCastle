@@ -27,9 +27,9 @@ namespace TeumesseCastle.Report
             EntityData = ownerInformationReferences;
             FullNodeMap = true;
         }
-        public ReportHealthCheckMapBuilder(TeumesseCastleReportCollection<HealthcheckData> consolidation, ADHealthCheckingLicense license) : this(consolidation, (OwnerInformationReferences)null)
+        public ReportHealthCheckMapBuilder(TeumesseCastleReportCollection<HealthcheckData> consolidation) : this(consolidation, (OwnerInformationReferences)null)
         {
-            Brand(license);
+            Brand();
         }
 
 

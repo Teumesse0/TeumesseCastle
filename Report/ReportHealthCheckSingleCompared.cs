@@ -12,9 +12,8 @@ namespace TeumesseCastle.Report
     {
         HealthcheckData[] Reports;
 
-        public string GenerateRawContent(HealthcheckData[] reports, ADHealthCheckingLicense aDHealthCheckingLicense)
+        public string GenerateRawContent(HealthcheckData[] reports)
         {
-            _license = aDHealthCheckingLicense;
             Reports = reports;
             reports[0].InitializeReportingData();
             reports[1].InitializeReportingData();

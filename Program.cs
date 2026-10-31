@@ -48,8 +48,7 @@ namespace TeumesseCastle
         ExportRulesXml,
     }
 
-    [LicenseProvider(typeof(TeumesseCastle.ADHealthCheckingLicenseProvider))]
-    public class Program : ITeumesseCastleLicenseInfo
+    public class Program
     {
         
         Dictionary<PossibleTasks, Func<bool>> actions;
@@ -107,20 +106,11 @@ namespace TeumesseCastle
 
         private void Run(string[] args)
         {
-            ADHealthCheckingLicense license = null;
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             Trace.WriteLine("TeumesseCastle version " + version.ToString(4));
             for (int i = 0; i < args.Length; i++)
             {
-                if (args[i].Equals("--debug-license", StringComparison.InvariantCultureIgnoreCase))
-                {
-                    EnableLogConsole();
-                }
-                else if (args[i].Equals("--license", StringComparison.InvariantCultureIgnoreCase) && i + 1 < args.Length)
-                {
-                    _serialNumber = args[++i];
-                }
-                else if (args[i].Equals("--out", StringComparison.InvariantCultureIgnoreCase) && i + 1 < args.Length)
+                if (args[i].Equals("--out", StringComparison.InvariantCultureIgnoreCase) && i + 1 < args.Length)
                 {
                     string filename = args[++i];
                     var fi = new FileInfo(filename);
@@ -134,47 +124,6 @@ namespace TeumesseCastle
                     Console.SetOut(writer);
                 }
             }
-            Trace.WriteLine("Starting the license checking");
-            try
-            {
-                license = LicenseManager.Validate(typeof(Program), this) as ADHealthCheckingLicense;
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine("the license check failed - please check that the .config file is in the same directory");
-                WriteInRed(ex.Message);
-                if (args.Length == 0)
-                {
-                    Console.WriteLine("=============================================================================");
-                    Console.WriteLine("Program launched in interactive mode - press any key to terminate the program");
-                    Console.WriteLine("=============================================================================");
-                    Console.ReadKey();
-                }
-                return;
-            }
-            Trace.WriteLine("License checked");
-            Trace.WriteLine("CustomerNotice: " + license.CustomerNotice);
-            Trace.WriteLine("DomainLimitation: " + license.DomainLimitation);
-            Trace.WriteLine("DomainNumberLimit: " + license.DomainNumberLimit);
-            Trace.WriteLine("Edition: " + license.Edition);
-            Trace.WriteLine("EndTime: " + license.EndTime);
-            if (license.EndTime < DateTime.Now)
-            {
-                WriteInRed("The program is unsupported since: " + license.EndTime.ToString("u") + ")");
-                if (args.Length == 0)
-                {
-                    Console.WriteLine("=============================================================================");
-                    Console.WriteLine("Program launched in interactive mode - press any key to terminate the program");
-                    Console.WriteLine("=============================================================================");
-                    Console.ReadKey();
-                }
-                return;
-            }
-            if (license.EndTime < DateTime.MaxValue)
-            {
-                Console.WriteLine();
-            }
-            tasks.License = license;
 
             actions = new Dictionary<PossibleTasks, Func<bool>>
             {
@@ -211,8 +160,8 @@ namespace TeumesseCastle
 
             LoadCustomRules(tasks);
             ConsoleMenu.Header = @"  \==--O___      TeumesseCastle (Version " + version.ToString(4) + @"     " + ConsoleMenu.GetBuildDateTime(Assembly.GetExecutingAssembly()) + @")
-   \  / \  ¨¨>   Active Directory security audit, free and open source forever
-    \/   \ ,’    " + (license.EndTime < DateTime.MaxValue ? "End of support: " + license.EndTime.ToShortDateString() : "") + @"
+   \  / \  ¨¨>   Active Directory security audit
+    \/   \ ,’    Free and open source forever (NPOSL-3.0)
      O¨---O                                                     
       \ ,'       Teumesse - https://github.com/Teumesse0/TeumesseCastle
        v         Based on PingCastle 3.0.0.0 by Vincent Le Toux (NPOSL-3.0)";
@@ -223,15 +172,6 @@ namespace TeumesseCastle
             Trace.WriteLine("[New run]" + DateTime.Now.ToString("u"));
             Trace.WriteLine("TeumesseCastle version " + version.ToString(4));
             Trace.WriteLine("Running on dotnet:" + Environment.Version);
-            if (!String.IsNullOrEmpty(license.DomainLimitation) && !Tasks.compareStringWithWildcard(license.DomainLimitation, settings.Server))
-            {
-                WriteInRed("Limitations applies to the --server argument (" + license.DomainLimitation + ")");
-                return;
-            }
-            if (!String.IsNullOrEmpty(license.CustomerNotice))
-            {
-                Console.WriteLine(license.CustomerNotice);
-            }
 
 
             if (!settings.CheckArgs())
@@ -248,74 +188,11 @@ namespace TeumesseCastle
 
         private void LoadCustomRules(Tasks tasks)
         {
-            if (string.IsNullOrEmpty(tasks.License.Edition))
-                return;
-            if (string.Equals(tasks.License.Edition, "Auditor", StringComparison.OrdinalIgnoreCase))
-                return;
-            if (string.Equals(tasks.License.Edition, "Basic", StringComparison.OrdinalIgnoreCase))
-                return;
+            // TeumesseCastle: custom rule settings (customRulesSettings section of the .config file) are
+            // available to everyone; upstream reserved them to paid editions.
             TeumesseCastle.Rules.RuleSet<HealthcheckData>.LoadCustomRules();
         }
 
-        const string basicEditionLicense = "PC2H4sIAAAAAAAEAGNkYGDgAGKGAzLT7jy6xcgMZBYBsRuQTAVCBQZXhhSGTIYSIM5nyAPy8xnSgGQAkJ/HkM7gzJDIUAyUzQGrNWbQYzAAYwUGXSD2A6ouAdJpQLoISCcD6VwgTAXykoEmJAL1KTCUAk1IBbmBoQGImQ4+s9j59X9w1rOF7t6nn097JNLF6H92Pif/vFNT/87qVDt2pf4W+954r+YKwdUn4tq2pwsl5b2oKOWas9X8Rsdeb6O1PyTPzJ7/fwPbOcWwrtbci73XXKa8uBt1I+lVzxW/J2asCZZHbTw2h3++tb5sXfkHAc1DV89xt7PM68tV2K7paaFkAQD18TqOEgEAAA==";
-        string _serialNumber;
-        public string GetSerialNumber()
-        {
-            if (String.IsNullOrEmpty(_serialNumber))
-            {
-                // try to load it from the configuration file
-                try
-                {
-                    _serialNumber = ADHealthCheckingLicenseSettings.Settings.License;
-                }
-                catch (Exception ex)
-                {
-                    Trace.WriteLine("Exception when getting the license string");
-                    Trace.WriteLine(ex.Message);
-                    Trace.WriteLine(ex.StackTrace);
-                    if (ex.InnerException != null)
-                    {
-                        Trace.WriteLine(ex.InnerException.Message);
-                        Trace.WriteLine(ex.InnerException.StackTrace);
-                    }
-
-                }
-                if (!String.IsNullOrEmpty(_serialNumber))
-                {
-                    Trace.WriteLine("Using the license defined in the config file");
-                    try
-                    {
-                        var license = new ADHealthCheckingLicense(_serialNumber);
-                        return _serialNumber;
-                    }
-                    catch (Exception ex)
-                    {
-                        _serialNumber = null;
-                        Trace.WriteLine("Exception when verifying the external license");
-                        Trace.WriteLine(ex.Message);
-                        Trace.WriteLine(ex.StackTrace);
-                        if (ex.InnerException != null)
-                        {
-                            Trace.WriteLine(ex.InnerException.Message);
-                            Trace.WriteLine(ex.InnerException.StackTrace);
-                        }
-                    }
-
-                }
-            }
-            // fault back to the default license:
-            Trace.WriteLine("Using the license inside the product");
-            _serialNumber = basicEditionLicense;
-            try
-            {
-                var license = new ADHealthCheckingLicense(_serialNumber);
-            }
-            catch (Exception)
-            {
-                throw new TeumesseCastleException("Unable to load the license from the .config file and the license embedded in TeumesseCastle is not valid. Check that all files have been copied in the same directory and that you have a valid license");
-            }
-            return _serialNumber;
-        }
 
         private void WriteInRed(string data)
         {
@@ -525,9 +402,6 @@ namespace TeumesseCastle
                                 WriteInRed("Unable to parse the level [" + args[i] + "] to one of the predefined value (" + String.Join(",", Enum.GetNames(typeof(TeumesseCastleReportDataExportLevel))) + ")");
                                 return false;
                             }
-                            break;
-                        case "--license":
-                            i++;
                             break;
                         case "--log":
                             Tasks.EnableLogFile();

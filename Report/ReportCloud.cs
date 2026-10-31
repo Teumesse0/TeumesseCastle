@@ -22,10 +22,9 @@ namespace TeumesseCastle.Report
 {
     public class ReportCloud : ReportBase
     {
-        public string GenerateReportFile(HealthCheckCloudData report, ADHealthCheckingLicense license, string filename)
+        public string GenerateReportFile(HealthCheckCloudData report, string filename)
         {
             Report = report;
-            _license = license;
             return GenerateReportFile(filename);
         }
 
@@ -35,12 +34,10 @@ namespace TeumesseCastle.Report
         public IAADActionPlan ActionPlanOrchestrator { get; set; }
 
         protected HealthCheckCloudData Report;
-        protected ADHealthCheckingLicense _license;
 
-        public string GenerateRawContent(HealthCheckCloudData report, ADHealthCheckingLicense license)
+        public string GenerateRawContent(HealthCheckCloudData report)
         {
             Report = report;
-            _license = license;
             sb.Length = 0;
             GenerateContent();
             return sb.ToString();
@@ -84,22 +81,7 @@ namespace TeumesseCastle.Report
             Add(@"</h3>
 ");
             Add(@"<div class=""alert alert-info"">
-This report has been generated with the ");
-            Add(String.IsNullOrEmpty(_license.Edition) ? "Basic" : _license.Edition);
-            Add(@" Edition of TeumesseCastle");
-            if (!string.IsNullOrEmpty(_license.CustomerNotice))
-            {
-                Add(@"&nbsp;<i class=""info-mark d-print-none"" data-bs-placement=""bottom"" data-bs-toggle=""tooltip""");
-                Add(@" title="""" data-bs-original-title=""");
-                AddEncoded(_license.CustomerNotice);
-                Add(@""">?</i>.");
-            }
-            if (String.IsNullOrEmpty(_license.Edition))
-            {
-                Add(@"
-<br><strong class='auditor'>Being part of a commercial package is forbidden</strong> (selling the information contained in the report).<br>
-If you are an auditor, you MUST purchase an Auditor license to share the development effort.");
-            }
+This report has been generated with TeumesseCastle, free and open source (NPOSL-3.0).");
             Add(@"</div>
 ");
             Add(@"</div></div>
@@ -392,11 +374,6 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
         protected void GenerateMaturityInformation()
         {
             Add(@"<p>This section represents the maturity score (inspired from <a href='https://www.cert.ssi.gouv.fr/dur/CERTFR-2020-DUR-001/'>ANSSI</a>).</p>");
-            if (string.IsNullOrEmpty(_license.Edition))
-            {
-                AddParagraph("This feature is reserved for customers who have <a href='https://github.com/Teumesse0/TeumesseCastle'>purchased a license</a>");
-                return;
-            }
             var data = GetCurrentMaturityLevel();
             Add("<div class='row'><div class='col-sm-6 my-auto'><p class='display-4'>Maturity Level:</span></div><div class='col-sm-6'>");
             for (int i = 1; i <= 5; i++)
@@ -601,11 +578,6 @@ If you are an auditor, you MUST purchase an Auditor license to share the develop
         protected void GenerateMitreAttackInformation()
         {
             AddParagraph(@"This section represents an evaluation of the techniques available in the <a href=""https://attack.mitre.org/"">MITRE ATT&CK&#174;</a>");
-            if (string.IsNullOrEmpty(_license.Edition))
-            {
-                AddParagraph("This feature is reserved for customers who have <a href='https://github.com/Teumesse0/TeumesseCastle'>purchased a license</a>");
-                return;
-            }
             GenerateMitreTechnique();
             GenerateMitreMitigation();
         }

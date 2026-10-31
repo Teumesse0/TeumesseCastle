@@ -20,19 +20,16 @@ namespace TeumesseCastle.Report
     public class ReportHealthCheckConsolidation : ReportRiskControls<HealthcheckData>
     {
         private TeumesseCastleReportCollection<HealthcheckData> Report;
-        protected ADHealthCheckingLicense _license;
-        public string GenerateReportFile(TeumesseCastleReportCollection<HealthcheckData> report, ADHealthCheckingLicense license, string filename)
+        public string GenerateReportFile(TeumesseCastleReportCollection<HealthcheckData> report, string filename)
         {
             Report = report;
-            _license = license;
-            Brand(license);
+            Brand();
             return GenerateReportFile(filename);
         }
 
-        public string GenerateRawContent(TeumesseCastleReportCollection<HealthcheckData> report, ADHealthCheckingLicense license, string selectedTab = null)
+        public string GenerateRawContent(TeumesseCastleReportCollection<HealthcheckData> report, string selectedTab = null)
         {
             Report = report;
-            _license = license;
             sb.Length = 0;
             GenerateContent(selectedTab);
             return sb.ToString();
@@ -51,11 +48,8 @@ namespace TeumesseCastle.Report
         protected override void ReferenceJSAndCSS()
         {
             AddStyle(TemplateManager.LoadReportHealthCheckConsolidationCss());
-            if (!string.IsNullOrEmpty(_license.Edition))
-            {
-                AddScript(TemplateManager.LoadTableExportJs());
-                AddScript(TemplateManager.LoadBootstrapTableExportJs());
-            }
+            AddScript(TemplateManager.LoadTableExportJs());
+            AddScript(TemplateManager.LoadBootstrapTableExportJs());
         }
 
         protected override void Hook(StringBuilder sbHtml)
@@ -165,11 +159,6 @@ namespace TeumesseCastle.Report
                         if (AdditionInfoDelegate != null)
                             AddCellText(AdditionInfoDelegate(data.Domain));
                         AddCellText(ReportHelper.GetEnumDescription(rule.Category));
-                        if (string.IsNullOrEmpty(_license.Edition))
-                        {
-                            AddCellText(rule.RiskId);
-                        }
-                        else
                         {
                             var hcrule = RuleSet<HealthcheckData>.GetRuleFromID(rule.RiskId);
                             Add("<td class='text'>");

@@ -16,7 +16,7 @@ namespace TeumesseCastle.Report
 
     public interface ITeumesseCastleReportUser<T> where T : ITeumesseCastleReport
     {
-        string GenerateReportFile(T report, ADHealthCheckingLicense license, string filename);
+        string GenerateReportFile(T report, string filename);
         string GenerateRawContent(T report);
         void SetUrlDisplayDelegate(GetUrlDelegateDomain uRLDelegate);
         void SetUrlDisplayDelegate(GetUrlDelegateAzureAD uRLDelegate);
