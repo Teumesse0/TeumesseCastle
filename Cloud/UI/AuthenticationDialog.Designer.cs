@@ -1,4 +1,10 @@
-﻿namespace PingCastle.Cloud.UI
+﻿//
+// Part of PingCastle 3.0.0.0 by Vincent Le Toux / Ping Castle SAS (https://www.pingcastle.com).
+// Licensed under the Non-Profit OSL 3.0. See LICENSE.md in the project root for full license information.
+//
+// Modifications Copyright (c) 2026 Teumesse — TeumesseCastle project.
+//
+namespace PingCastle.Cloud.UI
 {
     partial class AuthenticationDialog
     {
@@ -54,7 +60,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(543, 887);
             this.Controls.Add(this.webBrowser);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetEntryAssembly().Location);
             this.Name = "AuthenticationDialog";
             this.Text = "PingCastle Cloud";
             this.ResumeLayout(false);

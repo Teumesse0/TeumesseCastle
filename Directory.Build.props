@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  TeumesseCastle - shared MSBuild properties for every project in this repository.
+
+  The projects target .NET Framework 4.5.2 / 4.8 (same as PingCastle 3.0.0.0). Instead of requiring the
+  Windows "Developer Pack" targeting packs to be installed, the reference assemblies are restored from
+  NuGet, which lets `dotnet build` (and Visual Studio) compile the solution on any Windows machine with a
+  .NET SDK. SDK-style projects get this package implicitly; the explicit reference below is only for the
+  remaining legacy-format project(s).
+-->
+<Project>
+
+  <ItemGroup Condition="'$(UsingMicrosoftNETSdk)' != 'true'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>
